@@ -1,0 +1,1088 @@
+{
+  "pattern": {
+    "id": "neetcode-150",
+    "name": "NeetCode 150 — sedno"
+  },
+  "exercises": [
+    {
+      "id": "neetcode-150/trees/czy-bst-przypadek",
+      "pattern": "trees",
+      "problem": "czy-bst-przypadek",
+      "type": "edge-case",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Sprawdzasz, czy drzewo binarne jest drzewem BST, porównując w każdym węźle jego wartość z wartościami jego dwóch dzieci.",
+      "prompt": "Który układ przejdzie ten test, choć nie jest drzewem BST?",
+      "code": "",
+      "options": [
+        "korzeń 5 bez żadnych dzieci",
+        "korzeń 5, lewe dziecko 7, bez innych węzłów",
+        "korzeń 5, lewe dziecko 3, prawe dziecko 8",
+        "korzeń 5, prawe dziecko 7, a lewe dziecko siódemki to 4"
+      ],
+      "answer": 3,
+      "explanation": "Porównanie z dziećmi widzi tylko sąsiedztwo. Czwórka jest mniejsza od korzenia, a leży w jego prawym poddrzewie, więc drzewo nie jest BST — ale lokalnie wszystko się zgadza, bo 4 jest mniejsze od 7. Dlatego w dół trzeba przekazywać przedział dopuszczalnych wartości, a nie porównywać z pojedynczym węzłem.",
+      "spec_ref": null,
+      "est_seconds": 30,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "edge-case",
+        "trees"
+      ]
+    },
+    {
+      "id": "neetcode-150/dp-1d/najwieksza-suma-przypadek",
+      "pattern": "dp-1d",
+      "problem": "najwieksza-suma-przypadek",
+      "type": "edge-case",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Liczysz największą sumę spójnego niepustego fragmentu tablicy. Zaczynasz od wyniku równego zero, dodajesz kolejne elementy, a gdy bieżąca suma zrobi się ujemna, zerujesz ją.",
+      "prompt": "Które wejście da zły wynik?",
+      "code": "",
+      "options": [
+        "[0, 0, 0]",
+        "[1, 2, 3]",
+        "[-1, 5, -2]",
+        "[-3, -1, -2]"
+      ],
+      "answer": 3,
+      "explanation": "Start od zera po cichu zakłada, że pusty fragment jest dopuszczalny. Dla samych liczb ujemnych podejście zwróci 0, a poprawną odpowiedzią jest -1, czyli największy pojedynczy element. Lekarstwem jest start od pierwszego elementu, nie od zera.",
+      "spec_ref": null,
+      "est_seconds": 30,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "edge-case",
+        "dp-1d"
+      ]
+    },
+    {
+      "id": "neetcode-150/greedy/reszta-zachlanna-przypadek",
+      "pattern": "greedy",
+      "problem": "reszta-zachlanna-przypadek",
+      "type": "edge-case",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Wydajesz resztę, biorąc za każdym razem największy nominał, który mieści się w pozostałej kwocie, i tak aż do wyzerowania.",
+      "prompt": "Przy których nominałach i kwocie to podejście da za dużo monet?",
+      "code": "",
+      "options": [
+        "nominały 2, 4, 8 i kwota 14",
+        "nominały 1, 3, 4 i kwota 6",
+        "nominały 1, 5, 10 i kwota 30",
+        "nominały 1, 2, 5 i kwota 6"
+      ],
+      "answer": 1,
+      "explanation": "Zachłannie wychodzi 4 plus 1 plus 1, czyli trzy monety, a wystarczą dwie po 3. Reguła działa dla zestawów, w których każdy nominał jest wielokrotnością mniejszego, i dlatego wydaje się oczywista — prawdziwe waluty są tak zbudowane.",
+      "spec_ref": null,
+      "est_seconds": 30,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "edge-case",
+        "greedy"
+      ]
+    },
+    {
+      "id": "neetcode-150/linked-list/usun-n-ty-przypadek",
+      "pattern": "linked-list",
+      "problem": "usun-n-ty-przypadek",
+      "type": "edge-case",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Usuwasz n-ty węzeł od końca listy jednokierunkowej: prowadzisz dwa wskaźniki oddalone o n węzłów i usuwasz ten, który stoi tuż za wolniejszym.",
+      "prompt": "Który przypadek wymaga osobnej obsługi?",
+      "code": "",
+      "options": [
+        "lista ma trzy węzły, a n równa się trzy",
+        "lista ma pięć węzłów, a n równa się dwa",
+        "lista ma trzy węzły, a n równa się jeden",
+        "lista ma trzy węzły, a n równa się dwa"
+      ],
+      "answer": 0,
+      "explanation": "Gdy n równa się długości listy, usuwany jest pierwszy węzeł, a wtedy nie istnieje poprzednik, któremu można by przepiąć wskaźnik. Standardowym lekarstwem jest węzeł wartowniczy przed głową: usunięcie głowy przestaje być wyjątkiem i kod nie potrzebuje osobnej gałęzi.",
+      "spec_ref": null,
+      "est_seconds": 30,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "edge-case",
+        "linked-list"
+      ]
+    },
+    {
+      "id": "neetcode-150/stack/nawiasy-licznikiem-przypadek",
+      "pattern": "stack",
+      "problem": "nawiasy-licznikiem-przypadek",
+      "type": "edge-case",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Sprawdzasz poprawność nawiasowania, licząc dla każdego rodzaju nawiasu osobno otwarcia i zamknięcia. Pilnujesz, żeby żaden licznik nie zszedł poniżej zera i żeby na końcu wszystkie wynosiły zero.",
+      "prompt": "Które wejście przejdzie, mimo że nawiasowanie jest błędne?",
+      "code": "",
+      "options": [
+        "\"(()\"",
+        "\")(\"",
+        "\"([)]\"",
+        "\"([])\""
+      ],
+      "answer": 2,
+      "explanation": "Liczniki zgadzają się co do sztuk i nigdy nie schodzą poniżej zera, bo każdy rodzaj jest liczony osobno. Nie zgadza się natomiast zagnieżdżenie: nawias kwadratowy zostaje otwarty wewnątrz okrągłego, a zamknięty na zewnątrz. Kolejności nie da się sprawdzić licznikami, trzeba pamiętać, co zostało otwarte ostatnio, czyli użyć stosu.",
+      "spec_ref": null,
+      "est_seconds": 30,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "edge-case",
+        "stack"
+      ]
+    },
+    {
+      "id": "neetcode-150/dp-1d/dekodowanie-przypadek",
+      "pattern": "dp-1d",
+      "problem": "dekodowanie-przypadek",
+      "type": "edge-case",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Liczysz, na ile sposobów da się odczytać napis cyfr, gdzie 1 to A, a 26 to Z. Dla każdej pozycji dodajesz wynik z pozycji poprzedniej oraz wynik sprzed dwóch pozycji, jeśli ostatnie dwie cyfry tworzą liczbę nie większą niż 26.",
+      "prompt": "Które wejście da zły wynik?",
+      "code": "",
+      "options": [
+        "\"12\"",
+        "\"11\"",
+        "\"30\"",
+        "\"26\""
+      ],
+      "answer": 2,
+      "explanation": "Napisu 30 nie da się odczytać w żaden sposób: 30 przekracza 26, a zero samo w sobie nie koduje litery, więc poprawną odpowiedzią jest zero sposobów. Podejście, które sprawdza tylko górne ograniczenie dwucyfrowego kodu, doda wynik z pozycji poprzedniej i wyliczy 1. Brakuje warunku, że pojedyncza cyfra musi być różna od zera.",
+      "spec_ref": null,
+      "est_seconds": 30,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "edge-case",
+        "dp-1d"
+      ]
+    },
+    {
+      "id": "neetcode-150/two-pointers/palindrom-przypadek",
+      "pattern": "two-pointers",
+      "problem": "palindrom-przypadek",
+      "type": "edge-case",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Sprawdzasz, czy napis jest palindromem: ustawiasz wskaźniki na obu końcach, przesuwasz je ku sobie i po drodze pomijasz znaki, które nie są literami ani cyframi.",
+      "prompt": "Który przypadek najłatwiej wywraca taką implementację?",
+      "code": "",
+      "options": [
+        "napis o długości jeden",
+        "napis o parzystej długości",
+        "napis złożony wyłącznie ze znaków interpunkcyjnych",
+        "napis zapisany samymi wielkimi literami"
+      ],
+      "answer": 2,
+      "explanation": "Gdy wszystkie znaki są pomijane, wewnętrzne pętle przewijające wskaźniki wybiegają poza napis, o ile nie sprawdzają dodatkowo, czy wskaźniki się jeszcze nie minęły. Poprawną odpowiedzią jest wtedy „tak”, bo napis pusty po odfiltrowaniu jest palindromem.",
+      "spec_ref": null,
+      "est_seconds": 30,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "edge-case",
+        "two-pointers"
+      ]
+    },
+    {
+      "id": "neetcode-150/intervals/scalanie-przypadek",
+      "pattern": "intervals",
+      "problem": "scalanie-przypadek",
+      "type": "edge-case",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Scalasz przedziały: sortujesz je po początku i łączysz bieżący z ostatnim wtedy, gdy początek bieżącego jest ostro mniejszy od końca ostatniego.",
+      "prompt": "Która para zostanie potraktowana inaczej, niż zwykle się tego oczekuje?",
+      "code": "",
+      "options": [
+        "przedziały [1, 2] oraz [2, 3]",
+        "przedziały [1, 3] oraz [2, 4]",
+        "przedziały [1, 2] oraz [5, 6]",
+        "przedziały [1, 5] oraz [2, 3]"
+      ],
+      "answer": 0,
+      "explanation": "Przy ostrej nierówności przedziały stykające się końcami nie zostaną scalone, choć zwykle chcemy z [1, 2] i [2, 3] dostać [1, 3]. To nie jest błąd w kodzie, tylko niezapisana decyzja projektowa — i dokładnie taki przypadek trzeba rozstrzygnąć w specyfikacji, zamiast zgadywać go z implementacji.",
+      "spec_ref": null,
+      "est_seconds": 30,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "edge-case",
+        "intervals"
+      ]
+    },
+    {
+      "id": "neetcode-150/graphs/bfs-oznaczanie-przypadek",
+      "pattern": "graphs",
+      "problem": "bfs-oznaczanie-przypadek",
+      "type": "edge-case",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Liczysz najkrótszą drogę przeszukiwaniem wszerz. Wierzchołek oznaczasz jako odwiedzony w chwili, gdy zdejmujesz go z kolejki.",
+      "prompt": "Co się przy tym psuje?",
+      "code": "",
+      "options": [
+        "kolejność odwiedzania przestaje odpowiadać poziomom",
+        "ten sam wierzchołek trafia do kolejki wiele razy, więc przy gęstym grafie kolejka puchnie",
+        "wynikowa najkrótsza droga wychodzi za długa",
+        "algorytm nie znajduje celu, gdy graf zawiera cykl"
+      ],
+      "answer": 1,
+      "explanation": "Wynik pozostaje poprawny i poziomy się zgadzają, więc błąd nie objawia się złą odpowiedzią, tylko czasem i pamięcią. Zanim wierzchołek zostanie zdjęty, każdy jego sąsiad zdąży go dorzucić do kolejki. Oznaczanie w chwili wkładania usuwa problem.",
+      "spec_ref": null,
+      "est_seconds": 30,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "edge-case",
+        "graphs"
+      ]
+    },
+    {
+      "id": "neetcode-150/heap/dwa-kopce-przypadek",
+      "pattern": "heap",
+      "problem": "dwa-kopce-przypadek",
+      "type": "edge-case",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Utrzymujesz medianę strumienia: mniejszą połowę trzymasz w kopcu maksymalnym, większą w minimalnym, a po każdej wstawce wyrównujesz rozmiary obu kopców.",
+      "prompt": "Czego samo wyrównywanie rozmiarów nie zapewnia?",
+      "code": "",
+      "options": [
+        "że pojedyncza wstawka kosztuje czas logarytmiczny",
+        "że kopce zawierają łącznie tyle elementów, ile wstawiono",
+        "że wierzchołek kopca mniejszej połowy jest naprawdę mniejszy od wierzchołka większej",
+        "że mediana leży na wierzchołku któregoś z kopców"
+      ],
+      "answer": 2,
+      "explanation": "Rozmiary mogą się idealnie zgadzać, a element i tak wylądował w niewłaściwej połowie: wstawiony do mniejszej okazuje się większy od wierzchołka większej. Dlatego po wstawce trzeba najpierw przełożyć wierzchołek między kopcami, a dopiero potem wyrównywać rozmiary. Sam podział na dwa kopce niczego nie gwarantuje.",
+      "spec_ref": null,
+      "est_seconds": 30,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "edge-case",
+        "heap"
+      ]
+    },
+    {
+      "id": "neetcode-150/backtracking/podzbiory-przypadek",
+      "pattern": "backtracking",
+      "problem": "podzbiory-przypadek",
+      "type": "edge-case",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Generujesz wszystkie podzbiory: przy każdym wywołaniu rekurencyjnym dopisujesz bieżący stan do wyniku, a przy powrocie zdejmujesz ostatni dołożony element.",
+      "prompt": "Jaki błąd najłatwiej tu popełnić?",
+      "code": "",
+      "options": [
+        "przekroczenie dopuszczalnej głębokości rekurencji przy kilku elementach",
+        "pominięcie zbioru pustego",
+        "wygenerowanie każdego podzbioru dwa razy",
+        "dopisanie do wyniku tej samej listy zamiast jej kopii, przez co na końcu wszystkie wpisy są puste"
+      ],
+      "answer": 3,
+      "explanation": "Lista stanu jest modyfikowana w miejscu przy cofaniu się, więc wszystkie wpisy w wyniku pokazują na ten sam obiekt, a ten po zakończeniu rekurencji jest pusty. Objaw jest mylący: liczba podzbiorów się zgadza, tylko wszystkie są puste.",
+      "spec_ref": null,
+      "est_seconds": 30,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "edge-case",
+        "backtracking"
+      ]
+    },
+    {
+      "id": "neetcode-150/binary-search/obrocona-z-powtorzeniami-przypadek",
+      "pattern": "binary-search",
+      "problem": "obrocona-z-powtorzeniami-przypadek",
+      "type": "edge-case",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Szukasz minimum w tablicy posortowanej i obróconej, porównując element środkowy z prawym skrajnym i odrzucając połowę, po której minimum leżeć nie może.",
+      "prompt": "Który przypadek psuje ten schemat?",
+      "code": "",
+      "options": [
+        "[2, 1]",
+        "[3, 4, 5, 1, 2]",
+        "[1, 2, 3, 4, 5]",
+        "[2, 2, 2, 0, 2]"
+      ],
+      "answer": 3,
+      "explanation": "Gdy element środkowy równa się prawemu skrajnemu, porównanie nie mówi nic o tym, po której stronie leży minimum, i podział połówkowy przestaje rozstrzygać. Wersja z powtórzeniami musi wtedy zsuwać prawą granicę o jeden, przez co w najgorszym razie traci gwarancję czasu logarytmicznego i schodzi do liniowego.",
+      "spec_ref": null,
+      "est_seconds": 30,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "edge-case",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "neetcode-150/arrays-hashing/najdluzszy-ciag-sedno",
+      "pattern": "arrays-hashing",
+      "problem": "najdluzszy-ciag-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Nieuporządkowana tablica liczb. Podaj długość najdłuższego ciągu kolejnych liczb. Masz do dyspozycji zbiór haszujący, a rozwiązanie ma być liniowe.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "liczby trzeba najpierw posortować",
+        "dla każdej liczby liczy się w górę, dopóki następnik jest w zbiorze",
+        "liczenie w górę zaczyna się wyłącznie od liczby, która nie ma poprzednika w zbiorze",
+        "zbiór trzeba przeglądać w kolejności rosnącej"
+      ],
+      "answer": 2,
+      "explanation": "Bez warunku o braku poprzednika ten sam ciąg jest przechodzony od każdego swojego elementu i całość robi się kwadratowa. Ten jeden warunek sprawia, że każdy element bierze udział w liczeniu dokładnie raz, i dopiero on daje obiecaną liniowość.",
+      "spec_ref": "rozwiązanie ma być liniowe",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "arrays-hashing"
+      ]
+    },
+    {
+      "id": "neetcode-150/arrays-hashing/k-najczestszych-sedno",
+      "pattern": "arrays-hashing",
+      "problem": "k-najczestszych-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Tablica n liczb i wartość k. Podaj k wartości występujących najczęściej. Rozwiązanie ma działać w czasie liniowym.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "kopiec rozmiaru k daje czas liniowy",
+        "liczniki trzeba trzymać w strukturze uporządkowanej",
+        "wystarczy posortować liczniki malejąco",
+        "częstotliwość nigdy nie przekracza n, więc sama może służyć za indeks kubełka"
+      ],
+      "answer": 3,
+      "explanation": "Sortowanie liczników kosztuje O(n log n), a kopiec O(n log k). Oba są dobrymi rozwiązaniami, ale żadne nie jest liniowe. Liniowość bierze się z tego, że częstotliwość mieści się w zakresie od 1 do n, więc można ją potraktować jak indeks.",
+      "spec_ref": "w czasie liniowym",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "arrays-hashing"
+      ]
+    },
+    {
+      "id": "neetcode-150/two-pointers/najwieksze-pole-sedno",
+      "pattern": "two-pointers",
+      "problem": "najwieksze-pole-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Wysokości pionowych linii. Wybierz dwie, które razem z osią poziomą dają największe pole. Zaczynasz od pary najbardziej oddalonej.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "zawsze przesuwa się lewy wskaźnik, bo prawy wyznacza szerokość",
+        "przesunięcie wyższej linii nigdy nie zwiększy pola, więc przesuwa się niższą",
+        "pary trzeba przejrzeć wszystkie, tylko w kolejności malejącej szerokości",
+        "wystarczy znaleźć dwie najwyższe linie"
+      ],
+      "answer": 1,
+      "explanation": "Pole to szerokość razy niższa z dwóch linii. Każdy ruch zmniejsza szerokość, więc jedyną szansą na wzrost jest podniesienie tej niższej — przesuwanie wyższej gwarantuje wynik nie lepszy. Dwie najwyższe linie mogą stać obok siebie i dawać maleńkie pole.",
+      "spec_ref": "Zaczynasz od pary najbardziej oddalonej",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "two-pointers"
+      ]
+    },
+    {
+      "id": "neetcode-150/sliding-window/zamiana-znakow-sedno",
+      "pattern": "sliding-window",
+      "problem": "zamiana-znakow-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Napis i liczba k. Możesz zmienić najwyżej k znaków na dowolne inne. Podaj długość najdłuższego fragmentu złożonego z jednego powtarzającego się znaku.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "okno jest dopuszczalne, gdy k jest większe od połowy jego długości",
+        "okno jest dopuszczalne, gdy zawiera najwyżej k różnych znaków",
+        "okno jest dopuszczalne, gdy jego długość minus liczba wystąpień najczęstszego znaku nie przekracza k",
+        "okno trzeba sprawdzić osobno dla każdego znaku alfabetu"
+      ],
+      "answer": 2,
+      "explanation": "Koszt naprawy okna to dokładnie jego długość minus liczba wystąpień znaku, którego jest w nim najwięcej, bo najtaniej zmienić wszystko na ten znak. Liczba różnych znaków nie mówi o koszcie nic: okno z dwoma znakami może wymagać jednej zmiany albo stu.",
+      "spec_ref": "najwyżej k znaków",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "neetcode-150/sliding-window/minimalne-okno-sedno",
+      "pattern": "sliding-window",
+      "problem": "minimalne-okno-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Napis i wzorzec. Znajdź najkrótszy fragment zawierający wszystkie znaki wzorca wraz z powtórzeniami. Sprawdzenie warunku ma być stałe, niezależnie od długości wzorca.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "wystarczy porównywać sumy liczników obu słowników",
+        "po każdym ruchu trzeba porównać słownik okna ze słownikiem wzorca",
+        "wystarczy jeden licznik brakujących znaków, poprawiany przy każdym ruchu krawędzi okna",
+        "okno można zwężać dopiero po dojściu do końca napisu"
+      ],
+      "answer": 2,
+      "explanation": "Porównywanie słowników jest poprawne, ale kosztuje tyle, ile jest różnych znaków, i robi się przy każdym kroku. Jedna liczba mówiąca, ilu znaków jeszcze brakuje, zmienia się o jeden przy wejściu i wyjściu znaku, więc warunek sprawdza się porównaniem z zerem.",
+      "spec_ref": "Sprawdzenie warunku ma być stałe",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "neetcode-150/stack/floty-samochodow-sedno",
+      "pattern": "stack",
+      "problem": "floty-samochodow-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Samochody na jednopasmowej drodze, każdy z pozycją i prędkością, nikt nikogo nie wyprzedza. Policz, ile odrębnych flot dotrze do mety.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "trzeba symulować ruch wszystkich samochodów krok po kroku",
+        "idąc od samochodu najbliższego mety, kolejny dołącza do floty przed sobą, gdy jego czas dojazdu nie jest większy",
+        "wystarczy posortować samochody po prędkości",
+        "flota powstaje wtedy, gdy samochód z tyłu jest szybszy od tego z przodu"
+      ],
+      "answer": 1,
+      "explanation": "Zakaz wyprzedzania zamienia zadanie w porównywanie czasów dojazdu. Sama większa prędkość nie wystarcza: liczy się, czy szybszy zdąży dogonić tego z przodu przed metą, a to widać po czasach, nie po prędkościach. Kolejność od mety sprawia, że flota z przodu jest już rozstrzygnięta.",
+      "spec_ref": "nikt nikogo nie wyprzedza",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "stack"
+      ]
+    },
+    {
+      "id": "neetcode-150/binary-search/szukanie-po-odpowiedzi-sedno",
+      "pattern": "binary-search",
+      "problem": "szukanie-po-odpowiedzi-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Szukasz najmniejszej wartości parametru, przy której zadanie się udaje. Sprawdzenie jednej wartości jest tanie, a jeśli jakaś wartość wystarcza, to każda większa też.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "wystarczy sprawdzić wartość średnią z danych wejściowych",
+        "dane wejściowe trzeba najpierw posortować",
+        "monotoniczność warunku pozwala szukać granicy połowieniem, choć wejście nie jest posortowane",
+        "granicę znajduje się, sprawdzając wartości od najmniejszej po kolei"
+      ],
+      "answer": 2,
+      "explanation": "To zdanie jest całym uzasadnieniem. Wyszukiwanie binarne nie potrzebuje posortowanej tablicy, tylko warunku, który raz spełniony pozostaje spełniony. Szuka się wtedy w przestrzeni odpowiedzi, a nie w danych.",
+      "spec_ref": "jeśli jakaś wartość wystarcza, to każda większa też",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "neetcode-150/binary-search/minimum-w-obroconej-sedno",
+      "pattern": "binary-search",
+      "problem": "minimum-w-obroconej-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Tablica posortowana rosnąco i obrócona, bez powtórzeń. Znajdź najmniejszy element, porównując wyłącznie elementy tablicy między sobą.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "punkt obrotu trzeba najpierw znaleźć przejściem liniowym",
+        "element środkowy wystarczy porównać z lewym skrajnym",
+        "wystarczy sprawdzić, czy pierwszy element jest większy od ostatniego",
+        "element środkowy porównuje się z prawym skrajnym, bo porównanie z lewym nie rozstrzyga dla tablicy nieobróconej"
+      ],
+      "answer": 3,
+      "explanation": "Przy porównaniu z lewym skrajnym tablica obrócona o zero wygląda tak samo jak taka, w której minimum leży po prawej, i trzeba dokładać osobny warunek brzegowy. Porównanie z prawym rozstrzyga jednoznacznie: środek większy od prawego oznacza, że minimum jest po prawej stronie.",
+      "spec_ref": "porównując wyłącznie elementy tablicy między sobą",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "neetcode-150/linked-list/powtorzona-liczba-sedno",
+      "pattern": "linked-list",
+      "problem": "powtorzona-liczba-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Tablica n plus jeden liczb z zakresu od 1 do n. Dokładnie jedna wartość się powtarza, ale może wystąpić więcej niż dwa razy. Znajdź ją bez modyfikowania tablicy i w stałej pamięci.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "wystarczy odjąć od sumy elementów sumę ciągu od 1 do n",
+        "wystarczy posortować tablicę i poszukać sąsiadów o równych wartościach",
+        "tablica zadaje funkcję z indeksu na wartość, więc powtórzenie jest wejściem do cyklu i znajdują je dwa wskaźniki",
+        "wystarczy zbiór widzianych wartości"
+      ],
+      "answer": 2,
+      "explanation": "Zbiór łamie warunek pamięci, sortowanie łamie zakaz modyfikacji, a różnica sum zadziała tylko wtedy, gdy wartość powtarza się dokładnie dwa razy — treść na to nie pozwala liczyć. Potraktowanie tablicy jak funkcji sprowadza zadanie do wykrywania cyklu, które spełnia oba warunki naraz.",
+      "spec_ref": "bez modyfikowania tablicy i w stałej pamięci",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "linked-list"
+      ]
+    },
+    {
+      "id": "neetcode-150/trees/srednica-sedno",
+      "pattern": "trees",
+      "problem": "srednica-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Drzewo binarne. Podaj długość najdłuższej ścieżki między dowolnymi dwoma węzłami. Ścieżka nie musi przechodzić przez korzeń.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "rekurencja zwraca wysokość poddrzewa, a najdłuższą ścieżkę aktualizuje po drodze jako sumę wysokości obu poddrzew węzła",
+        "wynik to suma wysokości lewego i prawego poddrzewa korzenia",
+        "trzeba policzyć odległość między każdą parą węzłów",
+        "najdłuższa ścieżka zawsze łączy dwa najgłębsze liście"
+      ],
+      "answer": 0,
+      "explanation": "Ten warunek wyklucza liczenie czegokolwiek wyłącznie w korzeniu. Sztuczka polega na tym, że funkcja zwraca jedno (wysokość), a po drodze odkłada co innego (najlepszy wynik), dzięki czemu każdy węzeł jest rozpatrywany jako szczyt ścieżki w jednym przejściu.",
+      "spec_ref": "nie musi przechodzić przez korzeń",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "trees"
+      ]
+    },
+    {
+      "id": "neetcode-150/trees/odtworzenie-drzewa-sedno",
+      "pattern": "trees",
+      "problem": "odtworzenie-drzewa-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Dane są dwa porządki obchodzenia drzewa binarnego, preorder i inorder, bez powtórzonych wartości. Odtwórz drzewo.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "korzeniem jest ostatni element preorder",
+        "pierwszy element preorder to korzeń, a jego pozycja w inorder dzieli resztę na lewe i prawe poddrzewo",
+        "trzeba wypróbować każdy element w roli korzenia",
+        "sam inorder wystarcza, bo zawiera wszystkie wartości we właściwej kolejności"
+      ],
+      "answer": 1,
+      "explanation": "Brak powtórzeń nie jest tu ozdobnikiem, tylko warunkiem koniecznym: pozycja korzenia w inorder musi być jednoznaczna. Sam inorder nie wystarcza, bo pasuje do wielu różnych drzew — dopiero drugi porządek mówi, który element jest korzeniem.",
+      "spec_ref": "bez powtórzonych wartości",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "trees"
+      ]
+    },
+    {
+      "id": "neetcode-150/heap/harmonogram-zadan-sedno",
+      "pattern": "heap",
+      "problem": "harmonogram-zadan-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Zadania do wykonania i przerwa n, która musi minąć między dwoma wykonaniami tego samego zadania. Podaj najkrótszy łączny czas.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "wystarczy pomnożyć liczbę zadań przez długość przerwy",
+        "kolejność nie ma znaczenia, więc czas to zawsze liczba zadań",
+        "czas zależy przede wszystkim od liczby różnych zadań",
+        "czas wyznacza zadanie najczęstsze: jego wystąpienia tworzą szkielet przerw, który pozostałe zadania wypełniają"
+      ],
+      "answer": 3,
+      "explanation": "Ograniczenie dotyczy powtórzeń jednego zadania, więc to zadanie o największej liczbie wystąpień narzuca kształt harmonogramu. Reszta albo mieści się w jego przerwach i nic nie zmienia, albo jest jej tyle, że przerwy znikają i wynikiem jest po prostu liczba zadań.",
+      "spec_ref": "przerwa n, która musi minąć między dwoma wykonaniami tego samego zadania",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "heap"
+      ]
+    },
+    {
+      "id": "neetcode-150/backtracking/hetmany-sedno",
+      "pattern": "backtracking",
+      "problem": "hetmany-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Szachownica n na n i n hetmanów, z których żaden nie może atakować innego. Stawiasz dokładnie jednego w każdym wierszu.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "obie przekątne adresuje się liczbami wiersz plus kolumna oraz wiersz minus kolumna, więc kolizję sprawdza się w czasie stałym",
+        "przy każdym ustawieniu trzeba przejść całą szachownicę i sprawdzić pola atakowane",
+        "hetmany trzeba stawiać od środka planszy ku brzegom",
+        "wystarczy pilnować kolumn, bo wiersze są z definicji różne"
+      ],
+      "answer": 0,
+      "explanation": "Założenie z treści usuwa wiersze z równania, zostają kolumny i dwie przekątne. Wszystkie pola jednej przekątnej mają tę samą sumę współrzędnych, a drugiej tę samą różnicę, więc trzy zbiory liczb zastępują przeglądanie planszy.",
+      "spec_ref": "Stawiasz dokładnie jednego w każdym wierszu",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "backtracking"
+      ]
+    },
+    {
+      "id": "neetcode-150/trie/szukanie-wielu-slow-sedno",
+      "pattern": "trie",
+      "problem": "szukanie-wielu-slow-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Siatka liter i lista wielu słów. Znajdź te słowa, które da się w siatce ułożyć.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "wszystkie słowa wkłada się do jednego drzewa trie, żeby jedno przejście po siatce sprawdzało je naraz i urywało się na nieistniejącym przedrostku",
+        "wystarczy sprawdzić, czy wszystkie litery słowa w ogóle występują w siatce",
+        "słowa trzeba posortować i szukać ich binarnie",
+        "dla każdego słowa uruchamia się osobne przeszukiwanie siatki"
+      ],
+      "answer": 0,
+      "explanation": "Osobne przeszukiwanie dla każdego słowa jest poprawne, ale powtarza tę samą pracę tyle razy, ile jest słów o wspólnym początku. Trie odwraca zależność: przechodzisz siatkę raz, a zejście kończysz w chwili, gdy zbudowany przedrostek nie pasuje do żadnego słowa.",
+      "spec_ref": "lista wielu słów",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "trie"
+      ]
+    },
+    {
+      "id": "neetcode-150/graphs/splyw-do-dwoch-mors-sedno",
+      "pattern": "graphs",
+      "problem": "splyw-do-dwoch-mors-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Siatka wysokości, woda spływa do sąsiadów nie wyższych. Znajdź pola, z których woda dopłynie zarówno do górnej, jak i do dolnej krawędzi planszy.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "zamiast śledzić spływ z każdego pola, puszcza się przeszukiwanie od krawędzi pod górę i przecina oba otrzymane zbiory",
+        "dla każdego pola trzeba prześledzić spływ w dół do obu krawędzi",
+        "wystarczy jedno przeszukiwanie zaczęte od najwyższego pola",
+        "wystarczy sprawdzić pola o największej wysokości"
+      ],
+      "answer": 0,
+      "explanation": "Warunek „do obu” podpowiada przecięcie dwóch zbiorów, a odwrócenie kierunku zamienia sprawdzanie każdego pola z osobna na dwa przejścia po całej siatce. Relacja „spływa do” odwrócona daje „może przyjąć wodę od”, więc od krawędzi idzie się ku polom nie niższym.",
+      "spec_ref": "zarówno do górnej, jak i do dolnej krawędzi",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "graphs"
+      ]
+    },
+    {
+      "id": "neetcode-150/graphs/drabina-slow-sedno",
+      "pattern": "graphs",
+      "problem": "drabina-slow-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Słowo początkowe, końcowe i słownik dozwolonych słów. W jednym kroku zmieniasz jedną literę, a wynik musi należeć do słownika. Podaj najmniejszą liczbę kroków.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "słowa są wierzchołkami, sąsiadów generuje się w locie podmieniając każdą literę, a najkrótszą drogę daje przeszukiwanie wszerz",
+        "to zadanie na programowanie dynamiczne po pozycjach liter",
+        "wystarczy zachłannie zmieniać litery na te ze słowa końcowego",
+        "graf trzeba zbudować z góry, porównując każdą parę słów ze słownika"
+      ],
+      "answer": 0,
+      "explanation": "Zachłanne dopasowywanie liter zawodzi, bo słowo pośrednie może nie istnieć w słowniku i trzeba nadłożyć drogi. Budowanie pełnego grafu przez porównanie każdej pary jest poprawne, ale kwadratowe względem liczby słów; generowanie sąsiadów w locie kosztuje tyle, ile długość słowa razy alfabet.",
+      "spec_ref": "najmniejszą liczbę kroków",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "graphs"
+      ]
+    },
+    {
+      "id": "neetcode-150/graphs/czy-graf-jest-drzewem-sedno",
+      "pattern": "graphs",
+      "problem": "czy-graf-jest-drzewem-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Graf nieskierowany o n wierzchołkach i lista krawędzi. Sprawdź, czy graf jest drzewem.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "graf jest drzewem dokładnie wtedy, gdy jest spójny i ma dokładnie n minus jeden krawędzi",
+        "wystarczy sprawdzić brak cykli",
+        "wystarczy policzyć krawędzie",
+        "wystarczy sprawdzić spójność"
+      ],
+      "answer": 0,
+      "explanation": "Każdy z warunków osobno przepuszcza kontrprzykład: spójny graf z cyklem, las bez cykli, albo n minus jeden krawędzi ułożonych tak, że powstaje cykl i osobny wierzchołek. Dopiero para warunków jest równoważna byciu drzewem, i to jest cała treść tego zadania.",
+      "spec_ref": "Sprawdź, czy graf jest drzewem",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "graphs"
+      ]
+    },
+    {
+      "id": "neetcode-150/advanced-graphs/spiecie-punktow-sedno",
+      "pattern": "advanced-graphs",
+      "problem": "spiecie-punktow-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Punkty na płaszczyźnie, koszt połączenia dwóch to ich odległość. Połącz wszystkie punkty w jedną całość jak najtaniej.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "trzeba policzyć najkrótsze ścieżki algorytmem Dijkstry z dowolnego punktu",
+        "to jest minimalne drzewo rozpinające: dokłada się zachłannie najtańszą krawędź wychodzącą poza już spięty zbiór",
+        "trzeba znaleźć najkrótszą trasę odwiedzającą wszystkie punkty",
+        "wystarczy połączyć każdy punkt z jego najbliższym sąsiadem"
+      ],
+      "answer": 1,
+      "explanation": "Łączenie każdego z najbliższym sąsiadem potrafi zostawić kilka rozłącznych grup. Najkrótsza trasa odwiedzająca wszystkie punkty to zupełnie inny, znacznie trudniejszy problem. Dijkstra liczy odległości od jednego źródła, a tutaj nie ma źródła — liczy się koszt spięcia całości.",
+      "spec_ref": "Połącz wszystkie punkty w jedną całość jak najtaniej",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "advanced-graphs"
+      ]
+    },
+    {
+      "id": "neetcode-150/dp-1d/rabus-na-okregu-sedno",
+      "pattern": "dp-1d",
+      "problem": "rabus-na-okregu-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Domy ustawione na okręgu, więc pierwszy sąsiaduje z ostatnim. Wybierz podzbiór o największej sumie, w którym żadne dwa wybrane domy nie sąsiadują.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "wystarczy zawsze pominąć pierwszy dom",
+        "wystarczy dwa razy rozwiązać wersję liniową, raz bez ostatniego domu i raz bez pierwszego, a potem wziąć lepszy wynik",
+        "wystarczy rozwiązać wersję liniową i odjąć mniejszy z dwóch domów skrajnych",
+        "trzeba rozważyć wszystkie podzbiory domów"
+      ],
+      "answer": 1,
+      "explanation": "Jedyna nowa trudność to para skrajnych domów, których nie można wziąć razem. Wystarczy więc rozbić zadanie na dwa przypadki, w których ten konflikt znika, i w każdym użyć rozwiązania z wersji liniowej bez żadnej zmiany.",
+      "spec_ref": "pierwszy sąsiaduje z ostatnim",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "dp-1d"
+      ]
+    },
+    {
+      "id": "neetcode-150/dp-2d/liczba-sposobow-wydania-sedno",
+      "pattern": "dp-2d",
+      "problem": "liczba-sposobow-wydania-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Nominały monet i kwota. Policz, na ile sposobów da się ją wydać. Dwa sposoby różniące się tylko kolejnością monet uznajemy za ten sam sposób.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "wystarczy policzyć najmniejszą liczbę monet i podnieść ją do potęgi",
+        "nominały trzeba posortować malejąco",
+        "pętla po nominałach musi być zewnętrzna, bo przy odwrotnym zagnieżdżeniu zliczane są permutacje, a nie kombinacje",
+        "kolejność pętli nie ma znaczenia, liczy się tylko rozmiar tablicy stanów"
+      ],
+      "answer": 2,
+      "explanation": "To jeden z niewielu przypadków, w których kolejność zagnieżdżenia pętli zmienia wynik, a nie tylko szybkość. Nominał na zewnątrz sprawia, że każda kombinacja powstaje w jednym ustalonym porządku, więc jest liczona raz. Odwrotne zagnieżdżenie policzy 1+2 i 2+1 jako dwa różne sposoby.",
+      "spec_ref": "różniące się tylko kolejnością monet uznajemy za ten sam sposób",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "dp-2d"
+      ]
+    },
+    {
+      "id": "neetcode-150/greedy/skoki-minimalna-liczba-sedno",
+      "pattern": "greedy",
+      "problem": "skoki-minimalna-liczba-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Tablica, w której wartość pola mówi, jak daleko najwyżej można z niego skoczyć. Podaj najmniejszą liczbę skoków potrzebną, by dojść na ostatnie pole.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "zawsze opłaca się skoczyć na pole o największej wartości w zasięgu",
+        "tablicę przechodzi się warstwami: bieżący zasięg zamyka jeden skok, a najdalszy widziany punkt otwiera następny",
+        "trzeba sprawdzić wszystkie możliwe ciągi skoków",
+        "zawsze opłaca się skoczyć tak daleko, jak to możliwe"
+      ],
+      "answer": 1,
+      "explanation": "Skok najdalszy bywa gorszy od krótszego, który ląduje na polu otwierającym większy zasięg — i tak samo zawodzi wybór pola o największej wartości, bo liczy się suma pozycji i wartości, nie sama wartość. Warstwy odpowiadają wprost liczbie skoków.",
+      "spec_ref": "najmniejszą liczbę skoków",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "greedy"
+      ]
+    },
+    {
+      "id": "neetcode-150/greedy/etykiety-sedno",
+      "pattern": "greedy",
+      "problem": "etykiety-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Napis. Podziel go na jak najwięcej fragmentów tak, żeby żadna litera nie pojawiła się w dwóch różnych fragmentach.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "granicę fragmentu wyznacza najdalsze ostatnie wystąpienie spośród liter widzianych do tej pory",
+        "wystarczy ciąć po każdej literze występującej tylko raz",
+        "trzeba sprawdzić wszystkie możliwe podziały",
+        "granicę wyznacza pierwsza litera, która nie powtarza się dalej"
+      ],
+      "answer": 0,
+      "explanation": "Fragment można zamknąć dopiero wtedy, gdy każda litera, która się w nim pojawiła, już się dalej nie powtórzy. Wystarczy więc jedno wcześniejsze przejście zapisujące ostatnie wystąpienie każdej litery, a potem przesuwanie granicy w miarę czytania.",
+      "spec_ref": "żadna litera nie pojawiła się w dwóch różnych fragmentach",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "greedy"
+      ]
+    },
+    {
+      "id": "neetcode-150/intervals/wstawienie-przedzialu-sedno",
+      "pattern": "intervals",
+      "problem": "wstawienie-przedzialu-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Rozłączne przedziały posortowane po początku oraz nowy przedział. Wstaw go, scalając wszystko, co się z nim nachodzi, w jednym przejściu.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "przedziały rozpadają się na trzy grupy: kończące się przed nowym, nachodzące na niego i zaczynające się za nim",
+        "trzeba scalać sąsiednie pary od lewej, aż nic się nie zmieni",
+        "wystarczy porównać nowy przedział z pierwszym i ostatnim",
+        "trzeba dorzucić nowy przedział i posortować całość od nowa"
+      ],
+      "answer": 0,
+      "explanation": "Wejście jest już posortowane, więc trzy grupy występują dokładnie w tej kolejności i wystarczy je przepisać po kolei, a środkową zwinąć w jeden przedział. Ponowne sortowanie marnuje daną z treści i psuje obiecany jeden przebieg.",
+      "spec_ref": "w jednym przejściu",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "intervals"
+      ]
+    },
+    {
+      "id": "neetcode-150/math/zerowanie-macierzy-sedno",
+      "pattern": "math",
+      "problem": "zerowanie-macierzy-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Macierz. Jeśli komórka zawiera zero, wyzeruj cały jej wiersz i całą jej kolumnę. Zrób to bez dodatkowej pamięci rosnącej wraz z rozmiarem macierzy.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "macierz trzeba przejść od prawego dolnego rogu ku lewemu górnemu",
+        "wystarczy zerować wiersz i kolumnę od razu po napotkaniu zera",
+        "pierwszy wiersz i pierwsza kolumna służą za znaczniki, a to, czy same mają być wyzerowane, trzeba zapamiętać osobno",
+        "wystarczy zapamiętać listę współrzędnych wszystkich zer"
+      ],
+      "answer": 2,
+      "explanation": "Zerowanie w locie zamazuje informację: świeżo wpisane zero jest nieodróżnialne od pierwotnego i lawinowo zeruje całą macierz. Lista współrzędnych jest poprawna, ale łamie warunek pamięci. Znaczniki w pierwszym wierszu i kolumnie mieszczą się w stałej pamięci, pod warunkiem że ich własny los rozstrzygnie się osobno, przed nadpisaniem.",
+      "spec_ref": "bez dodatkowej pamięci rosnącej wraz z rozmiarem macierzy",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "math"
+      ]
+    },
+    {
+      "id": "neetcode-150/math/szybkie-potegowanie-sedno",
+      "pattern": "math",
+      "problem": "szybkie-potegowanie-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Policz x podniesione do całkowitej potęgi n, w czasie logarytmicznym względem n.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "wystarczy pomnożyć x przez siebie n razy",
+        "x do potęgi n to kwadrat x do potęgi n przez dwa, a przy nieparzystym n dochodzi jeszcze jedno mnożenie przez x",
+        "każdy wynik da się zapisać jako iloczyn potęg dwójki",
+        "wystarczy policzyć eksponentę z iloczynu logarytmu i n"
+      ],
+      "answer": 1,
+      "explanation": "Każde podniesienie do kwadratu podwaja wykładnik, więc liczba kroków to liczba bitów n. Mnożenie n razy jest poprawne, ale liniowe, a droga przez logarytm i eksponentę traci dokładność i nie działa dla ujemnych podstaw.",
+      "spec_ref": "w czasie logarytmicznym",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "math"
+      ]
+    },
+    {
+      "id": "neetcode-150/bit-manipulation/liczenie-bitow-sedno",
+      "pattern": "bit-manipulation",
+      "problem": "liczenie-bitow-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Liczba n. Dla każdej liczby od zera do n podaj, ile jedynek ma w zapisie binarnym. Łączny czas ma być liniowy względem n.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "liczba jedynek rośnie o jeden przy każdej kolejnej liczbie",
+        "dla każdej liczby trzeba przejść wszystkie jej bity",
+        "liczba jedynek w i to liczba jedynek w i przesuniętym o jeden bit w prawo, powiększona o najmłodszy bit i",
+        "wystarczy policzyć jedynki w n i odejmować"
+      ],
+      "answer": 2,
+      "explanation": "Przesunięcie w prawo daje liczbę mniejszą, więc jej wynik jest już policzony. To zamienia liczenie bitów w programowanie dynamiczne o stałym koszcie na liczbę. Przechodzenie wszystkich bitów każdej liczby daje O(n log n), czyli za wolno.",
+      "spec_ref": "Łączny czas ma być liniowy",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "bit-manipulation"
+      ]
+    },
+    {
+      "id": "neetcode-150/bit-manipulation/suma-bez-plusa-sedno",
+      "pattern": "bit-manipulation",
+      "problem": "suma-bez-plusa-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Dodaj dwie liczby całkowite, nie używając operatora dodawania ani odejmowania.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "wystarczy OR obu liczb",
+        "XOR daje sumę bez przeniesień, a AND przesunięty o bit w lewo daje same przeniesienia, więc powtarza się to, aż przeniesień zabraknie",
+        "trzeba zamienić liczby na napisy i dodać je cyfra po cyfrze",
+        "wystarczy XOR obu liczb"
+      ],
+      "answer": 1,
+      "explanation": "Sam XOR jest dodawaniem tylko wtedy, gdy żadna pozycja nie generuje przeniesienia. Rozbicie na dwie części, sumę bez przeniesień i same przeniesienia, i powtarzanie tego aż do wyzerowania przeniesień, odtwarza dokładnie działanie sumatora sprzętowego.",
+      "spec_ref": "nie używając operatora dodawania ani odejmowania",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "bit-manipulation"
+      ]
+    },
+    {
+      "id": "neetcode-150/dp-1d/dekodowanie-sedno",
+      "pattern": "dp-1d",
+      "problem": "dekodowanie-sedno",
+      "type": "key-insight",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Napis cyfr, w którym 1 oznacza A, a 26 oznacza Z. Policz, na ile sposobów da się go odczytać. Zero samo w sobie nie koduje żadnej litery.",
+      "prompt": "Na jakiej obserwacji opiera się rozwiązanie?",
+      "code": "",
+      "options": [
+        "wynik dla pozycji to zawsze suma dwóch poprzednich, jak w ciągu Fibonacciego",
+        "wynik to dwa podniesione do potęgi równej długości napisu",
+        "wynik dla pozycji to suma dwóch poprzednich wyników, ale każdy z nich dokłada się tylko wtedy, gdy odpowiadający mu kod jest dopuszczalny",
+        "wystarczy policzyć, ile jest w napisie liczb dwucyfrowych nie większych niż 26"
+      ],
+      "answer": 2,
+      "explanation": "Bez warunku dopuszczalności wychodzi Fibonacci, który ignoruje zera i liczby powyżej 26. Cała trudność tego zadania siedzi w tym jednym sprawdzeniu, a zera są jego najczęściej przeoczanym przypadkiem.",
+      "spec_ref": "Zero samo w sobie nie koduje żadnej litery",
+      "est_seconds": 25,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "key-insight",
+        "dp-1d"
+      ]
+    }
+  ]
+}

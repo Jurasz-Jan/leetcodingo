@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Gradle i Android
+.gradle/
+build/
+.kotlin/
+local.properties
+*.apk
+*.aab
+
+# Klucze podpisujące - nigdy nie trafiają do repozytorium
+*.jks
+*.keystore
+keystore.properties
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# System
+.DS_Store
+Thumbs.db

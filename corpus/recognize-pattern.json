@@ -1,0 +1,1767 @@
+{
+  "pattern": {
+    "id": "recognize-pattern",
+    "name": "Rozpoznaj wzorzec",
+    "recognition_cues": [
+      "przesłanka w treści przesądza o wzorcu",
+      "dystraktor to wzorzec, który prawie pasuje"
+    ]
+  },
+  "exercises": [
+    {
+      "id": "recognize-pattern/arrays-hashing/duplikat",
+      "pattern": "arrays-hashing",
+      "problem": "duplikat",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 1,
+      "spec": "Tablica liczb całkowitych. Sprawdź, czy istnieje wartość powtórzona.",
+      "prompt": "Który wzorzec daje odpowiedź w czasie liniowym?",
+      "code": "",
+      "options": [
+        "okno przesuwne",
+        "zbiór haszujący",
+        "dwa wskaźniki",
+        "sortowanie i porównanie sąsiadów"
+      ],
+      "answer": 1,
+      "explanation": "Wystarczy jedno przejście i zbiór widzianych wartości. Sortowanie też odpowie poprawnie, ale kosztuje O(n log n) i niszczy kolejność, więc przy pytaniu o czas liniowy przegrywa.",
+      "spec_ref": "istnieje wartość powtórzona",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "arrays-hashing"
+      ]
+    },
+    {
+      "id": "recognize-pattern/arrays-hashing/iloczyn-pozostalych",
+      "pattern": "arrays-hashing",
+      "problem": "iloczyn-pozostalych",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Dla każdego elementu tablicy podaj iloczyn wszystkich pozostałych elementów, bez używania dzielenia.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "wyszukiwanie binarne",
+        "prefiksy i sufiksy",
+        "okno przesuwne",
+        "zbiór haszujący"
+      ],
+      "answer": 1,
+      "explanation": "Dwa przejścia: iloczyny wszystkiego na lewo i wszystkiego na prawo od pozycji. Gdyby dzielenie było dozwolone, wystarczyłby iloczyn całości podzielony przez element, i to właśnie ten zakaz wymusza wzorzec.",
+      "spec_ref": "bez używania dzielenia",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "arrays-hashing"
+      ]
+    },
+    {
+      "id": "recognize-pattern/arrays-hashing/anagramy",
+      "pattern": "arrays-hashing",
+      "problem": "anagramy",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 1,
+      "spec": "Lista słów. Pogrupuj razem te słowa, które są swoimi anagramami.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "słownik z kluczem kanonicznym",
+        "okno przesuwne",
+        "sortowanie całej listy",
+        "dwa wskaźniki"
+      ],
+      "answer": 0,
+      "explanation": "Anagramy mają wspólną postać kanoniczną, na przykład posortowane litery albo licznik znaków. To ona jest kluczem słownika. Sortowanie całej listy grupuje anagramy obok siebie, ale wymaga potem drugiego przejścia i jest wolniejsze.",
+      "spec_ref": "są swoimi anagramami",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "arrays-hashing"
+      ]
+    },
+    {
+      "id": "recognize-pattern/arrays-hashing/k-najczestszych",
+      "pattern": "arrays-hashing",
+      "problem": "k-najczestszych",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Tablica liczb i wartość k. Podaj k wartości występujących najczęściej.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "dwa wskaźniki",
+        "okno przesuwne",
+        "wyszukiwanie binarne po wartości",
+        "licznik wystąpień i kopiec rozmiaru k"
+      ],
+      "answer": 3,
+      "explanation": "Najpierw słownik zliczający, potem wybór k największych. Kopiec rozmiaru k daje O(n log k) zamiast O(n log n) za pełne sortowanie liczników.",
+      "spec_ref": "występujących najczęściej",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "arrays-hashing"
+      ]
+    },
+    {
+      "id": "recognize-pattern/two-pointers/para-o-danej-sumie",
+      "pattern": "two-pointers",
+      "problem": "para-o-danej-sumie",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 1,
+      "spec": "Posortowana rosnąco tablica liczb i wartość docelowa. Znajdź dwa różne indeksy, których elementy sumują się do wartości docelowej.",
+      "prompt": "Który wzorzec wykorzystuje strukturę danych podaną w treści?",
+      "code": "",
+      "options": [
+        "słownik odwiedzonych wartości",
+        "okno przesuwne",
+        "kopiec",
+        "dwa wskaźniki z obu końców"
+      ],
+      "answer": 3,
+      "explanation": "Suma zbyt mała, więc przesuń lewy w prawo; zbyt duża, więc prawy w lewo. Słownik też rozwiąże to w czasie liniowym, ale zużyje O(n) pamięci i w ogóle nie skorzysta z tego, że tablica jest posortowana.",
+      "spec_ref": "Posortowana rosnąco",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "two-pointers"
+      ]
+    },
+    {
+      "id": "recognize-pattern/two-pointers/palindrom",
+      "pattern": "two-pointers",
+      "problem": "palindrom",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 1,
+      "spec": "Napis. Sprawdź, czy czytany od początku i od końca wygląda tak samo, pomijając znaki inne niż litery i cyfry.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "okno przesuwne",
+        "dwa wskaźniki z obu końców",
+        "słownik liczników",
+        "stos"
+      ],
+      "answer": 1,
+      "explanation": "Wskaźniki idą ku sobie i pomijają znaki, które nie liczą się do porównania. Stos rozwiąże to samo, ale kosztem O(n) pamięci na odwrócenie napisu.",
+      "spec_ref": "od początku i od końca",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "two-pointers"
+      ]
+    },
+    {
+      "id": "recognize-pattern/two-pointers/usun-duplikaty",
+      "pattern": "two-pointers",
+      "problem": "usun-duplikaty",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Posortowana tablica. Usuń powtórzenia w miejscu i zwróć liczbę pozostałych elementów, nie tworząc nowej tablicy.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "wskaźnik wolny i szybki",
+        "zbiór haszujący",
+        "sortowanie z usuwaniem",
+        "okno przesuwne"
+      ],
+      "answer": 0,
+      "explanation": "Szybki wskaźnik przegląda, wolny wyznacza miejsce zapisu następnej unikalnej wartości. Zbiór haszujący odpowiedziałby poprawnie, ale zużywa dodatkową pamięć, a treść tego właśnie zabrania.",
+      "spec_ref": "nie tworząc nowej tablicy",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "two-pointers"
+      ]
+    },
+    {
+      "id": "recognize-pattern/two-pointers/najwieksze-pole",
+      "pattern": "two-pointers",
+      "problem": "najwieksze-pole",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Tablica wysokości pionowych linii. Wybierz parę linii, która razem z osią poziomą tworzy największe pole prostokąta.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "stos monotoniczny",
+        "okno przesuwne",
+        "dwa wskaźniki z obu końców",
+        "programowanie dynamiczne"
+      ],
+      "answer": 2,
+      "explanation": "Zaczynasz od najszerszej pary i przesuwasz ten wskaźnik, który wskazuje niższą linię, bo tylko wtedy pole ma szansę wzrosnąć. Okno przesuwne nie pasuje, bo wynik nie zależy od spójnego fragmentu, tylko od dwóch dowolnych pozycji.",
+      "spec_ref": "największe pole",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "two-pointers"
+      ]
+    },
+    {
+      "id": "recognize-pattern/sliding-window/bez-powtorzen",
+      "pattern": "sliding-window",
+      "problem": "bez-powtorzen",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Napis. Podaj długość najdłuższego spójnego fragmentu bez powtórzonego znaku.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "okno przesuwne ze słownikiem",
+        "dwa wskaźniki z obu końców",
+        "programowanie dynamiczne",
+        "stos"
+      ],
+      "answer": 0,
+      "explanation": "Okno rośnie w prawo, a gdy znak się powtórzy, lewa krawędź przeskakuje za poprzednie wystąpienie. Słowo „spójnego” jest tu przesłanką: gdyby fragment mógł być nieciągły, okno by nie działało.",
+      "spec_ref": "najdłuższego spójnego fragmentu",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "recognize-pattern/sliding-window/najlepszy-zysk",
+      "pattern": "sliding-window",
+      "problem": "najlepszy-zysk",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Ceny w kolejnych dniach. Podaj największy zysk z jednego kupna i jednej sprzedaży, przy czym sprzedaż musi nastąpić po kupnie.",
+      "prompt": "Który wzorzec wystarczy tutaj?",
+      "code": "",
+      "options": [
+        "okno przesuwne o zmiennej długości",
+        "jedno przejście z zapamiętanym minimum",
+        "dwa wskaźniki z obu końców",
+        "kopiec minimalny"
+      ],
+      "answer": 1,
+      "explanation": "Wystarczy pamiętać najniższą dotychczasową cenę i sprawdzać zysk względem niej. To wygląda jak okno przesuwne i często bywa tak nazywane, ale okna tu nie ma: nic nie wypada z lewej strony, lewa krawędź tylko skacze na nowe minimum.",
+      "spec_ref": "sprzedaż musi nastąpić po kupnie",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "recognize-pattern/sliding-window/najkrotsze-pokrycie",
+      "pattern": "sliding-window",
+      "problem": "najkrotsze-pokrycie",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Napis i wzorzec. Znajdź najkrótszy spójny fragment napisu, który zawiera wszystkie znaki wzorca, licząc powtórzenia.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "dwa wskaźniki z obu końców",
+        "wyszukiwanie binarne po długości",
+        "stos monotoniczny",
+        "okno przesuwne z licznikiem brakujących znaków"
+      ],
+      "answer": 3,
+      "explanation": "Okno rozszerza się, aż pokryje wzorzec, potem kurczy z lewej, dopóki pokrycie się utrzymuje. Licznik brakujących znaków pozwala sprawdzać warunek w czasie stałym zamiast porównywać słowniki przy każdym kroku.",
+      "spec_ref": "najkrótszy spójny fragment",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "recognize-pattern/stack/nawiasowanie",
+      "pattern": "stack",
+      "problem": "nawiasowanie",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 1,
+      "spec": "Napis złożony z trzech rodzajów nawiasów. Sprawdź poprawność nawiasowania.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "licznik otwarć i zamknięć",
+        "okno przesuwne",
+        "dwa wskaźniki",
+        "stos"
+      ],
+      "answer": 3,
+      "explanation": "Sam licznik wystarczyłby przy jednym rodzaju nawiasu, ale przy trzech trzeba pamiętać kolejność otwarć, żeby odrzucić „([)]”. To jest dokładnie zadanie dla stosu.",
+      "spec_ref": "trzech rodzajów nawiasów",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "stack"
+      ]
+    },
+    {
+      "id": "recognize-pattern/stack/cieplejszy-dzien",
+      "pattern": "stack",
+      "problem": "cieplejszy-dzien",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Temperatury w kolejnych dniach. Dla każdego dnia podaj, ile dni trzeba czekać na pierwszy cieplejszy dzień, albo 0, gdy taki nie nadejdzie.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "wyszukiwanie binarne",
+        "okno przesuwne",
+        "programowanie dynamiczne",
+        "stos monotoniczny"
+      ],
+      "answer": 3,
+      "explanation": "Na stosie leżą dni czekające na cieplejszy. Nowy dzień zdejmuje z niego wszystkie chłodniejsze i od razu wypełnia ich odpowiedzi. Słowo „pierwszy” jest przesłanką: pytanie o najbliższy większy element z prawej to typowe zastosowanie stosu monotonicznego.",
+      "spec_ref": "pierwszy cieplejszy dzień",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "stack"
+      ]
+    },
+    {
+      "id": "recognize-pattern/binary-search/obrocona-tablica",
+      "pattern": "binary-search",
+      "problem": "obrocona-tablica",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Tablica posortowana rosnąco, a następnie obrócona o nieznaną liczbę pozycji. Znajdź najmniejszy element.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "dwa wskaźniki z obu końców",
+        "wyszukiwanie binarne",
+        "kopiec minimalny",
+        "jedno przejście liniowe"
+      ],
+      "answer": 1,
+      "explanation": "Mimo obrotu jedna z połówek zawsze pozostaje posortowana, a to wystarczy, żeby w każdym kroku odrzucić połowę tablicy. Przejście liniowe da poprawny wynik, ale marnuje informację o porządku.",
+      "spec_ref": "obrócona o nieznaną liczbę pozycji",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "recognize-pattern/binary-search/szukanie-po-odpowiedzi",
+      "pattern": "binary-search",
+      "problem": "szukanie-po-odpowiedzi",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Szukasz najmniejszej przepustowości, przy której da się przewieźć cały ładunek w zadanym limicie dni. Sprawdzenie pojedynczej przepustowości jest łatwe i szybkie.",
+      "prompt": "Który wzorzec pasuje, choć w treści nie ma posortowanej tablicy?",
+      "code": "",
+      "options": [
+        "algorytm zachłanny bez szukania",
+        "okno przesuwne",
+        "programowanie dynamiczne",
+        "wyszukiwanie binarne po odpowiedzi"
+      ],
+      "answer": 3,
+      "explanation": "Przesłanką nie jest posortowana tablica, tylko monotoniczność: jeśli dana przepustowość wystarcza, to każda większa też. Szukasz więc granicy w przestrzeni odpowiedzi, a nie w danych wejściowych.",
+      "spec_ref": "Sprawdzenie pojedynczej przepustowości jest łatwe",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "recognize-pattern/linked-list/odwroc-liste",
+      "pattern": "linked-list",
+      "problem": "odwroc-liste",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 1,
+      "spec": "Lista jednokierunkowa. Odwróć kolejność elementów, nie tworząc nowej listy.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "rekurencja po tablicy pomocniczej",
+        "przepinanie wskaźników w jednym przejściu",
+        "stos wszystkich węzłów",
+        "dwa wskaźniki z obu końców"
+      ],
+      "answer": 1,
+      "explanation": "Trzy wskaźniki: poprzedni, bieżący, następny. Stos też odwróci listę, ale zużyje O(n) pamięci, a treść wymaga pracy w miejscu.",
+      "spec_ref": "nie tworząc nowej listy",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "linked-list"
+      ]
+    },
+    {
+      "id": "recognize-pattern/linked-list/cykl",
+      "pattern": "linked-list",
+      "problem": "cykl",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Lista jednokierunkowa. Sprawdź, czy zawiera cykl, używając stałej pamięci.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "sortowanie węzłów",
+        "wyszukiwanie binarne",
+        "wskaźnik wolny i szybki",
+        "zbiór odwiedzonych węzłów"
+      ],
+      "answer": 2,
+      "explanation": "Szybki przesuwa się o dwa, wolny o jeden; w cyklu muszą się spotkać. Zbiór odwiedzonych węzłów jest prostszy w zapisie i równie poprawny, ale zużywa O(n) pamięci, czego treść zabrania.",
+      "spec_ref": "używając stałej pamięci",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "linked-list"
+      ]
+    },
+    {
+      "id": "recognize-pattern/trees/poziomami",
+      "pattern": "trees",
+      "problem": "poziomami",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 1,
+      "spec": "Drzewo binarne. Podaj jego wartości poziom po poziomie, od korzenia w dół.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "przeszukiwanie w głąb",
+        "przeszukiwanie wszerz z kolejką",
+        "kopiec",
+        "stos monotoniczny"
+      ],
+      "answer": 1,
+      "explanation": "Kolejka odwiedza węzły dokładnie w kolejności poziomów. Przeszukiwanie w głąb też potrafi to zrobić, ale dopiero gdy dołożysz jawne śledzenie głębokości i posortujesz wynik, co jest okrężną drogą.",
+      "spec_ref": "poziom po poziomie",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "trees"
+      ]
+    },
+    {
+      "id": "recognize-pattern/trees/czy-bst",
+      "pattern": "trees",
+      "problem": "czy-bst",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Drzewo binarne. Sprawdź, czy jest drzewem BST, czyli czy każdy węzeł jest większy od wszystkich w lewym poddrzewie i mniejszy od wszystkich w prawym.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "sortowanie wartości i porównanie",
+        "porównanie każdego węzła z jego dwoma dziećmi",
+        "przeszukiwanie w głąb z przedziałem dopuszczalnych wartości",
+        "przeszukiwanie wszerz z kolejką"
+      ],
+      "answer": 2,
+      "explanation": "Porównanie z dziećmi to najczęstszy błędny odruch: przechodzi je drzewo, w którym wnuk łamie warunek względem dziadka. Treść mówi o wszystkich węzłach w poddrzewie, więc w dół trzeba przekazywać przedział, a nie pojedynczą wartość.",
+      "spec_ref": "wszystkich w lewym poddrzewie",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "trees"
+      ]
+    },
+    {
+      "id": "recognize-pattern/trees/lustrzane",
+      "pattern": "trees",
+      "problem": "lustrzane",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Drzewo binarne. Sprawdź, czy jest lustrzanym odbiciem samego siebie.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "okno przesuwne",
+        "kopiec",
+        "porównanie wypisania w porządku infiksowym",
+        "porównywanie dwóch poddrzew idących w przeciwnych kierunkach"
+      ],
+      "answer": 3,
+      "explanation": "Idziesz dwoma wskaźnikami naraz: lewym w lewo i prawym w prawo, potem odwrotnie. Porównanie wypisania infiksowego wygląda kusząco, ale nie odróżnia struktury, gdy w drzewie powtarzają się wartości.",
+      "spec_ref": "lustrzanym odbiciem",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "trees"
+      ]
+    },
+    {
+      "id": "recognize-pattern/trie/przedrostki",
+      "pattern": "trie",
+      "problem": "przedrostki",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Zaprojektuj strukturę, która przyjmuje słowa i szybko odpowiada, czy któreś z dodanych słów zaczyna się danym przedrostkiem.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "drzewo trie",
+        "zbiór haszujący pełnych słów",
+        "posortowana lista i wyszukiwanie binarne",
+        "kopiec"
+      ],
+      "answer": 0,
+      "explanation": "Zbiór haszujący odpowie tylko na pytanie o całe słowo, bo hasz przedrostka nie ma związku z haszem słowa. Trie schodzi znak po znaku i sam odpowiada na pytanie o przedrostek.",
+      "spec_ref": "zaczyna się danym przedrostkiem",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "trie"
+      ]
+    },
+    {
+      "id": "recognize-pattern/heap/mediana-strumienia",
+      "pattern": "heap",
+      "problem": "mediana-strumienia",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Liczby napływają jedna po drugiej. Po każdej nowej wartości podaj medianę wszystkich dotychczasowych.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "sortowanie po każdej nowej wartości",
+        "okno przesuwne",
+        "dwa kopce, mniejsza i większa połowa",
+        "wyszukiwanie binarne w tablicy"
+      ],
+      "answer": 2,
+      "explanation": "Kopiec maksymalny trzyma mniejszą połowę, minimalny większą; mediana leży na wierzchołkach. Sortowanie po każdej wartości daje poprawny wynik, ale koszt rośnie do O(n log n) na każdą aktualizację.",
+      "spec_ref": "Po każdej nowej wartości",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "heap"
+      ]
+    },
+    {
+      "id": "recognize-pattern/heap/k-ty-najwiekszy",
+      "pattern": "heap",
+      "problem": "k-ty-najwiekszy",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Tablica liczb i wartość k. Podaj k-ty co do wielkości element.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "pełne sortowanie tablicy",
+        "okno przesuwne",
+        "kopiec minimalny rozmiaru k",
+        "zbiór haszujący"
+      ],
+      "answer": 2,
+      "explanation": "Kopiec rozmiaru k trzyma k największych widzianych elementów, a na jego wierzchołku leży odpowiedź. Kosztuje O(n log k) zamiast O(n log n) za sortowanie całości.",
+      "spec_ref": "k-ty co do wielkości",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "heap"
+      ]
+    },
+    {
+      "id": "recognize-pattern/backtracking/podzbiory",
+      "pattern": "backtracking",
+      "problem": "podzbiory",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Zbiór różnych liczb. Wypisz wszystkie jego podzbiory.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "algorytm zachłanny",
+        "backtracking",
+        "programowanie dynamiczne",
+        "okno przesuwne"
+      ],
+      "answer": 1,
+      "explanation": "Pytanie o wypisanie wszystkich rozwiązań, a nie o jedno najlepsze, prawie zawsze oznacza przeszukiwanie z nawrotami. Programowanie dynamiczne skraca liczenie wyniku, ale nie pomaga, gdy trzeba wypisać każdy wariant z osobna.",
+      "spec_ref": "wszystkie jego podzbiory",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "backtracking"
+      ]
+    },
+    {
+      "id": "recognize-pattern/backtracking/hetmany",
+      "pattern": "backtracking",
+      "problem": "hetmany",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Szachownica n na n. Ustaw n hetmanów tak, żeby żadne dwa się nie atakowały, i podaj wszystkie takie ustawienia.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "backtracking z odcinaniem gałęzi",
+        "przeszukiwanie wszerz",
+        "programowanie dynamiczne",
+        "algorytm zachłanny"
+      ],
+      "answer": 0,
+      "explanation": "Stawiasz hetmana w kolejnym wierszu, a gdy kolumna albo przekątna jest zajęta, odcinasz całą gałąź. Zachłanność zawodzi, bo lokalnie poprawne ustawienie potrafi zablokować dalsze wiersze.",
+      "spec_ref": "żadne dwa się nie atakowały",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "backtracking"
+      ]
+    },
+    {
+      "id": "recognize-pattern/graphs/wyspy",
+      "pattern": "graphs",
+      "problem": "wyspy",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Siatka pól wody i lądu. Policz spójne obszary lądu.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "okno przesuwne",
+        "sortowanie pól",
+        "programowanie dynamiczne",
+        "przeszukiwanie w głąb lub wszerz po siatce"
+      ],
+      "answer": 3,
+      "explanation": "Siatka to graf, w którym sąsiedztwo to krawędź. Każde nieodwiedzone pole lądu zaczyna nowy obszar, a przeszukiwanie zalewa cały ten obszar naraz.",
+      "spec_ref": "spójne obszary",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "graphs"
+      ]
+    },
+    {
+      "id": "recognize-pattern/graphs/kolejnosc-kursow",
+      "pattern": "graphs",
+      "problem": "kolejnosc-kursow",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Lista kursów i par mówiących, że jeden kurs trzeba zaliczyć przed drugim. Sprawdź, czy da się zaliczyć wszystkie.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "przeszukiwanie wszerz od dowolnego wierzchołka",
+        "programowanie dynamiczne",
+        "algorytm zachłanny",
+        "sortowanie topologiczne albo wykrywanie cyklu"
+      ],
+      "answer": 3,
+      "explanation": "Zależności tworzą graf skierowany, a odpowiedź brzmi „nie” dokładnie wtedy, gdy jest w nim cykl. Zwykłe przeszukiwanie wszerz sprawdzi osiągalność, ale nie odpowie na pytanie o cykliczność.",
+      "spec_ref": "trzeba zaliczyć przed drugim",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "graphs"
+      ]
+    },
+    {
+      "id": "recognize-pattern/graphs/najkrotsza-droga-siatka",
+      "pattern": "graphs",
+      "problem": "najkrotsza-droga-siatka",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Siatka z przeszkodami. Znajdź najkrótszą drogę z lewego górnego rogu do prawego dolnego, gdzie każdy krok kosztuje tyle samo.",
+      "prompt": "Który wzorzec wystarczy tutaj?",
+      "code": "",
+      "options": [
+        "algorytm Dijkstry",
+        "przeszukiwanie wszerz",
+        "przeszukiwanie w głąb",
+        "programowanie dynamiczne"
+      ],
+      "answer": 1,
+      "explanation": "Przy jednakowych kosztach przeszukiwanie wszerz odwiedza wierzchołki w kolejności rosnącej odległości, więc pierwsze dojście do celu jest już najkrótsze. Dijkstra da ten sam wynik, ale dokłada kolejkę priorytetową, która przy równych kosztach niczego nie wnosi.",
+      "spec_ref": "każdy krok kosztuje tyle samo",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "graphs"
+      ]
+    },
+    {
+      "id": "recognize-pattern/dp-1d/schody",
+      "pattern": "dp-1d",
+      "problem": "schody",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 1,
+      "spec": "Schody o n stopniach, wchodzisz krokiem o jeden albo o dwa stopnie. Ile jest sposobów wejścia na szczyt?",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "algorytm zachłanny",
+        "programowanie dynamiczne",
+        "okno przesuwne",
+        "backtracking bez zapamiętywania"
+      ],
+      "answer": 1,
+      "explanation": "Liczba sposobów na stopień n to suma sposobów na dwa poprzednie stopnie. Backtracking policzy to samo, ale bez zapamiętywania powtórzy te same podproblemy wykładniczo wiele razy.",
+      "spec_ref": "Ile jest sposobów",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "dp-1d"
+      ]
+    },
+    {
+      "id": "recognize-pattern/dp-1d/najwieksza-suma-fragmentu",
+      "pattern": "dp-1d",
+      "problem": "najwieksza-suma-fragmentu",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Tablica, która może zawierać liczby ujemne. Podaj największą sumę spójnego, niepustego fragmentu.",
+      "prompt": "Który wzorzec tu zadziała?",
+      "code": "",
+      "options": [
+        "dwa wskaźniki z obu końców",
+        "programowanie dynamiczne w jednym przejściu",
+        "okno przesuwne",
+        "wyszukiwanie binarne"
+      ],
+      "answer": 1,
+      "explanation": "To jest pułapka na okno przesuwne. Okno działa, gdy rozszerzanie go zmienia warunek monotonicznie, a przy liczbach ujemnych suma potrafi spaść i znów urosnąć, więc kurczenie okna z lewej nic nie gwarantuje. Trzeba pamiętać najlepszą sumę kończącą się na bieżącej pozycji.",
+      "spec_ref": "może zawierać liczby ujemne",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "dp-1d"
+      ]
+    },
+    {
+      "id": "recognize-pattern/dp-2d/wspolny-podciag",
+      "pattern": "dp-2d",
+      "problem": "wspolny-podciag",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Dwa napisy. Podaj długość najdłuższego wspólnego podciągu, czyli ciągu znaków występujących w obu w tej samej kolejności, niekoniecznie obok siebie.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "dwa wskaźniki idące równolegle",
+        "okno przesuwne",
+        "programowanie dynamiczne po dwóch wymiarach",
+        "zbiór haszujący"
+      ],
+      "answer": 2,
+      "explanation": "Ten fragment przesądza wszystko. Gdyby znaki musiały stać obok siebie, byłby to wspólny podnapis i wystarczyłoby okno. Skoro mogą być rozrzucone, stan zależy od pozycji w obu napisach naraz, czyli od tablicy dwuwymiarowej.",
+      "spec_ref": "niekoniecznie obok siebie",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "dp-2d"
+      ]
+    },
+    {
+      "id": "recognize-pattern/greedy/skoki",
+      "pattern": "greedy",
+      "problem": "skoki",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Tablica, w której wartość pola mówi, o ile najwyżej stopni możesz z niego skoczyć. Sprawdź, czy da się dojść z pierwszego pola na ostatnie.",
+      "prompt": "Który wzorzec wystarczy, żeby odpowiedzieć w czasie liniowym?",
+      "code": "",
+      "options": [
+        "programowanie dynamiczne po każdym polu",
+        "backtracking",
+        "przeszukiwanie wszerz",
+        "algorytm zachłanny z najdalszym zasięgiem"
+      ],
+      "answer": 3,
+      "explanation": "Wystarczy jedno przejście i pamiętanie najdalszego osiągalnego pola. Programowanie dynamiczne odpowie tak samo, ale w czasie kwadratowym, bo sprawdza każdy skok z osobna.",
+      "spec_ref": "da się dojść z pierwszego pola na ostatnie",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "greedy"
+      ]
+    },
+    {
+      "id": "recognize-pattern/intervals/scalanie",
+      "pattern": "intervals",
+      "problem": "scalanie",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Lista przedziałów. Scal te nachodzące na siebie i zwróć listę rozłącznych przedziałów.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "kopiec bez sortowania",
+        "sortowanie po początku i scalanie w jednym przejściu",
+        "programowanie dynamiczne",
+        "okno przesuwne"
+      ],
+      "answer": 1,
+      "explanation": "Po posortowaniu po początku wystarczy porównywać każdy przedział z ostatnim scalonym. Bez sortowania trzeba by porównywać każdy z każdym.",
+      "spec_ref": "nachodzące na siebie",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "intervals"
+      ]
+    },
+    {
+      "id": "recognize-pattern/intervals/sale",
+      "pattern": "intervals",
+      "problem": "sale",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Lista spotkań z godziną początku i końca. Podaj najmniejszą liczbę sal potrzebną, żeby żadne dwa spotkania nie kolidowały.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "okno przesuwne",
+        "kopiec czasów zakończenia",
+        "backtracking po przydziałach",
+        "sortowanie po długości spotkania"
+      ],
+      "answer": 1,
+      "explanation": "Sortujesz po godzinie rozpoczęcia, a kopiec trzyma czasy zakończenia zajętych sal. Rozmiar kopca w szczycie to odpowiedź. Sortowanie po długości spotkania jest kuszące, ale długość nie mówi nic o tym, ile spotkań nakłada się w jednej chwili.",
+      "spec_ref": "najmniejszą liczbę sal",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "intervals"
+      ]
+    },
+    {
+      "id": "recognize-pattern/bit-manipulation/pojedyncza-liczba",
+      "pattern": "bit-manipulation",
+      "problem": "pojedyncza-liczba",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Tablica, w której każda wartość występuje dokładnie dwa razy poza jedną. Znajdź tę jedną, używając stałej pamięci.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "różnica symetryczna bitowa (XOR)",
+        "zbiór haszujący",
+        "sortowanie",
+        "dwa wskaźniki"
+      ],
+      "answer": 0,
+      "explanation": "XOR pary identycznych liczb daje zero, więc po przejściu całej tablicy zostaje sama wartość niesparowana. Zbiór haszujący jest oczywistszy, ale zużywa O(n) pamięci, czego treść zabrania.",
+      "spec_ref": "używając stałej pamięci",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "bit-manipulation"
+      ]
+    },
+    {
+      "id": "recognize-pattern/math/obrot-macierzy",
+      "pattern": "math",
+      "problem": "obrot-macierzy",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Macierz kwadratowa. Obróć ją o 90 stopni zgodnie z ruchem wskazówek zegara, w miejscu.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "sortowanie wierszy",
+        "przeszukiwanie w głąb",
+        "przepisanie do nowej macierzy",
+        "transpozycja i odbicie kolumn"
+      ],
+      "answer": 3,
+      "explanation": "Obrót to złożenie dwóch operacji, które da się wykonać na miejscu: zamiany elementów względem przekątnej i odbicia każdego wiersza. Przepisanie do nowej macierzy jest prostsze, ale łamie warunek pracy w miejscu.",
+      "spec_ref": "w miejscu",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "math"
+      ]
+    },
+    {
+      "id": "recognize-pattern/arrays-hashing/najdluzszy-ciag-kolejnych",
+      "pattern": "arrays-hashing",
+      "problem": "najdluzszy-ciag-kolejnych",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Nieuporządkowana tablica liczb całkowitych. Podaj długość najdłuższego ciągu kolejnych liczb, które w niej występują. Rozwiązanie ma działać w czasie liniowym.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "okno przesuwne",
+        "zbiór haszujący i liczenie tylko od początków ciągów",
+        "programowanie dynamiczne",
+        "sortowanie i jedno przejście"
+      ],
+      "answer": 1,
+      "explanation": "Sortowanie daje poprawny wynik, ale kosztuje O(n log n), a treść wymaga czasu liniowego. Ze zbiorem sprawdzasz dla każdej liczby, czy nie ma poprzednika, i tylko wtedy liczysz w górę, dzięki czemu każdy element odwiedzasz raz.",
+      "spec_ref": "w czasie liniowym",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "arrays-hashing"
+      ]
+    },
+    {
+      "id": "recognize-pattern/arrays-hashing/kodowanie-napisow",
+      "pattern": "arrays-hashing",
+      "problem": "kodowanie-napisow",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Zamień listę napisów na jeden napis i z powrotem. Napisy mogą zawierać dowolne znaki, także te, których chciałbyś użyć jako separatora.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "zbiór haszujący",
+        "sklejenie rzadko używanym separatorem",
+        "długość zapisana przed każdym napisem",
+        "sortowanie napisów przed sklejeniem"
+      ],
+      "answer": 2,
+      "explanation": "Separator zawodzi zawsze, gdy trafi się w danych, a treść mówi wprost, że może. Długość przed napisem mówi dekoderowi, ile znaków przeczytać, i nie zależy od tego, co w nich jest.",
+      "spec_ref": "których chciałbyś użyć jako separatora",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "arrays-hashing"
+      ]
+    },
+    {
+      "id": "recognize-pattern/arrays-hashing/sudoku",
+      "pattern": "arrays-hashing",
+      "problem": "sudoku",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Plansza dziewięć na dziewięć, częściowo wypełniona. Sprawdź, czy nie łamie zasad: cyfra nie może się powtórzyć w żadnym wierszu, żadnej kolumnie ani żadnym kwadracie trzy na trzy.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "trzy rodziny zbiorów: wiersze, kolumny, kwadraty",
+        "backtracking",
+        "sortowanie każdego wiersza i kolumny",
+        "okno przesuwne po planszy"
+      ],
+      "answer": 0,
+      "explanation": "Jedno przejście po planszy aktualizuje trzy zbiory naraz, a indeks kwadratu wychodzi z podzielenia obu współrzędnych przez trzy. Backtracking służy do wypełniania sudoku, a nie do sprawdzania planszy już wypełnionej.",
+      "spec_ref": "ani żadnym kwadracie",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "arrays-hashing"
+      ]
+    },
+    {
+      "id": "recognize-pattern/two-pointers/trojka-do-zera",
+      "pattern": "two-pointers",
+      "problem": "trojka-do-zera",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Tablica liczb. Znajdź wszystkie różne trójki sumujące się do zera. Ta sama trójka nie może pojawić się w wyniku dwa razy.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "okno przesuwne",
+        "backtracking po wszystkich trójkach",
+        "słownik jak przy szukaniu pary o danej sumie",
+        "sortowanie i dwa wskaźniki dla każdego ustalonego elementu"
+      ],
+      "answer": 3,
+      "explanation": "Sortowanie załatwia dwie rzeczy naraz: pozwala zwijać parę dwoma wskaźnikami i ustawia duplikaty obok siebie, więc pomija się je jednym warunkiem. Słownik znajdzie trójki, ale odsianie powtórzeń robi się wtedy osobnym, kłopotliwym problemem.",
+      "spec_ref": "nie może pojawić się w wyniku dwa razy",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "two-pointers"
+      ]
+    },
+    {
+      "id": "recognize-pattern/sliding-window/zamiana-znakow",
+      "pattern": "sliding-window",
+      "problem": "zamiana-znakow",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Napis i liczba k. Możesz zmienić najwyżej k znaków na dowolne inne. Podaj długość najdłuższego spójnego fragmentu złożonego z jednego powtarzającego się znaku.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "programowanie dynamiczne",
+        "dwa wskaźniki z obu końców",
+        "okno przesuwne z licznikiem najczęstszego znaku",
+        "backtracking po zamianach"
+      ],
+      "answer": 2,
+      "explanation": "Okno jest dopuszczalne, dopóki jego długość minus liczba wystąpień najczęstszego znaku nie przekracza k, bo tyle znaków trzeba zmienić. Backtracking po zamianach rozważa wykładniczo wiele wariantów, choć wszystko rozstrzyga ten jeden warunek.",
+      "spec_ref": "najwyżej k znaków",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "recognize-pattern/sliding-window/permutacja-w-napisie",
+      "pattern": "sliding-window",
+      "problem": "permutacja-w-napisie",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Dwa napisy. Sprawdź, czy drugi zawiera fragment będący permutacją pierwszego. Taki fragment ma dokładnie tyle znaków, ile pierwszy napis.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "backtracking po permutacjach",
+        "okno stałej długości z licznikiem znaków",
+        "okno o zmiennej długości",
+        "sortowanie obu napisów"
+      ],
+      "answer": 1,
+      "explanation": "Długość jest z góry znana, więc okno się nie kurczy ani nie rośnie, tylko przesuwa: jeden znak wchodzi, jeden wychodzi. Generowanie permutacji jest wykładnicze i zbędne, bo permutację rozpoznaje się po samych licznikach znaków.",
+      "spec_ref": "dokładnie tyle znaków",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "recognize-pattern/stack/stos-z-minimum",
+      "pattern": "stack",
+      "problem": "stos-z-minimum",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Zaprojektuj stos, który poza wkładaniem i zdejmowaniem podaje najmniejszy przechowywany element w czasie stałym.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "lista utrzymywana w porządku rosnącym",
+        "przeliczanie minimum przy każdym pytaniu",
+        "drugi stos z historią minimów",
+        "kopiec minimalny obok stosu"
+      ],
+      "answer": 2,
+      "explanation": "Równolegle z danymi rośnie stos minimów, więc zdjęcie elementu samo przywraca poprzednie minimum. Kopiec daje odczyt minimum w czasie stałym, ale usunięcie dowolnego elementu przy zdejmowaniu ze stosu kosztuje już O(n).",
+      "spec_ref": "w czasie stałym",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "stack"
+      ]
+    },
+    {
+      "id": "recognize-pattern/backtracking/generowanie-nawiasow",
+      "pattern": "backtracking",
+      "problem": "generowanie-nawiasow",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Liczba n. Wypisz wszystkie poprawne sposoby ustawienia n par nawiasów.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie, mimo że dotyczy nawiasów?",
+      "code": "",
+      "options": [
+        "kolejka",
+        "stos",
+        "backtracking",
+        "programowanie dynamiczne"
+      ],
+      "answer": 2,
+      "explanation": "Stos sprawdza, czy gotowe nawiasowanie jest poprawne, ale tutaj nie ma czego sprawdzać: trzeba wygenerować każdy wariant. Budujesz napis znak po znaku, pilnując, żeby zamykających nigdy nie było więcej niż otwierających.",
+      "spec_ref": "wszystkie poprawne sposoby",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "backtracking"
+      ]
+    },
+    {
+      "id": "recognize-pattern/binary-search/szukanie-w-obroconej",
+      "pattern": "binary-search",
+      "problem": "szukanie-w-obroconej",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Tablica posortowana rosnąco, a potem obrócona, bez powtórzeń. Znajdź indeks zadanej wartości albo stwierdź, że jej nie ma.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "dwa wskaźniki z obu końców",
+        "przejście liniowe",
+        "słownik wartości na indeksy",
+        "wyszukiwanie binarne z rozpoznaniem posortowanej połowy"
+      ],
+      "answer": 3,
+      "explanation": "Przy każdym podziale jedna połowa pozostaje posortowana i wystarczy sprawdzić, czy szukana wartość mieści się w jej zakresie, żeby odrzucić drugą. Słownik odpowie szybko, ale najpierw trzeba go zbudować w O(n) pamięci.",
+      "spec_ref": "a potem obrócona",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "recognize-pattern/binary-search/magazyn-czasowy",
+      "pattern": "binary-search",
+      "problem": "magazyn-czasowy",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Struktura zapisuje wartości pod kluczem wraz ze znacznikiem czasu, zawsze rosnącym. Zapytanie ma zwrócić wartość zapisaną w najpóźniejszej chwili nie późniejszej niż podana.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "sam słownik z kluczem złożonym z nazwy i czasu",
+        "słownik list i wyszukiwanie binarne po czasie",
+        "okno przesuwne",
+        "kopiec po znaczniku czasu"
+      ],
+      "answer": 1,
+      "explanation": "Sam słownik odpowie tylko na pytanie o dokładny znacznik, a pytanie brzmi o najbliższy wcześniejszy. Skoro zapisy przychodzą w rosnącym czasie, lista pod kluczem jest już posortowana i szukanie sprowadza się do podziału połówkowego.",
+      "spec_ref": "nie późniejszej niż podana",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "recognize-pattern/linked-list/n-ty-od-konca",
+      "pattern": "linked-list",
+      "problem": "n-ty-od-konca",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Lista jednokierunkowa. Usuń n-ty węzeł licząc od końca, przechodząc listę tylko raz.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "stos wszystkich węzłów",
+        "policzenie długości i drugie przejście",
+        "dwa wskaźniki oddalone o n węzłów",
+        "rekurencja z tablicą pomocniczą"
+      ],
+      "answer": 2,
+      "explanation": "Pierwszy wskaźnik wysuwa się o n węzłów, potem oba idą razem, więc gdy pierwszy dobiega końca, drugi stoi tuż przed szukanym. Policzenie długości daje ten sam wynik, ale wymaga drugiego przejścia, czego treść zabrania.",
+      "spec_ref": "przechodząc listę tylko raz",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "linked-list"
+      ]
+    },
+    {
+      "id": "recognize-pattern/linked-list/lru",
+      "pattern": "linked-list",
+      "problem": "lru",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Zaprojektuj pamięć podręczną o ustalonej pojemności, która przy przepełnieniu usuwa element najdawniej używany. Odczyt i zapis mają działać w czasie stałym.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "sam słownik ze znacznikami ostatniego użycia",
+        "słownik i lista dwukierunkowa",
+        "zwykła kolejka",
+        "kopiec uporządkowany czasem użycia"
+      ],
+      "answer": 1,
+      "explanation": "Słownik daje dostęp po kluczu, a lista dwukierunkowa pozwala wyjąć węzeł ze środka i przenieść na początek bez przechodzenia listy. Znaczniki czasu wymagałyby szukania najstarszego wpisu w O(n), a kopiec kosztuje O(log n), więc oba łamią warunek.",
+      "spec_ref": "w czasie stałym",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "linked-list"
+      ]
+    },
+    {
+      "id": "recognize-pattern/trees/lca-bst",
+      "pattern": "trees",
+      "problem": "lca-bst",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Drzewo BST i dwa jego węzły. Znajdź ich najniższego wspólnego przodka, wykorzystując porządek wartości w drzewie.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "zapamiętanie obu ścieżek od korzenia",
+        "przeszukiwanie wszerz",
+        "schodzenie w dół według porównania wartości",
+        "przeszukiwanie w głąb całego drzewa"
+      ],
+      "answer": 2,
+      "explanation": "Obie wartości mniejsze od bieżącej, więc w lewo; obie większe, więc w prawo; a gdy się rozchodzą, stoisz u przodka. Ogólny algorytm dla dowolnego drzewa binarnego też zadziała, ale odwiedzi całe drzewo zamiast jednej ścieżki.",
+      "spec_ref": "wykorzystując porządek wartości",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "trees"
+      ]
+    },
+    {
+      "id": "recognize-pattern/trees/widok-z-prawej",
+      "pattern": "trees",
+      "problem": "widok-z-prawej",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Drzewo binarne. Podaj wartości widoczne przy patrzeniu z prawej strony, czyli po jednym węźle z każdego poziomu.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "schodzenie zawsze do prawego dziecka",
+        "przeszukiwanie wszerz i ostatni węzeł poziomu",
+        "stos monotoniczny",
+        "kopiec"
+      ],
+      "answer": 1,
+      "explanation": "Kolejka podaje poziomy w całości, więc bierzesz z każdego ostatni węzeł. Schodzenie zawsze w prawo gubi poziomy, na których prawe poddrzewo już się skończyło, a lewe jeszcze sięga w dół.",
+      "spec_ref": "po jednym węźle z każdego poziomu",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "trees"
+      ]
+    },
+    {
+      "id": "recognize-pattern/trie/slowa-z-jokerem",
+      "pattern": "trie",
+      "problem": "slowa-z-jokerem",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Struktura przechowuje słowa i odpowiada na zapytania, w których kropka zastępuje dowolny pojedynczy znak.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "dopasowanie wyrażeniem regularnym do każdego słowa",
+        "drzewo trie z przeszukiwaniem w głąb przy kropce",
+        "zbiór haszujący pełnych słów",
+        "drzewo trie ze schodzeniem jedną ścieżką"
+      ],
+      "answer": 1,
+      "explanation": "Kropka rozgałęzia poszukiwanie: trzeba spróbować wszystkich dzieci i cofnąć się, gdy gałąź zawiedzie. Schodzenie jedną ścieżką, jak przy zwykłym trie, obsłuży tylko zapytania bez kropki.",
+      "spec_ref": "kropka zastępuje dowolny pojedynczy znak",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "trie"
+      ]
+    },
+    {
+      "id": "recognize-pattern/heap/k-najblizszych-punktow",
+      "pattern": "heap",
+      "problem": "k-najblizszych-punktow",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Punkty na płaszczyźnie i liczba k. Podaj k punktów leżących najbliżej początku układu współrzędnych.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "sortowanie wszystkich punktów",
+        "wyszukiwanie binarne po odległości",
+        "okno przesuwne",
+        "kopiec rozmiaru k"
+      ],
+      "answer": 3,
+      "explanation": "Kopiec trzymający k najlepszych daje O(n log k). Sortowanie całości odpowie tak samo, ale kosztuje O(n log n) i wyznacza porządek, który poza pierwszą k-ką nikogo nie interesuje.",
+      "spec_ref": "k punktów leżących najbliżej",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "heap"
+      ]
+    },
+    {
+      "id": "recognize-pattern/backtracking/suma-kombinacji",
+      "pattern": "backtracking",
+      "problem": "suma-kombinacji",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Zbiór różnych liczb dodatnich i wartość docelowa. Wypisz wszystkie kombinacje sumujące się do niej, przy czym każdej liczby wolno użyć dowolnie wiele razy.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "backtracking z możliwością powrotu do tego samego elementu",
+        "programowanie dynamiczne",
+        "algorytm zachłanny od największej liczby",
+        "okno przesuwne"
+      ],
+      "answer": 0,
+      "explanation": "Programowanie dynamiczne policzy, ile jest kombinacji albo która jest najkrótsza, ale nie wypisze każdej z osobna. Zachłanne branie największych potrafi w ogóle ominąć rozwiązanie.",
+      "spec_ref": "Wypisz wszystkie kombinacje",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "backtracking"
+      ]
+    },
+    {
+      "id": "recognize-pattern/backtracking/slowo-w-siatce",
+      "pattern": "backtracking",
+      "problem": "slowo-w-siatce",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Siatka liter i słowo. Sprawdź, czy da się je ułożyć, przechodząc między sąsiednimi polami i nie używając tego samego pola dwa razy w jednym słowie.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "przeszukiwanie w głąb z cofaniem oznaczeń",
+        "programowanie dynamiczne",
+        "drzewo trie bez przeszukiwania siatki",
+        "przeszukiwanie wszerz"
+      ],
+      "answer": 0,
+      "explanation": "Ten zakaz dotyczy jednej ścieżki, a nie całego przebiegu, więc oznaczenie pola trzeba zdjąć przy powrocie. Przeszukiwanie wszerz nie ma jak tego zrobić, bo nie pamięta, którą ścieżką dotarło do pola.",
+      "spec_ref": "nie używając tego samego pola dwa razy",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "backtracking"
+      ]
+    },
+    {
+      "id": "recognize-pattern/graphs/klonowanie-grafu",
+      "pattern": "graphs",
+      "problem": "klonowanie-grafu",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Graf nieskierowany, podany przez dowolny węzeł, może zawierać cykle. Zbuduj jego pełną kopię, w której żaden węzeł nie jest współdzielony z oryginałem.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "struktura zbiorów rozłącznych",
+        "przeszukiwanie z mapą: węzeł oryginału na węzeł kopii",
+        "przeszukiwanie wszerz bez zapamiętywania kopii",
+        "sortowanie topologiczne"
+      ],
+      "answer": 1,
+      "explanation": "Mapa pełni dwie role naraz: pamięta, co już skopiowano, i przerywa obieg po cyklu. Bez niej pierwszy cykl w grafie kończy się nieskończoną rekurencją.",
+      "spec_ref": "może zawierać cykle",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "graphs"
+      ]
+    },
+    {
+      "id": "recognize-pattern/graphs/gnijace-owoce",
+      "pattern": "graphs",
+      "problem": "gnijace-owoce",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Siatka, w której zepsute pola zarażają sąsiadów co minutę. Psucie zaczyna się jednocześnie od wszystkich pól już zepsutych. Podaj, po ilu minutach nie zostanie nic świeżego.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "przeszukiwanie wszerz osobno z każdego źródła",
+        "przeszukiwanie w głąb",
+        "programowanie dynamiczne",
+        "przeszukiwanie wszerz z wieloma źródłami naraz"
+      ],
+      "answer": 3,
+      "explanation": "Wszystkie zepsute pola trafiają do kolejki na starcie, więc fala rozchodzi się równolegle, a numer warstwy to wprost liczba minut. Puszczanie przeszukiwania osobno z każdego źródła policzy to samo, tylko wielokrotnie drożej.",
+      "spec_ref": "jednocześnie od wszystkich pól już zepsutych",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "graphs"
+      ]
+    },
+    {
+      "id": "recognize-pattern/graphs/otoczone-obszary",
+      "pattern": "graphs",
+      "problem": "otoczone-obszary",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Siatka pól dwóch rodzajów. Zamień na drugi rodzaj każdy obszar, który nie dotyka krawędzi planszy.",
+      "prompt": "Który wzorzec upraszcza to zadanie najbardziej?",
+      "code": "",
+      "options": [
+        "struktura zbiorów rozłącznych",
+        "przeszukiwanie od krawędzi i oznaczenie tego, co ma przetrwać",
+        "programowanie dynamiczne",
+        "przeszukiwanie każdego obszaru i sprawdzanie, czy dotyka krawędzi"
+      ],
+      "answer": 1,
+      "explanation": "Zamiast dla każdego obszaru sprawdzać warunek, odwracasz problem: zaznaczasz to, co jest połączone z krawędzią, a cała reszta z definicji warunek spełnia. Jedno przejście zamiast osobnego sprawdzenia przy każdym obszarze.",
+      "spec_ref": "nie dotyka krawędzi planszy",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "graphs"
+      ]
+    },
+    {
+      "id": "recognize-pattern/advanced-graphs/loty-z-limitem-przesiadek",
+      "pattern": "advanced-graphs",
+      "problem": "loty-z-limitem-przesiadek",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Graf połączeń lotniczych z cenami. Znajdź najtańszą trasę z miasta startowego do docelowego, używając najwyżej k przesiadek.",
+      "prompt": "Który wzorzec radzi sobie z ograniczeniem podanym w treści?",
+      "code": "",
+      "options": [
+        "przeszukiwanie wszerz",
+        "algorytm Dijkstry",
+        "algorytm Bellmana-Forda w k rundach",
+        "sortowanie topologiczne"
+      ],
+      "answer": 2,
+      "explanation": "Dijkstra domyka wierzchołek, gdy znajdzie do niego najtańszą trasę, i przez to odrzuca trasę droższą, ale krótszą w przesiadkach, która jako jedyna mieści się w limicie. U Bellmana-Forda jedna runda to dokładnie jedna przesiadka, więc limit wchodzi wprost do algorytmu.",
+      "spec_ref": "najwyżej k przesiadek",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "advanced-graphs"
+      ]
+    },
+    {
+      "id": "recognize-pattern/dp-1d/rabus",
+      "pattern": "dp-1d",
+      "problem": "rabus",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Ciąg wartości domów. Wybierz podzbiór o największej sumie, w którym żadne dwa wybrane domy nie sąsiadują.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "programowanie dynamiczne",
+        "algorytm zachłanny od największej wartości",
+        "backtracking bez zapamiętywania",
+        "okno przesuwne"
+      ],
+      "answer": 0,
+      "explanation": "Dla każdej pozycji wystarczy pamiętać najlepszy wynik z jej wzięciem i bez niej. Zachłanne branie największych wartości zawodzi, bo jedna duża potrafi zablokować dwie mniejsze, które razem dają więcej.",
+      "spec_ref": "żadne dwa wybrane domy nie sąsiadują",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "dp-1d"
+      ]
+    },
+    {
+      "id": "recognize-pattern/dp-1d/najdluzszy-palindrom",
+      "pattern": "dp-1d",
+      "problem": "najdluzszy-palindrom",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Napis. Znajdź najdłuższy spójny fragment, który czyta się tak samo w obie strony.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "rozszerzanie wokół każdego możliwego środka",
+        "sortowanie znaków",
+        "zbiór haszujący fragmentów",
+        "okno przesuwne"
+      ],
+      "answer": 0,
+      "explanation": "Palindrom jest jednoznacznie wyznaczony przez swój środek, a środków jest 2n minus jeden, licząc te między znakami. Okno przesuwne zawodzi, bo skrócenie fragmentu z lewej nie zachowuje własności bycia palindromem.",
+      "spec_ref": "czyta się tak samo w obie strony",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "dp-1d"
+      ]
+    },
+    {
+      "id": "recognize-pattern/dp-1d/reszta-monetami",
+      "pattern": "dp-1d",
+      "problem": "reszta-monetami",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Nominały monet, niekoniecznie takie jak w prawdziwej walucie, oraz kwota. Podaj najmniejszą liczbę monet, którą da się ją wydać, albo stwierdź, że się nie da. Nominałów można używać wielokrotnie.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "okno przesuwne",
+        "algorytm zachłanny od największego nominału",
+        "wyszukiwanie binarne po liczbie monet",
+        "programowanie dynamiczne po kwotach"
+      ],
+      "answer": 3,
+      "explanation": "Zachłanne branie największego nominału działa dla typowych walut i dlatego kusi, ale nie w ogólności: przy nominałach 1, 3 i 4 oraz kwocie 6 daje 4+1+1, czyli trzy monety, choć wystarczą dwie po 3.",
+      "spec_ref": "niekoniecznie takie jak w prawdziwej walucie",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "dp-1d"
+      ]
+    },
+    {
+      "id": "recognize-pattern/dp-1d/najwiekszy-iloczyn-fragmentu",
+      "pattern": "dp-1d",
+      "problem": "najwiekszy-iloczyn-fragmentu",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Tablica, która może zawierać liczby ujemne. Podaj największy iloczyn spójnego, niepustego fragmentu.",
+      "prompt": "Który wzorzec tu zadziała?",
+      "code": "",
+      "options": [
+        "sortowanie tablicy",
+        "jedno przejście pamiętające tylko największy iloczyn",
+        "jedno przejście pamiętające naraz największy i najmniejszy iloczyn",
+        "okno przesuwne"
+      ],
+      "answer": 2,
+      "explanation": "Mnożenie przez liczbę ujemną zamienia największy iloczyn w najmniejszy i odwrotnie, więc trzeba prowadzić oba naraz. Wersja pamiętająca samo maksimum, przeniesiona wprost z zadania o sumie, gubi przypadek dwóch liczb ujemnych dających duży iloczyn dodatni.",
+      "spec_ref": "może zawierać liczby ujemne",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "dp-1d"
+      ]
+    },
+    {
+      "id": "recognize-pattern/dp-2d/unikalne-sciezki",
+      "pattern": "dp-2d",
+      "problem": "unikalne-sciezki",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 2,
+      "spec": "Siatka o zadanych wymiarach. Policz, na ile sposobów da się przejść z lewego górnego rogu do prawego dolnego, ruszając się tylko w prawo albo w dół.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "backtracking wypisujący ścieżki",
+        "algorytm zachłanny",
+        "programowanie dynamiczne po siatce",
+        "przeszukiwanie wszerz"
+      ],
+      "answer": 2,
+      "explanation": "Liczba dróg do pola to suma dróg do pola nad nim i po jego lewej. Backtracking wypisze każdą ścieżkę z osobna, a jest ich wykładniczo wiele, choć pytanie dotyczy tylko ich liczby.",
+      "spec_ref": "Policz, na ile sposobów",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "dp-2d"
+      ]
+    },
+    {
+      "id": "recognize-pattern/greedy/stacja-benzynowa",
+      "pattern": "greedy",
+      "problem": "stacja-benzynowa",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Stacje ustawione na okręgu, przy każdej ilość paliwa i koszt przejazdu do następnej. Wskaż stację, z której da się objechać pętlę, wiedząc, że rozwiązanie jest co najwyżej jedno.",
+      "prompt": "Który wzorzec rozwiązuje to zadanie?",
+      "code": "",
+      "options": [
+        "programowanie dynamiczne",
+        "jedno przejście z przesuwaniem startu przy ujemnym bilansie",
+        "kopiec po zapasie paliwa",
+        "sprawdzenie każdego możliwego startu po kolei"
+      ],
+      "answer": 1,
+      "explanation": "Gdy bilans od bieżącego startu spadnie poniżej zera, żadna stacja po drodze też nie zadziała, więc start można przesunąć od razu za to miejsce. Sprawdzanie każdego startu daje ten sam wynik w czasie kwadratowym.",
+      "spec_ref": "rozwiązanie jest co najwyżej jedno",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "greedy"
+      ]
+    },
+    {
+      "id": "recognize-pattern/intervals/usun-najmniej-przedzialow",
+      "pattern": "intervals",
+      "problem": "usun-najmniej-przedzialow",
+      "type": "recognize-pattern",
+      "ui": "choice",
+      "difficulty": 3,
+      "spec": "Lista przedziałów. Usuń jak najmniej z nich, żeby pozostałe nie nachodziły na siebie.",
+      "prompt": "Który wybór zachłanny jest tu poprawny?",
+      "code": "",
+      "options": [
+        "sortowanie po długości przedziału",
+        "sortowanie po początku przedziału",
+        "sprawdzenie wszystkich podzbiorów",
+        "sortowanie po końcu przedziału"
+      ],
+      "answer": 3,
+      "explanation": "Zostawiając przedział kończący się najwcześniej, zostawiasz najwięcej miejsca na kolejne, i to prowadzi do wyniku optymalnego. Sortowanie po początku jest najczęstszym błędnym odruchem: jeden bardzo długi przedział zaczynający się wcześnie wypycha kilka krótkich, które zmieściłyby się razem.",
+      "spec_ref": "Usuń jak najmniej",
+      "est_seconds": 20,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "recognize-pattern",
+        "intervals"
+      ]
+    }
+  ]
+}

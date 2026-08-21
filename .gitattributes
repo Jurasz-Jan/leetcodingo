@@ -1,0 +1,15 @@
+# Domyślnie LF w repozytorium, końce linii normalizowane przy zapisie.
+* text=auto eol=lf
+
+# Skrypty windowsowe muszą zostać z CRLF.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# gradlew jest skryptem powłoki: CRLF psuje go na Linuksie i macOS
+# komunikatem o złym interpreterze.
+gradlew text eol=lf
+
+# Binaria bez żadnej normalizacji.
+*.jar binary
+*.apk binary
+*.png binary

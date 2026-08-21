@@ -1,0 +1,9 @@
+{
+  "id": "sliding-window",
+  "name": "Sliding window",
+  "recognition_cues": [
+    "spójny podciąg / podtablica",
+    "najkrótszy / najdłuższy fragment spełniający warunek",
+    "warunek monotoniczny przy rozszerzaniu okna"
+  ]
+}
