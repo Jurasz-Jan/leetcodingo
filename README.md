@@ -1,7 +1,5 @@
-# leetcodingo — mikroćwiczenia algorytmiczne
+# leetcodingo - wajbkodowana apka do ćwiczenia leetcode'a
 
-Trening rozpoznawania wzorców algorytmicznych w sesjach 3-minutowych.
-Jednostką nauki jest pojedyncza mikrodecyzja, nie „rozwiąż zadanie".
 
 Dwa niezależne moduły, kontraktem między nimi jest JSON:
 
