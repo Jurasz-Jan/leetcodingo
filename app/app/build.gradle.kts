@@ -45,8 +45,11 @@ android {
         applicationId = "pl.leetcodingo"
         minSdk = 26
         targetSdk = 36
-        versionCode = 1
-        versionName = "0.1"
+        // Nadpisywane z linii poleceń przy wydaniu: -PversionCode=... -PversionName=...
+        // Bez tego każde wydanie miałoby ten sam versionCode, a Android nie uznałby
+        // nowego APK za aktualizację poprzedniego.
+        versionCode = (findProperty("versionCode") as String?)?.toInt() ?: 1
+        versionName = (findProperty("versionName") as String?) ?: "0.1"
     }
 
     sourceSets {
