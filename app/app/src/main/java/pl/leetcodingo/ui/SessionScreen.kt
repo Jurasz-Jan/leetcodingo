@@ -129,6 +129,7 @@ private fun RunningScreen(
             exercise.options.forEachIndexed { index, option ->
                 OptionRow(
                     text = option,
+                    monospace = exercise.type in MONOSPACE_TYPES,
                     order = state.picked.indexOf(index).takeIf { it >= 0 }?.plus(1),
                     ordering = exercise.answer is Answer.Ordering,
                     selected = index in state.picked,
@@ -155,6 +156,13 @@ private fun RunningScreen(
 }
 
 private enum class OptionState { NEUTRAL, CORRECT, WRONG }
+
+/**
+ * Typy, w ktorych opcje sa kodem albo danymi wejsciowymi. Tylko one dostaja czcionke
+ * o stalej szerokosci; zdania po polsku czyta sie w niej gorzej, a takich opcji jest
+ * w korpusie wiekszosc.
+ */
+private val MONOSPACE_TYPES = setOf("find-bug", "fill-gap", "predict-output", "complexity")
 
 private fun optionState(exercise: Exercise, state: UiState.Running, index: Int): OptionState {
     if (!state.revealed) return OptionState.NEUTRAL
@@ -218,6 +226,7 @@ private fun CodeBlock(code: String) {
 @Composable
 private fun OptionRow(
     text: String,
+    monospace: Boolean,
     order: Int?,
     ordering: Boolean,
     selected: Boolean,
@@ -262,8 +271,12 @@ private fun OptionRow(
         }
         Text(
             text = text,
-            fontFamily = FontFamily.Monospace,
-            style = MaterialTheme.typography.bodySmall,
+            fontFamily = if (monospace) FontFamily.Monospace else FontFamily.Default,
+            style = if (monospace) {
+                MaterialTheme.typography.bodySmall
+            } else {
+                MaterialTheme.typography.bodyMedium
+            },
         )
     }
 }
