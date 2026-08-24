@@ -517,6 +517,11 @@ CURATED_DEFAULTS = {
         "prompt": "Który przypadek łamie to podejście?",
         "est_seconds": 30,
     },
+    "order-steps": {
+        "prompt": "Ułóż kroki rozwiązania w kolejności.",
+        "est_seconds": 60,
+        "ui": "ordering",
+    },
 }
 
 
@@ -536,20 +541,36 @@ def build_curated(module) -> list:
     out = []
 
     for entry in module.EXERCISES:
-        options = list(entry["options"])
-        answer_text = entry["answer"]
-        if answer_text not in options:
-            raise AssertionError(
-                "{}/{}: `answer` nie występuje wśród opcji".format(entry["pattern"], entry["problem"])
-            )
-
         kind = entry.get("type", fallback_type)
         defaults = CURATED_DEFAULTS.get(kind)
         if defaults is None:
             raise AssertionError("{}: nieznany typ `{}`".format(entry["problem"], kind))
 
         eid = "{}/{}/{}".format(corpus["id"], entry["pattern"], entry["problem"])
-        shuffled, answer = _shuffled(options, answer_text, _rng("cur" + eid))
+        ui = defaults.get("ui", "choice")
+
+        if ui == "ordering":
+            # `steps` sa podane w kolejnosci poprawnej. Tasujemy je na opcje, a
+            # odpowiedzia jest permutacja mowiaca, gdzie w potasowanej liscie
+            # znalazl sie kolejny wlasciwy krok.
+            steps = list(entry["steps"])
+            if len(steps) != len(set(steps)):
+                raise AssertionError("{}: powtorzony krok".format(eid))
+            rng = _rng("cur" + eid)
+            shuffled = list(steps)
+            while shuffled == steps:
+                rng.shuffle(shuffled)
+            answer: object = [shuffled.index(step) for step in steps]
+        else:
+            options = list(entry["options"])
+            answer_text = entry["answer"]
+            if answer_text not in options:
+                raise AssertionError(
+                    "{}/{}: `answer` nie występuje wśród opcji".format(
+                        entry["pattern"], entry["problem"]
+                    )
+                )
+            shuffled, answer = _shuffled(options, answer_text, _rng("cur" + eid))
 
         out.append(
             Exercise(
@@ -566,6 +587,7 @@ def build_curated(module) -> list:
                 explanation=entry["explanation"],
                 spec_ref=entry.get("spec_ref"),
                 est_seconds=entry.get("est_seconds", defaults["est_seconds"]),
+                ui=ui,
                 source="curated",
                 reviewed=False,
                 tags=[kind, entry["pattern"]],

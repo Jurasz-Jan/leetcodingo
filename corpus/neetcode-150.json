@@ -1083,6 +1083,906 @@
         "key-insight",
         "dp-1d"
       ]
+    },
+    {
+      "id": "neetcode-150/arrays-hashing/iloczyn-pozostalych-kroki",
+      "pattern": "arrays-hashing",
+      "problem": "iloczyn-pozostalych-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 2,
+      "spec": "Dla każdej pozycji tablicy podaj iloczyn wszystkich pozostałych elementów, bez dzielenia i w jednej dodatkowej tablicy wynikowej.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "zapamiętaj osobną zmienną na iloczyn tego, co leży na prawo, i ustaw ją na jeden",
+        "pomnóż wartość w wyniku przez bieżący iloczyn prawej strony",
+        "dopiero potem wmnóż element wejścia do iloczynu prawej strony",
+        "przejdź wejście od prawej do lewej",
+        "przejdź wejście od lewej, wpisując do wyniku iloczyn wszystkiego, co leży na lewo od pozycji",
+        "utwórz tablicę wynikową tej samej długości co wejście"
+      ],
+      "answer": [
+        5,
+        4,
+        0,
+        3,
+        1,
+        2
+      ],
+      "explanation": "Kolejność dwóch ostatnich kroków jest tu całą trudnością. Najpierw mnożysz wynik przez iloczyn prawej strony, a dopiero potem dokładasz do niego bieżący element — gdyby odwrotnie, element wszedłby do iloczynu własnej pozycji.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "arrays-hashing"
+      ]
+    },
+    {
+      "id": "neetcode-150/two-pointers/trojka-do-zera-kroki",
+      "pattern": "two-pointers",
+      "problem": "trojka-do-zera-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Znajdź wszystkie różne trójki sumujące się do zera, bez powtórzeń w wyniku.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "zwężaj parę zależnie od znaku sumy, zapisując trójki sumujące się do zera",
+        "posortuj tablicę rosnąco",
+        "ustaw dwa wskaźniki: tuż za ustalonym elementem oraz na końcu tablicy",
+        "pomiń ustaloną pozycję, jeśli ma tę samą wartość co poprzednia",
+        "ustalaj pierwszy element trójki, idąc po kolejnych pozycjach",
+        "po zapisaniu trójki przesuń lewy wskaźnik za wszystkie powtórzenia jego wartości"
+      ],
+      "answer": [
+        1,
+        4,
+        3,
+        2,
+        0,
+        5
+      ],
+      "explanation": "Sortowanie robi dwie rzeczy naraz: pozwala zwijać parę wskaźnikami i ustawia duplikaty obok siebie. Dlatego oba pomijania powtórzeń, zewnętrzne i wewnętrzne, są tanie i sprowadzają się do porównania z sąsiadem.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "two-pointers"
+      ]
+    },
+    {
+      "id": "neetcode-150/two-pointers/woda-deszczowa-kroki",
+      "pattern": "two-pointers",
+      "problem": "woda-deszczowa-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Tablica wysokości słupków. Policz, ile wody zatrzyma się między nimi po deszczu, w stałej pamięci.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "zaktualizuj maksimum tej strony bieżącym słupkiem",
+        "dolicz do wyniku różnicę między maksimum tej strony a wysokością bieżącego słupka",
+        "zapamiętaj najwyższy słupek widziany od lewej i najwyższy widziany od prawej",
+        "przesuń wskaźnik wybranej strony do środka i powtarzaj, aż się miną",
+        "wybierz tę stronę, po której zapamiętane maksimum jest niższe",
+        "ustaw wskaźniki na obu końcach tablicy"
+      ],
+      "answer": [
+        5,
+        2,
+        4,
+        0,
+        1,
+        3
+      ],
+      "explanation": "Woda nad słupkiem to niższe z dwóch maksimów minus jego wysokość. Ruch po niższej stronie jest bezpieczny, bo o wyniku decyduje właśnie ta strona, a druga jest już gwarantowanym ograniczeniem z góry.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "two-pointers"
+      ]
+    },
+    {
+      "id": "neetcode-150/sliding-window/minimalne-okno-kroki",
+      "pattern": "sliding-window",
+      "problem": "minimalne-okno-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Znajdź najkrótszy fragment napisu zawierający wszystkie znaki wzorca wraz z powtórzeniami.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "zwężaj okno z lewej, dopóki pokrycie się utrzymuje, po każdym skróceniu ponawiając zapis wyniku",
+        "gdy licznik brakujących spadnie do zera, zapamiętaj okno, jeśli jest krótsze od dotychczas najlepszego",
+        "gdy zwężenie zabierze znak potrzebny do pokrycia, zwiększ licznik brakujących i wróć do rozszerzania",
+        "ustaw licznik brakujących znaków na długość wzorca",
+        "policz, ile razy każdy znak występuje we wzorcu",
+        "rozszerzaj okno w prawo, zmniejszając licznik brakujących, gdy znak był jeszcze potrzebny"
+      ],
+      "answer": [
+        4,
+        3,
+        5,
+        1,
+        0,
+        2
+      ],
+      "explanation": "Klucz to jeden licznik zamiast porównywania słowników: zmienia się o jeden przy wejściu i wyjściu znaku, więc warunek pokrycia sprawdza się porównaniem z zerem.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "neetcode-150/sliding-window/maksimum-w-oknie-kroki",
+      "pattern": "sliding-window",
+      "problem": "maksimum-w-oknie-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Dla każdego okna o stałej długości k podaj największy element, w czasie liniowym.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "przygotuj kolejkę dwustronną, w której będziesz trzymać indeksy, nie wartości",
+        "dopisz bieżący indeks na koniec kolejki",
+        "gdy okno osiągnie pełną długość, odczytaj maksimum z przodu kolejki",
+        "dla kolejnego elementu usuń z przodu kolejki indeks, który wypadł już poza okno",
+        "dopisz odczytaną wartość do wyniku i przesuń się o jeden element dalej",
+        "usuwaj z tyłu kolejki wszystkie indeksy o wartościach nie większych od bieżącej"
+      ],
+      "answer": [
+        0,
+        3,
+        5,
+        1,
+        2,
+        4
+      ],
+      "explanation": "Kolejka pozostaje malejąca, więc jej przód to zawsze maksimum bieżącego okna. Trzymanie indeksów zamiast wartości jest konieczne, żeby dało się rozpoznać moment, w którym element wypada poza okno.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "sliding-window"
+      ]
+    },
+    {
+      "id": "neetcode-150/stack/najwiekszy-prostokat-kroki",
+      "pattern": "stack",
+      "problem": "najwiekszy-prostokat-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Histogram słupków o jednostkowej szerokości. Znajdź pole największego prostokąta, jaki się w nim mieści.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "przygotuj stos, na którym będą leżeć indeksy słupków o rosnących wysokościach",
+        "dla zdjętego słupka przyjmij, że jego prostokąt sięga w prawo do bieżącej pozycji",
+        "policz pole i zaktualizuj najlepszy wynik, a na koniec dołóż bieżący indeks na stos",
+        "dopóki bieżący słupek jest niższy od tego na szczycie stosu, zdejmij szczyt",
+        "przechodź słupki od lewej do prawej",
+        "lewą granicę odczytaj z nowego szczytu stosu, bo to pierwszy niższy słupek po lewej"
+      ],
+      "answer": [
+        0,
+        4,
+        3,
+        1,
+        5,
+        2
+      ],
+      "explanation": "Zdejmowanie ze stosu jest momentem, w którym znane są obie granice prostokąta naraz: prawą wyznacza słupek, który wymusił zdjęcie, a lewą ten, który leży pod spodem.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "stack"
+      ]
+    },
+    {
+      "id": "neetcode-150/stack/floty-kroki",
+      "pattern": "stack",
+      "problem": "floty-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 2,
+      "spec": "Samochody z pozycją i prędkością jadą do wspólnej mety, nikt nie wyprzedza. Policz liczbę flot, które dojadą.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "przechodź samochody w tej kolejności, trzymając na stosie czasy dojazdu czół flot",
+        "policz dla każdego samochodu czas dojazdu do mety",
+        "jeśli czas bieżącego samochodu jest większy od czasu na szczycie stosu, zacznij nową flotę",
+        "połącz pozycję i prędkość każdego samochodu w jedną parę",
+        "w przeciwnym razie samochód dogoni flotę przed sobą i nie zwiększa wyniku",
+        "posortuj samochody po pozycji malejąco, czyli od najbliższego mety"
+      ],
+      "answer": [
+        3,
+        5,
+        1,
+        0,
+        2,
+        4
+      ],
+      "explanation": "Liczba flot to po prostu rozmiar stosu na końcu. Kolejność od mety jest konieczna, bo flota z przodu musi być rozstrzygnięta, zanim rozpatrzy się tę za nią.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "stack"
+      ]
+    },
+    {
+      "id": "neetcode-150/binary-search/szukanie-po-odpowiedzi-kroki",
+      "pattern": "binary-search",
+      "problem": "szukanie-po-odpowiedzi-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 2,
+      "spec": "Znajdź najmniejszą wartość parametru, przy której zadanie zdąży się wykonać w limicie.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "ustal dolną granicę przedziału na najmniejszą wartość, która w ogóle ma sens",
+        "weź środek przedziału i sprawdź go przygotowaną funkcją",
+        "gdy wartość wystarcza, zapamiętaj ją i przenieś górną granicę tuż pod środek",
+        "ustal górną granicę na wartość, przy której zadanie na pewno się udaje",
+        "napisz funkcję sprawdzającą, czy pojedyncza wartość parametru wystarcza",
+        "gdy nie wystarcza, przenieś dolną granicę tuż nad środek i powtarzaj aż do zejścia się granic"
+      ],
+      "answer": [
+        4,
+        0,
+        3,
+        1,
+        2,
+        5
+      ],
+      "explanation": "Kolejność pierwszych trzech kroków nie jest kosmetyczna: bez funkcji sprawdzającej nie wiadomo, co znaczy „wystarcza”, a bez niej nie da się dobrać granic tak, żeby jedna spełniała warunek, a druga nie.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "neetcode-150/binary-search/mediana-dwoch-tablic-kroki",
+      "pattern": "binary-search",
+      "problem": "mediana-dwoch-tablic-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Dwie posortowane tablice. Podaj medianę ich połączenia w czasie logarytmicznym względem krótszej z nich.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "zamień tablice miejscami tak, żeby pierwsza była tą krótszą",
+        "sprawdź, czy każdy element lewej strony nie przekracza każdego elementu prawej",
+        "dolicz resztę do pełnej połowy z drugiej tablicy, co wyznacza jej podział",
+        "gdy warunek zawodzi, przesuń zakres szukania i powtórz, a gdy zachodzi, złóż medianę z wartości granicznych",
+        "odczytaj cztery wartości graniczne: po dwie tuż przed i tuż za każdym cięciem",
+        "szukaj binarnie, ile elementów krótszej tablicy trafia do lewej połowy"
+      ],
+      "answer": [
+        0,
+        5,
+        2,
+        4,
+        1,
+        3
+      ],
+      "explanation": "Szukasz nie wartości, tylko miejsca cięcia. Ograniczenie się do krótszej tablicy daje logarytm od mniejszego rozmiaru i pilnuje, żeby indeksy w drugiej tablicy nie wyszły poza zakres.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "neetcode-150/linked-list/przeplot-listy-kroki",
+      "pattern": "linked-list",
+      "problem": "przeplot-listy-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 2,
+      "spec": "Przeplot listy jednokierunkowej: pierwszy element, ostatni, drugi, przedostatni i tak dalej, w miejscu.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "przetnij listę na środku, żeby powstały dwie osobne części",
+        "wpinaj na przemian po jednym węźle z pierwszej i z drugiej części",
+        "znajdź środek listy wskaźnikiem wolnym i szybkim",
+        "ustaw po jednym wskaźniku na początku każdej z części",
+        "odwróć drugą część, przepinając wskaźniki",
+        "zakończ, gdy druga część się wyczerpie"
+      ],
+      "answer": [
+        2,
+        0,
+        4,
+        3,
+        1,
+        5
+      ],
+      "explanation": "Trzy znane operacje na listach złożone w jedną. Przecięcie na środku musi nastąpić przed odwracaniem, inaczej odwrócenie zawróci również pierwszą połowę i powstanie cykl.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "linked-list"
+      ]
+    },
+    {
+      "id": "neetcode-150/linked-list/lru-kroki",
+      "pattern": "linked-list",
+      "problem": "lru-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Pamięć podręczna o ustalonej pojemności, usuwająca element najdawniej używany. Odczyt i zapis w czasie stałym.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "przy zapisie dołóż nowy węzeł po tej samej stronie i dopisz go do słownika",
+        "utwórz słownik odwzorowujący klucz na węzeł tej listy",
+        "przy odczycie znajdź węzeł w słowniku i wypnij go z jego miejsca na liście",
+        "wepnij ten węzeł tuż przy wartowniku oznaczającym stronę najświeższych",
+        "gdy rozmiar przekroczy pojemność, wypnij węzeł przy przeciwnym wartowniku i usuń jego klucz ze słownika",
+        "utwórz listę dwukierunkową z wartownikami na obu końcach"
+      ],
+      "answer": [
+        5,
+        1,
+        2,
+        3,
+        0,
+        4
+      ],
+      "explanation": "Wartownicy na obu końcach usuwają wszystkie przypadki brzegowe z wypinania i wpinania: każdy prawdziwy węzeł ma zawsze poprzednika i następnika, więc nie ma gałęzi na pustą listę ani na jedyny element.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "linked-list"
+      ]
+    },
+    {
+      "id": "neetcode-150/linked-list/scal-k-list-kroki",
+      "pattern": "linked-list",
+      "problem": "scal-k-list-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Scal k posortowanych list jednokierunkowych w jedną posortowaną listę.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "zdejmij z kopca najmniejszy węzeł i dopnij go na koniec wyniku",
+        "porządkuj kopiec po wartościach węzłów",
+        "wrzuć do kopca pierwszy węzeł z każdej niepustej listy",
+        "utwórz węzeł wartowniczy, który będzie początkiem wyniku",
+        "powtarzaj, aż kopiec opustoszeje, i zwróć listę za wartownikiem",
+        "jeśli zdjęty węzeł miał następnika, wrzuć następnika do kopca"
+      ],
+      "answer": [
+        2,
+        1,
+        3,
+        0,
+        5,
+        4
+      ],
+      "explanation": "Kopiec ma rozmiar k, a nie n, bo w każdej chwili leży w nim najwyżej jeden węzeł z każdej listy. Stąd koszt n log k zamiast n log n za scalanie wszystkiego naraz.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "linked-list"
+      ]
+    },
+    {
+      "id": "neetcode-150/trees/odtworzenie-drzewa-kroki",
+      "pattern": "trees",
+      "problem": "odtworzenie-drzewa-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 2,
+      "spec": "Odtwórz drzewo binarne z porządków preorder i inorder, bez powtórzonych wartości.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "weź kolejną wartość z preorder i utwórz z niej węzeł",
+        "wszystko na lewo od tej pozycji należy do lewego poddrzewa, wszystko na prawo do prawego",
+        "zbuduj rekurencyjnie lewe poddrzewo, zużywając kolejne wartości preorder",
+        "zbuduj prawe poddrzewo z tego, co z preorder zostało",
+        "odczytaj ze słownika pozycję tej wartości w inorder",
+        "zbuduj słownik odwzorowujący wartość na jej pozycję w inorder"
+      ],
+      "answer": [
+        5,
+        0,
+        4,
+        1,
+        2,
+        3
+      ],
+      "explanation": "Słownik zamienia szukanie korzenia w inorder z liniowego na stałe, co ściąga całość z kwadratu do liniowości. Lewe poddrzewo musi powstać przed prawym, bo obie gałęzie czerpią z tego samego, wspólnego strumienia preorder.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "trees"
+      ]
+    },
+    {
+      "id": "neetcode-150/trees/maksymalna-sciezka-kroki",
+      "pattern": "trees",
+      "problem": "maksymalna-sciezka-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Drzewo binarne z wartościami mogącymi być ujemnymi. Podaj największą sumę wartości na ścieżce między dowolnymi dwoma węzłami.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "zwróć w górę wartość węzła powiększoną o większy z dwóch wkładów",
+        "zawiąż zmienną na najlepszy dotychczasowy wynik i ustaw ją na minus nieskończoność",
+        "ujemny wkład potraktuj jak zero, bo lepiej takiej gałęzi nie brać wcale",
+        "policz tak samo wkład prawego poddrzewa",
+        "zaktualizuj najlepszy wynik sumą wartości węzła i obu wkładów",
+        "policz rekurencyjnie najlepszy wkład lewego poddrzewa"
+      ],
+      "answer": [
+        1,
+        5,
+        3,
+        2,
+        4,
+        0
+      ],
+      "explanation": "Funkcja zwraca co innego, niż aktualizuje. W górę idzie ścieżka schodząca tylko jedną gałęzią, bo tylko taka da się przedłużyć u rodzica, a w wyniku odkłada się ścieżka przechodząca przez węzeł obiema gałęziami.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "trees"
+      ]
+    },
+    {
+      "id": "neetcode-150/trie/szukanie-wielu-slow-kroki",
+      "pattern": "trie",
+      "problem": "szukanie-wielu-slow-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Siatka liter i lista słów. Znajdź te słowa, które da się w siatce ułożyć.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "oznacz w trie węzły kończące słowo",
+        "wstaw wszystkie szukane słowa do jednego drzewa trie",
+        "oznacz pole jako zajęte na czas schodzenia w głąb i cofnij to oznaczenie przy powrocie",
+        "przy wejściu na pole zejdź do dziecka trie odpowiadającego jego literze, a gdy go nie ma, przerwij gałąź",
+        "uruchom przeszukiwanie w głąb z każdego pola siatki, startując od korzenia trie",
+        "gdy trafisz na węzeł kończący słowo, dopisz to słowo do wyniku i odznacz je, żeby nie trafiło tam drugi raz"
+      ],
+      "answer": [
+        1,
+        0,
+        4,
+        3,
+        5,
+        2
+      ],
+      "explanation": "Trie odwraca zależność: zamiast szukać każdego słowa osobno, przechodzisz siatkę raz, a gałąź urywa się w chwili, gdy zbudowany przedrostek nie pasuje do żadnego słowa.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "trie"
+      ]
+    },
+    {
+      "id": "neetcode-150/heap/mediana-strumienia-kroki",
+      "pattern": "heap",
+      "problem": "mediana-strumienia-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Po każdej nowej liczbie w strumieniu podaj medianę wszystkich dotychczasowych.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "przełóż wierzchołek mniejszej połowy do kopca większej",
+        "przygotuj kopiec maksymalny na mniejszą połowę i minimalny na większą",
+        "przy nieparzystej liczbie elementów odczytaj medianę z wierzchołka większego kopca",
+        "jeśli kopiec większej połowy urósł ponad rozmiar mniejszej, przełóż jego wierzchołek z powrotem",
+        "wstaw nową liczbę do kopca mniejszej połowy",
+        "przy parzystej uśrednij wierzchołki obu kopców"
+      ],
+      "answer": [
+        1,
+        4,
+        0,
+        3,
+        2,
+        5
+      ],
+      "explanation": "Bezwarunkowe przełożenie w trzecim kroku wygląda na zbędne, ale to ono gwarantuje podział na właściwe połowy. Samo wyrównywanie rozmiarów nie wystarcza: element wstawiony do mniejszej połowy może być większy od wszystkiego w większej.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "heap"
+      ]
+    },
+    {
+      "id": "neetcode-150/backtracking/hetmany-kroki",
+      "pattern": "backtracking",
+      "problem": "hetmany-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Ustaw n hetmanów na szachownicy n na n tak, żeby żadne dwa się nie atakowały.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "schodź rekurencyjnie wiersz po wierszu",
+        "dla bieżącego wiersza przejrzyj wszystkie kolumny",
+        "pomiń kolumnę, jeśli ona sama albo któraś z jej przekątnych jest już zajęta",
+        "przygotuj trzy zbiory: zajęte kolumny oraz obie rodziny przekątnych",
+        "po powrocie z rekurencji usuń te trzy wpisy, żeby odblokować pole dla innych ustawień",
+        "wpisz hetmana i dopisz jego kolumnę oraz obie przekątne do zbiorów"
+      ],
+      "answer": [
+        3,
+        0,
+        1,
+        2,
+        5,
+        4
+      ],
+      "explanation": "Przekątne adresuje się sumą i różnicą współrzędnych, więc kolizja sprawdza się w czasie stałym. Ostatni krok jest istotą nawrotów: bez cofnięcia wpisów kolejne gałęzie widziałyby planszę zabrudzoną poprzednią próbą.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "backtracking"
+      ]
+    },
+    {
+      "id": "neetcode-150/backtracking/podzial-na-palindromy-kroki",
+      "pattern": "backtracking",
+      "problem": "podzial-na-palindromy-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 2,
+      "spec": "Podziel napis na wszystkie możliwe sposoby tak, żeby każdy fragment był palindromem.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "rozważ każdy możliwy koniec fragmentu zaczynającego się w tej pozycji",
+        "dopisz fragment do podziału, zejdź głębiej, a po powrocie zdejmij go z powrotem",
+        "gdy pozycja dobiegnie końca napisu, dopisz kopię bieżącego podziału do wyniku",
+        "zawiąż listę na bieżący podział i listę na wynik",
+        "sprawdź, czy tak wycięty fragment jest palindromem, i pomiń go, jeśli nie jest",
+        "wejdź rekurencyjnie z pozycją, od której zaczyna się kolejny fragment"
+      ],
+      "answer": [
+        3,
+        5,
+        2,
+        0,
+        4,
+        1
+      ],
+      "explanation": "Sprawdzenie palindromu przed zejściem w głąb odcina gałąź od razu, zamiast budować cały podział i odrzucać go na końcu. Kopia podziału przy zapisie jest konieczna, bo sama lista jest dalej modyfikowana przy nawrotach.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "backtracking"
+      ]
+    },
+    {
+      "id": "neetcode-150/graphs/kolejnosc-kursow-kroki",
+      "pattern": "graphs",
+      "problem": "kolejnosc-kursow-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 2,
+      "spec": "Kursy i pary mówiące, że jeden trzeba zaliczyć przed drugim. Podaj dopuszczalną kolejność zaliczania albo stwierdź, że nie istnieje.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "wrzuć do kolejki wszystkie kursy o zerowej liczbie wymagań",
+        "następnika, którego licznik spadł do zera, dołóż do kolejki",
+        "policz dla każdego kursu, ile kursów trzeba zaliczyć przed nim",
+        "zdejmij kurs z kolejki i dopisz go do wynikowej kolejności",
+        "zbuduj listy sąsiedztwa: dla każdego kursu te, które go wymagają",
+        "zmniejsz licznik wymagań u każdego z jego następników"
+      ],
+      "answer": [
+        4,
+        2,
+        0,
+        3,
+        5,
+        1
+      ],
+      "explanation": "Jeśli na końcu wynikowa kolejność jest krótsza niż liczba kursów, to znaczy, że w grafie został cykl i zaliczenie wszystkiego jest niemożliwe. Sprawdzenie cyklu wychodzi więc za darmo, przy okazji budowania kolejności.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "graphs"
+      ]
+    },
+    {
+      "id": "neetcode-150/graphs/splyw-do-dwoch-mors-kroki",
+      "pattern": "graphs",
+      "problem": "splyw-do-dwoch-mors-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 2,
+      "spec": "Siatka wysokości, woda spływa do sąsiadów nie wyższych. Znajdź pola, z których dopłynie i do górnej, i do dolnej krawędzi.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "zwróć przecięcie obu zbiorów",
+        "odwróć kierunek myślenia: zamiast spływu w dół rozważaj wchodzenie pod górę",
+        "przygotuj dwa osobne zbiory pól, po jednym dla każdej krawędzi",
+        "wchodź tylko na sąsiadów o wysokości nie mniejszej niż bieżąca",
+        "powtórz to samo przeszukiwanie od dolnej krawędzi, zapełniając drugi zbiór",
+        "uruchom przeszukiwanie z wszystkich pól przy górnej krawędzi, dopisując odwiedzone do pierwszego zbioru"
+      ],
+      "answer": [
+        2,
+        1,
+        5,
+        3,
+        4,
+        0
+      ],
+      "explanation": "Odwrócenie relacji zamienia sprawdzanie każdego pola z osobna na dwa przejścia po całej siatce. Warunek „do obu krawędzi” przekłada się wprost na przecięcie zbiorów.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "graphs"
+      ]
+    },
+    {
+      "id": "neetcode-150/advanced-graphs/najtansze-loty-kroki",
+      "pattern": "advanced-graphs",
+      "problem": "najtansze-loty-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Graf lotów z cenami. Znajdź najtańszą trasę z miasta startowego do docelowego, używając najwyżej k przesiadek.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "na początku rundy zrób kopię tablicy kosztów z poprzedniej rundy",
+        "przygotuj tablicę najtańszych znanych kosztów dojazdu do każdego miasta",
+        "ustaw koszt miasta startowego na zero, a pozostałych na nieskończoność",
+        "zapisz poprawiony koszt do tablicy bieżącej i przejdź do następnej rundy",
+        "powtórz całą rundę dokładnie k plus jeden razy",
+        "dla każdego połączenia policz koszt dojścia, czytając wyłącznie z kopii"
+      ],
+      "answer": [
+        1,
+        2,
+        4,
+        0,
+        5,
+        3
+      ],
+      "explanation": "Czytanie z kopii jest tu warunkiem poprawności, a nie ostrożnością: bez niego trasa poprawiona w tej samej rundzie zostałaby użyta ponownie i przemyciła dodatkową przesiadkę ponad limit. Jedna runda to dokładnie jeden przelot.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "advanced-graphs"
+      ]
+    },
+    {
+      "id": "neetcode-150/dp-1d/najdluzszy-rosnacy-kroki",
+      "pattern": "dp-1d",
+      "problem": "najdluzszy-rosnacy-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Podaj długość najdłuższego rosnącego podciągu, niekoniecznie spójnego, w czasie n log n.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "gdy nie istnieje, dopisz element na koniec tablicy pomocniczej",
+        "zawiąż pomocniczą tablicę na najmniejsze możliwe zakończenia podciągów kolejnych długości",
+        "gdy taka pozycja istnieje, nadpisz ją bieżącym elementem",
+        "przechodź elementy wejścia po kolei",
+        "poszukaj binarnie pierwszej pozycji w tablicy pomocniczej o wartości nie mniejszej od bieżącego elementu",
+        "po przejściu całego wejścia zwróć długość tablicy pomocniczej"
+      ],
+      "answer": [
+        1,
+        3,
+        4,
+        2,
+        0,
+        5
+      ],
+      "explanation": "Tablica pomocnicza nie jest żadnym konkretnym podciągiem i próba odczytania jej jako wyniku jest najczęstszym nieporozumieniem przy tym zadaniu. Prawdziwa jest tylko jej długość: na pozycji i leży najmniejsze znane zakończenie podciągu długości i plus jeden.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "dp-1d"
+      ]
+    },
+    {
+      "id": "neetcode-150/dp-2d/odleglosc-edycyjna-kroki",
+      "pattern": "dp-2d",
+      "problem": "odleglosc-edycyjna-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Podaj najmniejszą liczbę wstawień, usunięć i zamian znaku, która zamienia pierwszy napis w drugi.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "gdy się różnią, weź najmniejszą z trzech sąsiadek: z góry, z lewej i po przekątnej",
+        "utwórz tablicę o wymiarach o jeden większych niż długości obu napisów",
+        "wypełnij pierwszy wiersz i pierwszą kolumnę kolejnymi liczbami, bo to koszt zamiany na napis pusty",
+        "przechodź komórki wierszami, od lewej do prawej",
+        "gdy odpowiadające sobie znaki są równe, przepisz wartość z komórki po przekątnej",
+        "dodaj jeden do wybranej wartości i zapisz wynik w komórce"
+      ],
+      "answer": [
+        1,
+        2,
+        3,
+        4,
+        0,
+        5
+      ],
+      "explanation": "Trzy sąsiadki to trzy dozwolone operacje: z góry usunięcie, z lewej wstawienie, po przekątnej zamiana. Wypełnienie brzegów przed pętlą nie jest formalnością, tylko warunkiem początkowym, bez którego pierwsza komórka nie ma się o co oprzeć.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "dp-2d"
+      ]
+    },
+    {
+      "id": "neetcode-150/greedy/stacja-benzynowa-kroki",
+      "pattern": "greedy",
+      "problem": "stacja-benzynowa-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 2,
+      "spec": "Stacje na okręgu z ilością paliwa i kosztem przejazdu do następnej. Wskaż stację, z której da się objechać pętlę.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "przechodź stacje po kolei, dodając do bilansu różnicę paliwa i kosztu",
+        "policz sumę różnic między paliwem a kosztem na wszystkich stacjach",
+        "gdy suma wyszła ujemna, zakończ: żadna stacja nie pozwoli objechać pętli",
+        "wyzeruj bilans i idź dalej, a po przejściu wszystkich stacji zwróć kandydata",
+        "ustaw kandydata na start na pierwszą stację i wyzeruj bieżący bilans",
+        "gdy bilans zejdzie poniżej zera, przesuń kandydata na stację następną po bieżącej"
+      ],
+      "answer": [
+        1,
+        2,
+        4,
+        0,
+        5,
+        3
+      ],
+      "explanation": "Sprawdzenie sumy na początku rozstrzyga istnienie odpowiedzi, więc reszta może już tylko szukać właściwej stacji. Skok kandydata za miejsce awarii jest poprawny, bo żadna stacja po drodze też by nie zadziałała.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "greedy"
+      ]
+    },
+    {
+      "id": "neetcode-150/intervals/sale-kroki",
+      "pattern": "intervals",
+      "problem": "sale-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 2,
+      "spec": "Lista spotkań z godziną początku i końca. Podaj najmniejszą liczbę sal potrzebną, żeby żadne dwa nie kolidowały.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "weź kolejne spotkanie z posortowanej listy",
+        "zapamiętaj największy rozmiar kopca, jaki wystąpił, i zwróć go jako wynik",
+        "posortuj spotkania po godzinie rozpoczęcia",
+        "wrzuć na kopiec godzinę zakończenia bieżącego spotkania",
+        "przygotuj kopiec minimalny na godziny zakończenia zajętych sal",
+        "jeśli na wierzchołku kopca leży godzina nie późniejsza niż jego początek, zdejmij ją i zwolnij tę salę"
+      ],
+      "answer": [
+        2,
+        4,
+        0,
+        5,
+        3,
+        1
+      ],
+      "explanation": "Kopiec trzyma tylko godziny zakończeń, bo o zwolnieniu sali decyduje wyłącznie ta wartość. Rozmiar kopca w szczycie to liczba spotkań nakładających się w jednej chwili, czyli dokładnie liczba potrzebnych sal.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "intervals"
+      ]
     }
   ]
 }
