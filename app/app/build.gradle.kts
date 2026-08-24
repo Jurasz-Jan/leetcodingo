@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -13,6 +15,27 @@ val copyCorpus by tasks.registering(Sync::class) {
     from(rootProject.file("../corpus")) { include("*.json") }
     into(layout.buildDirectory.dir("generated/corpus/corpus"))
 }
+
+/**
+ * Dane klucza podpisujacego. Nigdy nie trafiaja do repozytorium.
+ *
+ * Kolejnosc: plik `keystore.properties` obok `settings.gradle.kts`, a jesli go nie ma,
+ * zmienne srodowiskowe - tak dziala to samo w CI, gdzie klucz przychodzi z sekretow.
+ * Gdy nie ma ani jednego, ani drugiego, build `release` podpisuje sie kluczem
+ * debugowym: nie wywala sie, ale takie APK nie nadaje sie do rozdawania, bo klucz
+ * debugowy jest przywiazany do maszyny.
+ */
+val keystoreProperties = Properties()
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+if (keystorePropertiesFile.exists()) {
+    keystorePropertiesFile.inputStream().use { stream -> keystoreProperties.load(stream) }
+}
+
+fun signingValue(key: String, env: String): String? =
+    keystoreProperties.getProperty(key) ?: System.getenv(env)
+
+val releaseStorePath: String? = signingValue("storeFile", "LEETCODINGO_KEYSTORE")
+val hasReleaseKeystore: Boolean = releaseStorePath != null && file(releaseStorePath).exists()
 
 android {
     namespace = "pl.leetcodingo"
@@ -32,9 +55,30 @@ android {
         }
     }
 
+    signingConfigs {
+        if (hasReleaseKeystore) {
+            create("release") {
+                storeFile = file(releaseStorePath!!)
+                storePassword = signingValue("storePassword", "LEETCODINGO_STORE_PASSWORD")
+                keyAlias = signingValue("keyAlias", "LEETCODINGO_KEY_ALIAS")
+                keyPassword = signingValue("keyPassword", "LEETCODINGO_KEY_PASSWORD")
+            }
+        }
+    }
+
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
+            signingConfig = if (hasReleaseKeystore) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
+            }
         }
     }
 
@@ -55,6 +99,19 @@ android {
 }
 
 tasks.named("preBuild") { dependsOn(copyCorpus) }
+
+tasks.matching { it.name == "assembleRelease" }.configureEach {
+    doFirst {
+        if (!hasReleaseKeystore) {
+            logger.warn(
+                "UWAGA: brak klucza release, APK zostanie podpisane kluczem debugowym. " +
+                    "Takie APK nadaje się do sprawdzenia u siebie, ale nie do rozdawania: " +
+                    "klucz debugowy jest przywiązany do maszyny, więc aktualizacja zbudowana " +
+                    "gdzie indziej nie zainstaluje się na wierzch i skasuje postęp."
+            )
+        }
+    }
+}
 
 dependencies {
     implementation(libs.androidx.core.ktx)

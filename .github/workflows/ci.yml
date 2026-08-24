@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  korpus:
+    name: Generator i korpus
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          # Wersja jest przypięta celowo. `ast.unparse` bywa formatowany inaczej
+          # między wydaniami Pythona, a korpus jest porównywany bajt w bajt niżej.
+          python-version: '3.14'
+
+      - run: pip install pytest
+
+      - name: Testy pipeline'u
+        run: python -m pytest generator/tests -q
+
+      - name: Build korpusu
+        # Kod wyjścia różny od zera oznacza, że walidator odrzucił korpus.
+        run: python generator/build.py
+
+      - name: Korpus w repozytorium zgadza się z generatorem
+        # Bez tego kroku zacommitowany korpus po cichu rozjeżdża się z kodem,
+        # który go tworzy: aplikacja wozi wtedy treść, której nikt już nie umie odtworzyć.
+        run: |
+          if ! git diff --exit-code -- corpus/; then
+            echo '::error::corpus/ nie zgadza sie z wynikiem generatora. Uruchom "python generator/build.py" i zacommituj wynik.'
+            exit 1
+          fi
+
+  android:
+    name: Aplikacja
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Build i testy jednostkowe
+        working-directory: app
+        run: ./gradlew assembleDebug testDebugUnitTest --no-daemon
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: app/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error

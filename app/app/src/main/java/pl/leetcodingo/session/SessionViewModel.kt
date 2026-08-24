@@ -57,7 +57,7 @@ class SessionViewModel(app: Application) : AndroidViewModel(app) {
             _state.value = UiState.Loading
             val loaded = corpus ?: runCatching {
                 withContext(Dispatchers.IO) {
-                    CorpusRepository(getApplication<Application>().assets).load()
+                    CorpusRepository(getApplication<Application>()).load()
                 }
             }.getOrElse {
                 _state.value = UiState.Failed(it.message ?: "nie udało się wczytać korpusu")

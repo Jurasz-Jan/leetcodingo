@@ -119,9 +119,11 @@ def main(argv: list) -> int:
 
         out_path = CORPUS_DIR / "{}.json".format(result["meta"]["id"])
         payload = {"pattern": result["meta"], "exercises": items}
-        out_path.write_text(
-            json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-        )
+        # newline="\n" jest tu istotne: bez tego Python na Windowsie zapisuje CRLF,
+        # a repozytorium trzyma LF, więc pliki lokalne rozjeżdżają się z zacommitowanymi
+        # i każdy build wygląda na zmianę.
+        with open(out_path, "w", encoding="utf-8", newline="\n") as handle:
+            handle.write(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
 
         print("== {}".format(result["meta"]["id"]))
         for problem, killed, survived, built in result["stats"]:
