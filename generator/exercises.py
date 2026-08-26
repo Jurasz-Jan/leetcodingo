@@ -504,6 +504,70 @@ def build(module, limits=None) -> tuple:
 # Treści kurowane
 # --------------------------------------------------------------------------
 
+def forced_order(deps: list):
+    """Kolejnosc wymuszona przez zaleznosci albo None, gdy nie jest jedyna.
+
+    Zwraca (kolejnosc, gotowe_naraz). Sortowanie topologiczne daje dokladnie
+    jedna poprawna kolejnosc wtedy i tylko wtedy, gdy na kazdym etapie gotowy
+    do wziecia jest dokladnie jeden krok. Dwa gotowe naraz znacza, ze da sie je
+    zamienic miejscami i obie odpowiedzi sa poprawne.
+    """
+    n = len(deps)
+    indegree = [len(d) for d in deps]
+    following = [[] for _ in range(n)]
+    for index, sources in enumerate(deps):
+        for source in sources:
+            following[source].append(index)
+
+    ready = [i for i in range(n) if indegree[i] == 0]
+    order = []
+    while ready:
+        if len(ready) > 1:
+            return None, sorted(ready)
+        current = ready.pop()
+        order.append(current)
+        for nxt in following[current]:
+            indegree[nxt] -= 1
+            if indegree[nxt] == 0:
+                ready.append(nxt)
+    if len(order) != n:
+        return None, []
+    return order, []
+
+
+def check_forced_order(eid: str, steps: list, deps: list) -> None:
+    """Pilnuje, ze zadeklarowana kolejnosc krokow jest jedyna mozliwa.
+
+    To jest dla `order-steps` tym, czym filtr testowy dla mutantow: cwiczenie,
+    w ktorym dwa kroki da sie zamienic miejscami, ma dwie poprawne odpowiedzi,
+    czyli w praktyce nie ma zadnej.
+    """
+    if len(deps) != len(steps):
+        raise AssertionError("{}: `deps` ma inna dlugosc niz `steps`".format(eid))
+    for index, sources in enumerate(deps):
+        for source in sources:
+            if not 0 <= source < index:
+                raise AssertionError(
+                    "{}: krok {} zalezy od {}, a zaleznosc musi wskazywac krok wczesniejszy".format(
+                        eid, index, source
+                    )
+                )
+
+    order, tied = forced_order(deps)
+    if order is None:
+        raise AssertionError(
+            "{}: kolejnosc nie jest jednoznaczna, bo kroki {} sa gotowe naraz: {}".format(
+                eid,
+                " i ".join(str(t) for t in tied),
+                " ORAZ ".join(repr(steps[t]) for t in tied),
+            )
+        )
+    if order != list(range(len(steps))):
+        raise AssertionError(
+            "{}: zaleznosci wymuszaja kolejnosc {}, a kroki podano w innej".format(eid, order)
+        )
+
+
 CURATED_DEFAULTS = {
     "recognize-pattern": {
         "prompt": "Który wzorzec rozwiązuje to zadanie?",
@@ -556,6 +620,7 @@ def build_curated(module) -> list:
             steps = list(entry["steps"])
             if len(steps) != len(set(steps)):
                 raise AssertionError("{}: powtorzony krok".format(eid))
+            check_forced_order(eid, steps, entry["deps"])
             rng = _rng("cur" + eid)
             shuffled = list(steps)
             while shuffled == steps:

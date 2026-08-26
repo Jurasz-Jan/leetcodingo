@@ -35,13 +35,14 @@ EXERCISES = [
             "działanie stoi za swoimi argumentami."
         ),
         steps=[
-            "przygotuj pusty stos na liczby",
-            "czytaj kolejne symbole wyrażenia od lewej do prawej",
-            "gdy symbol jest liczbą, odłóż ją na stos",
-            "gdy symbol jest działaniem, zdejmij ze stosu dwie liczby",
+            "przygotuj pusty stos na liczby i czytaj kolejne symbole wyrażenia od lewej do prawej",
+            "sprawdź, czy bieżący symbol jest liczbą, czy działaniem",
+            "gdy jest liczbą, odłóż ją na stos i przejdź do następnego symbolu",
+            "gdy jest działaniem, zdejmij ze stosu dwie liczby",
             "potraktuj pierwszą zdjętą jako prawy argument, a drugą jako lewy",
             "odłóż wynik działania na stos, a po wyczerpaniu symboli zwróć jedyną pozostałą liczbę",
         ],
+        deps=[[], [0], [1], [1, 2], [3], [4]],
         explanation=(
             "Kolejność zdejmowania jest odwrotna do kolejności zapisu, więc pierwsza zdjęta "
             "liczba jest tą stojącą po prawej. Przy dodawaniu i mnożeniu nie ma to znaczenia, "
@@ -57,13 +58,14 @@ EXERCISES = [
             "pierwszy cieplejszy, albo zero, gdy taki nie nadejdzie."
         ),
         steps=[
-            "przygotuj tablicę wyników wypełnioną zerami",
-            "przygotuj stos na indeksy dni, które wciąż czekają na cieplejszy",
+            "przygotuj tablicę wyników wypełnioną zerami oraz stos na indeksy dni czekających na cieplejszy",
             "przechodź dni od lewej do prawej",
             "dopóki bieżąca temperatura jest wyższa od temperatury dnia ze szczytu stosu, zdejmij ten szczyt",
             "dla każdego zdjętego dnia wpisz do wyniku różnicę między bieżącym indeksem a jego własnym",
-            "dołóż bieżący indeks na stos i przejdź do następnego dnia",
+            "dołóż bieżący indeks na stos",
+            "przejdź do następnego dnia, a na końcu zwróć tablicę wyników",
         ],
+        deps=[[], [0], [1], [2], [3], [4]],
         explanation=(
             "Dni zostające na stosie do końca mają w wyniku zero, bo tablica była nim wypełniona "
             "od początku. Dlatego nie trzeba osobno obsługiwać dni, dla których cieplejszy nigdy "
@@ -79,13 +81,14 @@ EXERCISES = [
             "przechowywany element w czasie stałym."
         ),
         steps=[
-            "przygotuj stos na same wartości",
-            "przygotuj drugi stos, na którym będzie leżeć minimum obowiązujące dla bieżącego stanu pierwszego",
+            "przygotuj stos na wartości oraz drugi stos na minima obowiązujące dla kolejnych stanów pierwszego",
             "przy wkładaniu odłóż wartość na stos wartości",
             "porównaj wkładaną wartość ze szczytem stosu minimów",
             "odłóż na stos minimów mniejszą z porównanych wartości",
-            "przy zdejmowaniu usuń szczyt obu stosów naraz, dzięki czemu minimum samo wraca do poprzedniego",
+            "przy zdejmowaniu usuń szczyt obu stosów naraz",
+            "dzięki temu minimum samo wraca do poprzedniego, a odczyt minimum to zawsze szczyt drugiego stosu",
         ],
+        deps=[[], [0], [1], [2], [3], [4]],
         explanation=(
             "Na stosie minimów nie leżą kolejne coraz mniejsze wartości, tylko minimum osobno dla "
             "każdej wysokości stosu. Dlatego wysokości obu stosów muszą być zawsze równe i dlatego "
@@ -216,12 +219,13 @@ EXERCISES = [
         ),
         steps=[
             "przygotuj kopiec maksymalny uporządkowany po odległości punktu od początku układu",
-            "przechodź punkty po kolei",
-            "policz dla punktu kwadrat odległości, bez pierwiastkowania",
-            "wrzuć punkt na kopiec",
-            "jeśli kopiec urósł ponad k elementów, zdejmij jego wierzchołek, czyli najdalszy z trzymanych punktów",
-            "po przejściu wszystkich punktów zwróć zawartość kopca",
+            "policz dla kolejnego punktu kwadrat odległości, bez pierwiastkowania",
+            "wrzuć punkt na kopiec pod tym kluczem",
+            "jeśli kopiec urósł ponad k elementów, zdejmij jego wierzchołek, czyli najdalszy z trzymanych",
+            "przejdź do następnego punktu i powtarzaj, aż wejście się wyczerpie",
+            "zwróć punkty pozostałe w kopcu",
         ],
+        deps=[[], [0], [1], [2], [3], [4]],
         explanation=(
             "Kopiec jest maksymalny, choć szukasz najbliższych: na wierzchołku ma leżeć najgorszy "
             "z trzymanych kandydatów, bo to jego wyrzucasz. Pierwiastek można pominąć, bo nie "
@@ -242,8 +246,9 @@ EXERCISES = [
             "na początku każdej jednostki czasu przenieś na kopiec te zadania z kolejki, którym przerwa już minęła",
             "zdejmij z kopca zadanie o największym pozostałym liczniku i wykonaj je",
             "zmniejsz jego licznik o jeden",
-            "jeśli licznik jest wciąż dodatni, wstaw zadanie do kolejki wraz z chwilą, w której będzie mogło wrócić",
+            "jeśli licznik jest wciąż dodatni, wstaw zadanie do kolejki wraz z chwilą powrotu",
         ],
+        deps=[[], [0], [1], [2], [3], [4]],
         explanation=(
             "Kopiec pilnuje, żeby zawsze schodziło zadanie najpilniejsze, a kolejka pilnuje przerwy. "
             "Przenoszenie z kolejki musi następować przed wyborem zadania, inaczej zadanie gotowe "
@@ -266,6 +271,7 @@ EXERCISES = [
             "jeśli szukane miejsce leży na lewo od niej, powtórz całość wyłącznie dla lewej części",
             "w przeciwnym razie powtórz dla prawej części, zawężając zakres",
         ],
+        deps=[[], [0], [1], [2], [3], [3, 4]],
         explanation=(
             "To jest quickselect: jak sortowanie szybkie, ale schodzi tylko w tę połowę, w której "
             "leży odpowiedź. Stąd średni koszt liniowy zamiast n log n. Kopiec też rozwiąże zadanie, "
@@ -288,6 +294,7 @@ EXERCISES = [
             "jeśli różnica jest dodatnia, wrzuć ją na kopiec jako nowy kamień",
             "gdy zostanie najwyżej jeden kamień, zwróć jego wagę, a przy pustym kopcu zero",
         ],
+        deps=[[], [0], [1], [2], [3], [4]],
         explanation=(
             "Zerowa różnica oznacza, że oba kamienie znikają, więc nie wraca nic. Kopiec maksymalny "
             "jest tu naturalny, bo po każdym zderzeniu skład zbioru się zmienia i najcięższy trzeba "

@@ -83,6 +83,16 @@ nawzajem. `recognize-pattern`: **który** wzorzec. `key-insight`: ta jedna obser
 bez której wzorzec i tak nie zadziała albo zadziała za wolno. `edge-case`: co łamie
 podejście, które wygląda na poprawne.
 
+`order-steps` ma własne sito, mocniejsze niż dobre chęci. Każdy krok deklaruje w polu
+`deps`, których wcześniejszych kroków efekt zużywa. Build robi z tego sortowanie
+topologiczne i **odrzuca ćwiczenie, jeśli na którymkolwiek etapie dwa kroki są gotowe
+naraz**: dałoby się je wtedy zamienić miejscami, więc poprawnych odpowiedzi byłyby dwie,
+czyli w praktyce żadna. To jest dla tego typu tym, czym filtr testowy dla mutantów.
+
+Przy wprowadzaniu tej reguły okazało się, że **dziewięć z 32 istniejących ćwiczeń było
+niejednoznacznych** — zwykle przez dwie niezależne inicjalizacje albo dwie gałęzie tego
+samego warunku. Wszystkie zostały przepisane.
+
 `key-insight` wymaga `spec_ref` i to jest tam najostrzejsze sito: jeśli nie da się
 wskazać w treści fragmentu, na którym obserwacja się zawiesza, zwykle znaczy to, że
 odpowiedź jest prawdziwą uwagą, a nie sednem. `edge-case` `spec_ref` nie wymaga, bo

@@ -1095,10 +1095,10 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
-        "zapamiętaj osobną zmienną na iloczyn tego, co leży na prawo, i ustaw ją na jeden",
+        "gdy prefiksy są już w wyniku, zawiąż zmienną na iloczyn prawej strony i ustaw ją na jeden",
         "pomnóż wartość w wyniku przez bieżący iloczyn prawej strony",
         "dopiero potem wmnóż element wejścia do iloczynu prawej strony",
-        "przejdź wejście od prawej do lewej",
+        "przejdź wejście jeszcze raz, tym razem od prawej do lewej",
         "przejdź wejście od lewej, wpisując do wyniku iloczyn wszystkiego, co leży na lewo od pozycji",
         "utwórz tablicę wynikową tej samej długości co wejście"
       ],
@@ -1167,12 +1167,12 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
-        "zaktualizuj maksimum tej strony bieżącym słupkiem",
-        "dolicz do wyniku różnicę między maksimum tej strony a wysokością bieżącego słupka",
-        "zapamiętaj najwyższy słupek widziany od lewej i najwyższy widziany od prawej",
-        "przesuń wskaźnik wybranej strony do środka i powtarzaj, aż się miną",
-        "wybierz tę stronę, po której zapamiętane maksimum jest niższe",
-        "ustaw wskaźniki na obu końcach tablicy"
+        "dolicz do wyniku różnicę między tym maksimum a wysokością bieżącego słupka",
+        "przesuń wskaźnik wybranej strony o jeden do środka",
+        "porównaj zapamiętane maksima i wybierz stronę, po której maksimum jest niższe",
+        "powtarzaj, dopóki wskaźniki się nie miną, i zwróć zsumowaną wodę",
+        "zaktualizuj maksimum wybranej strony bieżącym słupkiem",
+        "ustaw wskaźniki na obu końcach tablicy, a oba zapamiętane maksima na zero"
       ],
       "answer": [
         5,
@@ -1203,12 +1203,12 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
-        "zwężaj okno z lewej, dopóki pokrycie się utrzymuje, po każdym skróceniu ponawiając zapis wyniku",
-        "gdy licznik brakujących spadnie do zera, zapamiętaj okno, jeśli jest krótsze od dotychczas najlepszego",
-        "gdy zwężenie zabierze znak potrzebny do pokrycia, zwiększ licznik brakujących i wróć do rozszerzania",
-        "ustaw licznik brakujących znaków na długość wzorca",
+        "zwężaj okno z lewej, dopóki pokrycie się utrzymuje, po każdym skróceniu ponawiając zapis",
+        "gdy licznik brakujących spadnie do zera, zapamiętaj okno, jeśli jest krótsze od najlepszego",
+        "gdy zwężenie zabierze znak potrzebny do pokrycia, zwiększ licznik i wróć do rozszerzania",
+        "ustaw licznik brakujących znaków na sumę tych zliczeń",
         "policz, ile razy każdy znak występuje we wzorcu",
-        "rozszerzaj okno w prawo, zmniejszając licznik brakujących, gdy znak był jeszcze potrzebny"
+        "rozszerzaj okno w prawo, zmniejszając licznik, gdy znak był jeszcze potrzebny"
       ],
       "answer": [
         4,
@@ -1241,10 +1241,10 @@
       "options": [
         "przygotuj kolejkę dwustronną, w której będziesz trzymać indeksy, nie wartości",
         "dopisz bieżący indeks na koniec kolejki",
-        "gdy okno osiągnie pełną długość, odczytaj maksimum z przodu kolejki",
-        "dla kolejnego elementu usuń z przodu kolejki indeks, który wypadł już poza okno",
-        "dopisz odczytaną wartość do wyniku i przesuń się o jeden element dalej",
-        "usuwaj z tyłu kolejki wszystkie indeksy o wartościach nie większych od bieżącej"
+        "gdy okno osiągnęło pełną długość, odczytaj maksimum z przodu kolejki",
+        "weź kolejny element wejścia",
+        "dopisz odczytaną wartość do wyniku i przejdź do następnego elementu",
+        "oczyść kolejkę: z przodu wyrzuć indeks spoza okna, z tyłu wszystkie o wartościach nie większych od bieżącej"
       ],
       "answer": [
         0,
@@ -1275,12 +1275,12 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
-        "przygotuj stos, na którym będą leżeć indeksy słupków o rosnących wysokościach",
-        "dla zdjętego słupka przyjmij, że jego prostokąt sięga w prawo do bieżącej pozycji",
-        "policz pole i zaktualizuj najlepszy wynik, a na koniec dołóż bieżący indeks na stos",
+        "przygotuj stos na indeksy słupków i przechodź słupki od lewej do prawej",
+        "policz pole zdjętego prostokąta i zaktualizuj najlepszy wynik",
+        "po przejściu całego histogramu opróżnij stos, przyjmując jako prawą granicę jego koniec",
+        "dla zdjętego słupka prawą granicą jest bieżąca pozycja, a lewą nowy szczyt stosu",
         "dopóki bieżący słupek jest niższy od tego na szczycie stosu, zdejmij szczyt",
-        "przechodź słupki od lewej do prawej",
-        "lewą granicę odczytaj z nowego szczytu stosu, bo to pierwszy niższy słupek po lewej"
+        "gdy zdejmowanie się skończy, dołóż bieżący indeks na stos"
       ],
       "answer": [
         0,
@@ -1311,12 +1311,12 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
-        "przechodź samochody w tej kolejności, trzymając na stosie czasy dojazdu czół flot",
-        "policz dla każdego samochodu czas dojazdu do mety",
-        "jeśli czas bieżącego samochodu jest większy od czasu na szczycie stosu, zacznij nową flotę",
-        "połącz pozycję i prędkość każdego samochodu w jedną parę",
-        "w przeciwnym razie samochód dogoni flotę przed sobą i nie zwiększa wyniku",
-        "posortuj samochody po pozycji malejąco, czyli od najbliższego mety"
+        "porównaj ten czas z czasem leżącym na szczycie stosu",
+        "policz jego czas dojazdu do mety jako dystans podzielony przez prędkość",
+        "gdy jest większy, samochód zakłada nową flotę i jego czas ląduje na stosie",
+        "posortuj samochody po pozycji malejąco i przygotuj pusty stos na czasy dojazdu czół flot",
+        "gdy nie jest większy, samochód dogoni flotę przed sobą i stos zostaje bez zmian",
+        "weź kolejny samochód z tej kolejności"
       ],
       "answer": [
         3,
@@ -1347,12 +1347,12 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
-        "ustal dolną granicę przedziału na najmniejszą wartość, która w ogóle ma sens",
+        "ustal przedział: dolną granicę na wartość na pewno za małą, górną na na pewno wystarczającą",
+        "gdy wartość wystarcza, zapamiętaj ją jako najlepszą dotychczasową",
+        "wtedy przenieś górną granicę tuż pod środek, a w przeciwnym razie dolną tuż nad środek",
         "weź środek przedziału i sprawdź go przygotowaną funkcją",
-        "gdy wartość wystarcza, zapamiętaj ją i przenieś górną granicę tuż pod środek",
-        "ustal górną granicę na wartość, przy której zadanie na pewno się udaje",
         "napisz funkcję sprawdzającą, czy pojedyncza wartość parametru wystarcza",
-        "gdy nie wystarcza, przenieś dolną granicę tuż nad środek i powtarzaj aż do zejścia się granic"
+        "powtarzaj, aż granice się zejdą, i zwróć zapamiętaną wartość"
       ],
       "answer": [
         4,
@@ -1456,11 +1456,11 @@
       "code": "",
       "options": [
         "przy zapisie dołóż nowy węzeł po tej samej stronie i dopisz go do słownika",
-        "utwórz słownik odwzorowujący klucz na węzeł tej listy",
-        "przy odczycie znajdź węzeł w słowniku i wypnij go z jego miejsca na liście",
-        "wepnij ten węzeł tuż przy wartowniku oznaczającym stronę najświeższych",
-        "gdy rozmiar przekroczy pojemność, wypnij węzeł przy przeciwnym wartowniku i usuń jego klucz ze słownika",
-        "utwórz listę dwukierunkową z wartownikami na obu końcach"
+        "przy odczycie znajdź węzeł w słowniku",
+        "wypnij go z jego bieżącego miejsca na liście",
+        "wepnij go tuż przy wartowniku oznaczającym stronę najświeższych",
+        "gdy rozmiar przekroczy pojemność, wypnij węzeł przy przeciwnym wartowniku i usuń jego klucz",
+        "utwórz listę dwukierunkową z wartownikami na obu końcach oraz słownik z klucza na węzeł"
       ],
       "answer": [
         5,
@@ -1491,10 +1491,10 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
-        "zdejmij z kopca najmniejszy węzeł i dopnij go na koniec wyniku",
-        "porządkuj kopiec po wartościach węzłów",
-        "wrzuć do kopca pierwszy węzeł z każdej niepustej listy",
-        "utwórz węzeł wartowniczy, który będzie początkiem wyniku",
+        "dopnij go na koniec budowanego wyniku",
+        "gdy kopiec jest pusty, zwróć pustą listę, a w przeciwnym razie utwórz węzeł wartowniczy",
+        "przygotuj kopiec porządkowany wartościami węzłów i wrzuć pierwszy węzeł z każdej niepustej listy",
+        "zdejmij z kopca najmniejszy węzeł",
         "powtarzaj, aż kopiec opustoszeje, i zwróć listę za wartownikiem",
         "jeśli zdjęty węzeł miał następnika, wrzuć następnika do kopca"
       ],
@@ -1564,11 +1564,11 @@
       "code": "",
       "options": [
         "zwróć w górę wartość węzła powiększoną o większy z dwóch wkładów",
-        "zawiąż zmienną na najlepszy dotychczasowy wynik i ustaw ją na minus nieskończoność",
-        "ujemny wkład potraktuj jak zero, bo lepiej takiej gałęzi nie brać wcale",
-        "policz tak samo wkład prawego poddrzewa",
-        "zaktualizuj najlepszy wynik sumą wartości węzła i obu wkładów",
-        "policz rekurencyjnie najlepszy wkład lewego poddrzewa"
+        "zawiąż zmienną na najlepszy wynik i ustaw ją na minus nieskończoność",
+        "policz sumę wartości węzła i obu poprawionych wkładów",
+        "ujemny wkład potraktuj jak zero, bo takiej gałęzi lepiej nie brać wcale",
+        "zaktualizuj tą sumą najlepszy dotychczasowy wynik",
+        "zejdź rekurencyjnie i policz wkład lewego oraz prawego poddrzewa"
       ],
       "answer": [
         1,
@@ -1599,12 +1599,12 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
-        "oznacz w trie węzły kończące słowo",
-        "wstaw wszystkie szukane słowa do jednego drzewa trie",
-        "oznacz pole jako zajęte na czas schodzenia w głąb i cofnij to oznaczenie przy powrocie",
-        "przy wejściu na pole zejdź do dziecka trie odpowiadającego jego literze, a gdy go nie ma, przerwij gałąź",
         "uruchom przeszukiwanie w głąb z każdego pola siatki, startując od korzenia trie",
-        "gdy trafisz na węzeł kończący słowo, dopisz to słowo do wyniku i odznacz je, żeby nie trafiło tam drugi raz"
+        "wstaw wszystkie szukane słowa do jednego drzewa trie, oznaczając węzły kończące słowo",
+        "po powrocie z sąsiadów cofnij oznaczenie pola",
+        "oznacz pole jako zajęte, żeby ta sama ścieżka nie użyła go dwa razy",
+        "przy wejściu na pole zejdź do dziecka trie dla jego litery, a gdy go nie ma, przerwij gałąź",
+        "gdy bieżący węzeł trie kończy słowo, dopisz je do wyniku i odznacz, żeby nie trafiło tam ponownie"
       ],
       "answer": [
         1,
@@ -1637,10 +1637,10 @@
       "options": [
         "przełóż wierzchołek mniejszej połowy do kopca większej",
         "przygotuj kopiec maksymalny na mniejszą połowę i minimalny na większą",
-        "przy nieparzystej liczbie elementów odczytaj medianę z wierzchołka większego kopca",
-        "jeśli kopiec większej połowy urósł ponad rozmiar mniejszej, przełóż jego wierzchołek z powrotem",
+        "porównaj rozmiary obu kopców",
+        "gdy kopiec większej połowy urósł ponad rozmiar mniejszej, przełóż jego wierzchołek z powrotem",
         "wstaw nową liczbę do kopca mniejszej połowy",
-        "przy parzystej uśrednij wierzchołki obu kopców"
+        "przy nierównych medianą jest wierzchołek większego kopca, a przy równych średnia obu wierzchołków"
       ],
       "answer": [
         1,
@@ -1707,7 +1707,7 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
-        "rozważ każdy możliwy koniec fragmentu zaczynającego się w tej pozycji",
+        "w przeciwnym razie rozważ każdy możliwy koniec fragmentu zaczynającego się w tej pozycji",
         "dopisz fragment do podziału, zejdź głębiej, a po powrocie zdejmij go z powrotem",
         "gdy pozycja dobiegnie końca napisu, dopisz kopię bieżącego podziału do wyniku",
         "zawiąż listę na bieżący podział i listę na wynik",
@@ -1743,12 +1743,12 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
-        "wrzuć do kolejki wszystkie kursy o zerowej liczbie wymagań",
-        "następnika, którego licznik spadł do zera, dołóż do kolejki",
-        "policz dla każdego kursu, ile kursów trzeba zaliczyć przed nim",
         "zdejmij kurs z kolejki i dopisz go do wynikowej kolejności",
-        "zbuduj listy sąsiedztwa: dla każdego kursu te, które go wymagają",
-        "zmniejsz licznik wymagań u każdego z jego następników"
+        "gdy kolejka opustoszeje, porównaj długość wyniku z liczbą kursów, żeby wykryć cykl",
+        "wrzuć do kolejki wszystkie kursy o zerowej liczbie wymagań",
+        "zmniejsz licznik wymagań u każdego z jego następników",
+        "zbuduj listy sąsiedztwa i policz dla każdego kursu liczbę wymagań",
+        "następnika, którego licznik spadł do zera, dołóż do kolejki"
       ],
       "answer": [
         4,
@@ -1779,12 +1779,12 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
-        "zwróć przecięcie obu zbiorów",
-        "odwróć kierunek myślenia: zamiast spływu w dół rozważaj wchodzenie pod górę",
-        "przygotuj dwa osobne zbiory pól, po jednym dla każdej krawędzi",
-        "wchodź tylko na sąsiadów o wysokości nie mniejszej niż bieżąca",
-        "powtórz to samo przeszukiwanie od dolnej krawędzi, zapełniając drugi zbiór",
-        "uruchom przeszukiwanie z wszystkich pól przy górnej krawędzi, dopisując odwiedzone do pierwszego zbioru"
+        "zwróć współrzędne pól należących do przecięcia",
+        "wrzuć do pierwszego zbioru wszystkie pola leżące przy górnej krawędzi",
+        "przygotuj dwa osobne zbiory odwiedzonych pól, po jednym dla każdej krawędzi",
+        "zrób to samo dla dolnej krawędzi, zapełniając drugi zbiór",
+        "przetnij oba zbiory",
+        "rozszerzaj ten zbiór, wchodząc tylko na sąsiadów o wysokości nie mniejszej niż bieżąca"
       ],
       "answer": [
         2,
@@ -1851,12 +1851,12 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
-        "gdy nie istnieje, dopisz element na koniec tablicy pomocniczej",
-        "zawiąż pomocniczą tablicę na najmniejsze możliwe zakończenia podciągów kolejnych długości",
-        "gdy taka pozycja istnieje, nadpisz ją bieżącym elementem",
-        "przechodź elementy wejścia po kolei",
-        "poszukaj binarnie pierwszej pozycji w tablicy pomocniczej o wartości nie mniejszej od bieżącego elementu",
-        "po przejściu całego wejścia zwróć długość tablicy pomocniczej"
+        "przejdź do następnego elementu wejścia i powtórz",
+        "zawiąż pomocniczą tablicę na najmniejsze zakończenia podciągów kolejnych długości",
+        "gdy taka pozycja istnieje, nadpisz ją tym elementem, a gdy nie, dopisz go na koniec tablicy",
+        "weź kolejny element wejścia",
+        "poszukaj binarnie pierwszej pozycji w tablicy pomocniczej o wartości nie mniejszej od niego",
+        "po wyczerpaniu wejścia zwróć długość tablicy pomocniczej"
       ],
       "answer": [
         1,
@@ -1887,12 +1887,12 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
-        "gdy się różnią, weź najmniejszą z trzech sąsiadek: z góry, z lewej i po przekątnej",
+        "przy znakach równych przepisz wartość po przekątnej, a przy różnych weź najmniejszą z trzech sąsiadek i dodaj jeden",
         "utwórz tablicę o wymiarach o jeden większych niż długości obu napisów",
         "wypełnij pierwszy wiersz i pierwszą kolumnę kolejnymi liczbami, bo to koszt zamiany na napis pusty",
-        "przechodź komórki wierszami, od lewej do prawej",
-        "gdy odpowiadające sobie znaki są równe, przepisz wartość z komórki po przekątnej",
-        "dodaj jeden do wybranej wartości i zapisz wynik w komórce"
+        "przechodź pozostałe komórki wierszami, od lewej do prawej",
+        "porównaj znaki odpowiadające bieżącej komórce",
+        "po wypełnieniu całej tablicy odczytaj wynik z prawego dolnego rogu"
       ],
       "answer": [
         1,
@@ -1959,12 +1959,12 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
-        "weź kolejne spotkanie z posortowanej listy",
+        "sprawdź, czy na wierzchołku kopca leży godzina nie późniejsza niż jego początek",
         "zapamiętaj największy rozmiar kopca, jaki wystąpił, i zwróć go jako wynik",
-        "posortuj spotkania po godzinie rozpoczęcia",
+        "posortuj spotkania po godzinie rozpoczęcia i przygotuj pusty kopiec na godziny zakończenia",
         "wrzuć na kopiec godzinę zakończenia bieżącego spotkania",
-        "przygotuj kopiec minimalny na godziny zakończenia zajętych sal",
-        "jeśli na wierzchołku kopca leży godzina nie późniejsza niż jego początek, zdejmij ją i zwolnij tę salę"
+        "weź kolejne spotkanie z posortowanej listy",
+        "jeśli tak, zdejmij ją, bo tamta sala właśnie się zwolniła"
       ],
       "answer": [
         2,
@@ -1985,6 +1985,366 @@
       ]
     },
     {
+      "id": "neetcode-150/bit-manipulation/liczenie-bitow-kroki",
+      "pattern": "bit-manipulation",
+      "problem": "liczenie-bitow-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Dla każdej liczby od zera do n podaj, ile ma jedynek w zapisie binarnym, w łącznym czasie liniowym.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "przesuń bieżącą liczbę o jeden bit w prawo",
+        "przechodź liczby od jeden do n",
+        "odczytaj z tablicy gotowy wynik dla tak otrzymanej mniejszej liczby",
+        "utwórz tablicę wyników o długości n plus jeden i wpisz zero na pozycji zerowej",
+        "dodaj do niego najmłodszy bit bieżącej liczby",
+        "zapisz sumę na pozycji bieżącej liczby"
+      ],
+      "answer": [
+        3,
+        1,
+        0,
+        2,
+        4,
+        5
+      ],
+      "explanation": "Przesunięcie w prawo daje liczbę mniejszą, więc jej wynik jest już policzony. To zamienia liczenie bitów w programowanie dynamiczne o stałym koszcie na liczbę.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "bit-manipulation"
+      ]
+    },
+    {
+      "id": "neetcode-150/bit-manipulation/suma-bez-plusa-kroki",
+      "pattern": "bit-manipulation",
+      "problem": "suma-bez-plusa-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Dodaj dwie liczby całkowite, nie używając operatora dodawania ani odejmowania.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "przesuń wynik AND o jeden bit w lewo, bo przeniesienie działa na pozycji wyższej",
+        "podstaw sumę bez przeniesień jako nową pierwszą liczbę",
+        "powtórz cały krok, dopóki druga liczba jest różna od zera",
+        "policz naraz dwie rzeczy: XOR obu liczb jako sumę bez przeniesień oraz AND jako miejsca przeniesień",
+        "gdy przeniesienia znikną, pierwsza liczba jest szukaną sumą",
+        "podstaw przesunięte przeniesienia jako nową drugą liczbę"
+      ],
+      "answer": [
+        3,
+        0,
+        1,
+        5,
+        2,
+        4
+      ],
+      "explanation": "Rozbicie dodawania na sumę bez przeniesień i same przeniesienia, powtarzane aż do wyzerowania tych drugich, odtwarza dokładnie działanie sumatora sprzętowego.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "bit-manipulation"
+      ]
+    },
+    {
+      "id": "neetcode-150/math/spirala-kroki",
+      "pattern": "math",
+      "problem": "spirala-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 2,
+      "spec": "Wypisz elementy macierzy, obchodząc ją spiralnie od lewego górnego rogu.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "jeśli lewa granica nie minęła prawej, przejdź lewą kolumnę od dołu do góry i przesuń lewą granicę w prawo",
+        "przejdź górny wiersz od lewej do prawej i przesuń górną granicę w dół",
+        "przejdź prawą kolumnę od góry do dołu i przesuń prawą granicę w lewo",
+        "powtarzaj cały obieg, dopóki granice się nie miną",
+        "zawiąż cztery granice: górny i dolny wiersz oraz lewą i prawą kolumnę",
+        "jeśli górna granica nie minęła dolnej, przejdź dolny wiersz od prawej do lewej i podnieś dolną granicę"
+      ],
+      "answer": [
+        4,
+        1,
+        2,
+        5,
+        0,
+        3
+      ],
+      "explanation": "Dwa sprawdzenia w środku nie są ozdobnikiem: bez nich macierz o jednym wierszu albo jednej kolumnie zostaje przejściem wypisana drugi raz w przeciwną stronę.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "math"
+      ]
+    },
+    {
+      "id": "neetcode-150/math/zerowanie-macierzy-kroki",
+      "pattern": "math",
+      "problem": "zerowanie-macierzy-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Jeśli komórka macierzy zawiera zero, wyzeruj cały jej wiersz i kolumnę. Bez dodatkowej pamięci rosnącej z rozmiarem macierzy.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "wyzeruj komórkę, jeśli jej wiersz albo kolumna ma znacznik",
+        "przejdź pozostałe komórki i dla każdego zera wpisz znacznik w pierwszej komórce jego wiersza i kolumny",
+        "sprawdź osobno, czy pierwszy wiersz i pierwsza kolumna zawierają zero, i zapamiętaj to w dwóch zmiennych",
+        "wyzeruj pierwszy wiersz i pierwszą kolumnę zgodnie z zapamiętanymi na początku zmiennymi",
+        "gdy znaczniki są już zużyte, wróć do samych brzegów",
+        "przejdź pozostałe komórki drugi raz, czytając znaczniki z brzegów"
+      ],
+      "answer": [
+        2,
+        1,
+        5,
+        0,
+        4,
+        3
+      ],
+      "explanation": "Brzegi trzeba rozstrzygnąć na samym początku i wyzerować na samym końcu, bo w międzyczasie pełnią rolę znaczników. Zerowanie ich wcześniej skasowałoby informację, z której korzysta krok czwarty.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "math"
+      ]
+    },
+    {
+      "id": "neetcode-150/dp-2d/unikalne-sciezki-kroki",
+      "pattern": "dp-2d",
+      "problem": "unikalne-sciezki-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 2,
+      "spec": "Policz, na ile sposobów da się przejść z lewego górnego rogu siatki do prawego dolnego, ruszając się tylko w prawo albo w dół.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "po wypełnieniu tablicy odczytaj wynik z prawego dolnego rogu",
+        "utwórz tablicę o wymiarach siatki",
+        "zapisz tę sumę w bieżącej komórce",
+        "zsumuj liczbę dróg do komórki nad bieżącą i do komórki po jej lewej",
+        "przechodź pozostałe komórki wierszami, od lewej do prawej",
+        "wpisz jedynkę w całym pierwszym wierszu i w całej pierwszej kolumnie, bo prowadzi tam jedna droga"
+      ],
+      "answer": [
+        1,
+        5,
+        4,
+        3,
+        2,
+        0
+      ],
+      "explanation": "Do każdego pola da się wejść tylko z góry albo z lewej, więc liczba dróg jest sumą tych dwóch. Brzegi wypełnia się osobno, bo tam jedna z tych możliwości nie istnieje.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "dp-2d"
+      ]
+    },
+    {
+      "id": "neetcode-150/advanced-graphs/dijkstra-kroki",
+      "pattern": "advanced-graphs",
+      "problem": "dijkstra-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Graf skierowany z dodatnimi wagami. Podaj najkrótsze odległości od zadanego wierzchołka do wszystkich pozostałych.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "dla każdego sąsiada policz koszt dojścia przez ten wierzchołek",
+        "przygotuj kopiec minimalny i wrzuć do niego wierzchołek startowy z kosztem zero",
+        "zdejmij z kopca wierzchołek o najmniejszym znanym koszcie",
+        "zbuduj listy sąsiedztwa wraz z wagami krawędzi",
+        "pomiń go, jeśli był już domknięty, a w przeciwnym razie zapisz jego koszt jako ostateczny",
+        "wrzuć sąsiada na kopiec, jeśli tak policzony koszt jest lepszy od dotychczas znanego"
+      ],
+      "answer": [
+        3,
+        1,
+        2,
+        4,
+        0,
+        5
+      ],
+      "explanation": "Sprawdzenie, czy wierzchołek był już domknięty, zastępuje kosztowne usuwanie nieaktualnych wpisów z kopca. To dlatego ten sam wierzchołek może w kopcu leżeć kilka razy i nie jest to błąd.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "advanced-graphs"
+      ]
+    },
+    {
+      "id": "neetcode-150/trie/trie-kroki",
+      "pattern": "trie",
+      "problem": "trie-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 2,
+      "spec": "Zaprojektuj strukturę pozwalającą wstawiać słowa i sprawdzać ich obecność oraz przedrostki.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "gdy dziecka dla bieżącego znaku nie ma, utwórz je i wpisz do mapy",
+        "wyszukiwanie idzie tą samą ścieżką i różni się tylko tym, czy na końcu wymaga znacznika",
+        "zejdź do tego dziecka i przejdź do następnego znaku",
+        "zawiąż węzeł korzenia z pustą mapą dzieci i znacznikiem końca słowa",
+        "po ostatnim znaku ustaw w bieżącym węźle znacznik końca słowa",
+        "przy wstawianiu idź od korzenia znak po znaku"
+      ],
+      "answer": [
+        3,
+        5,
+        0,
+        2,
+        4,
+        1
+      ],
+      "explanation": "Cała różnica między pytaniem o słowo a pytaniem o przedrostek siedzi w ostatnim kroku: przedrostkowi wystarczy dojście do węzła, słowo wymaga jeszcze znacznika.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "trie"
+      ]
+    },
+    {
+      "id": "neetcode-150/arrays-hashing/najdluzszy-ciag-kroki",
+      "pattern": "arrays-hashing",
+      "problem": "najdluzszy-ciag-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Podaj długość najdłuższego ciągu kolejnych liczb występujących w tablicy, w czasie liniowym.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "wrzuć wszystkie liczby do zbioru haszującego",
+        "gdy jest, pomiń bieżącą liczbę, bo nie zaczyna ciągu",
+        "przechodź liczby ze zbioru",
+        "gdy jej nie ma, licz w górę, dopóki kolejne następniki są w zbiorze",
+        "zaktualizuj najlepszy wynik długością policzonego ciągu",
+        "sprawdź, czy w zbiorze jest liczba o jeden mniejsza od bieżącej"
+      ],
+      "answer": [
+        0,
+        2,
+        5,
+        1,
+        3,
+        4
+      ],
+      "explanation": "Warunek z kroku trzeciego jest tym, co daje liniowość: bez niego ten sam ciąg byłby przechodzony od każdego swojego elementu i całość zrobiłaby się kwadratowa.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "arrays-hashing"
+      ]
+    },
+    {
+      "id": "neetcode-150/graphs/zbedna-krawedz-kroki",
+      "pattern": "graphs",
+      "problem": "zbedna-krawedz-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Graf nieskierowany powstały z drzewa przez dodanie jednej krawędzi. Wskaż tę krawędź, która domyka cykl.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "gdy korzenie są równe, ta krawędź domyka cykl i jest szukaną odpowiedzią",
+        "przejdź do następnej krawędzi i powtarzaj aż do końca listy",
+        "znajdź korzenie obu jej końców, skracając po drodze ścieżki",
+        "zawiąż tablicę rodziców, w której każdy wierzchołek jest na początku swoim własnym",
+        "gdy są różne, podepnij jeden korzeń pod drugi",
+        "weź kolejną krawędź z wejścia"
+      ],
+      "answer": [
+        3,
+        5,
+        2,
+        0,
+        4,
+        1
+      ],
+      "explanation": "Struktura zbiorów rozłącznych odpowiada w czasie prawie stałym na pytanie, czy dwa wierzchołki są już połączone. Krawędź łącząca wierzchołki z tego samego zbioru jest dokładnie tą, która tworzy cykl.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "graphs"
+      ]
+    },
+    {
+      "id": "neetcode-150/dp-1d/slowo-lamane-kroki",
+      "pattern": "dp-1d",
+      "problem": "slowo-lamane-kroki",
+      "type": "order-steps",
+      "ui": "ordering",
+      "difficulty": 3,
+      "spec": "Sprawdź, czy napis da się rozłożyć na ciąg słów ze słownika, przy czym słów wolno używać wielokrotnie.",
+      "prompt": "Ułóż kroki rozwiązania w kolejności.",
+      "code": "",
+      "options": [
+        "utwórz tablicę logiczną o długości napisu plus jeden i ustaw prawdę na pozycji zerowej",
+        "wrzuć słownik do zbioru haszującego, żeby sprawdzenie słowa było stałe",
+        "pomiń pozycję, jeśli nie da się do niej dojść, czyli tablica ma tam fałsz",
+        "przechodź pozycje napisu od lewej do prawej",
+        "dla osiągalnej pozycji sprawdź każdy fragment zaczynający się w niej",
+        "gdy fragment należy do zbioru, ustaw prawdę na pozycji tuż za jego końcem"
+      ],
+      "answer": [
+        1,
+        0,
+        3,
+        2,
+        4,
+        5
+      ],
+      "explanation": "Prawda na pozycji zerowej to warunek początkowy: pusty przedrostek zawsze da się rozłożyć. Bez niego żadna pozycja nie byłaby osiągalna i wynik zawsze wychodziłby fałszywy.",
+      "spec_ref": null,
+      "est_seconds": 60,
+      "source": "curated",
+      "reviewed": false,
+      "tags": [
+        "order-steps",
+        "dp-1d"
+      ]
+    },
+    {
       "id": "neetcode-150/stack/onp-kroki",
       "pattern": "stack",
       "problem": "onp-kroki",
@@ -1995,11 +2355,11 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
-        "gdy symbol jest działaniem, zdejmij ze stosu dwie liczby",
+        "gdy jest działaniem, zdejmij ze stosu dwie liczby",
         "potraktuj pierwszą zdjętą jako prawy argument, a drugą jako lewy",
-        "przygotuj pusty stos na liczby",
-        "czytaj kolejne symbole wyrażenia od lewej do prawej",
-        "gdy symbol jest liczbą, odłóż ją na stos",
+        "przygotuj pusty stos na liczby i czytaj kolejne symbole wyrażenia od lewej do prawej",
+        "sprawdź, czy bieżący symbol jest liczbą, czy działaniem",
+        "gdy jest liczbą, odłóż ją na stos i przejdź do następnego symbolu",
         "odłóż wynik działania na stos, a po wyczerpaniu symboli zwróć jedyną pozostałą liczbę"
       ],
       "answer": [
@@ -2031,12 +2391,12 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
+        "dopóki bieżąca temperatura jest wyższa od temperatury dnia ze szczytu stosu, zdejmij ten szczyt",
         "przechodź dni od lewej do prawej",
-        "przygotuj stos na indeksy dni, które wciąż czekają na cieplejszy",
-        "przygotuj tablicę wyników wypełnioną zerami",
-        "dołóż bieżący indeks na stos i przejdź do następnego dnia",
-        "dla każdego zdjętego dnia wpisz do wyniku różnicę między bieżącym indeksem a jego własnym",
-        "dopóki bieżąca temperatura jest wyższa od temperatury dnia ze szczytu stosu, zdejmij ten szczyt"
+        "przygotuj tablicę wyników wypełnioną zerami oraz stos na indeksy dni czekających na cieplejszy",
+        "przejdź do następnego dnia, a na końcu zwróć tablicę wyników",
+        "dołóż bieżący indeks na stos",
+        "dla każdego zdjętego dnia wpisz do wyniku różnicę między bieżącym indeksem a jego własnym"
       ],
       "answer": [
         2,
@@ -2067,12 +2427,12 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
-        "przy wkładaniu odłóż wartość na stos wartości",
         "porównaj wkładaną wartość ze szczytem stosu minimów",
-        "przygotuj drugi stos, na którym będzie leżeć minimum obowiązujące dla bieżącego stanu pierwszego",
         "odłóż na stos minimów mniejszą z porównanych wartości",
-        "przy zdejmowaniu usuń szczyt obu stosów naraz, dzięki czemu minimum samo wraca do poprzedniego",
-        "przygotuj stos na same wartości"
+        "przy wkładaniu odłóż wartość na stos wartości",
+        "przy zdejmowaniu usuń szczyt obu stosów naraz",
+        "dzięki temu minimum samo wraca do poprzedniego, a odczyt minimum to zawsze szczyt drugiego stosu",
+        "przygotuj stos na wartości oraz drugi stos na minima obowiązujące dla kolejnych stanów pierwszego"
       ],
       "answer": [
         5,
@@ -2238,11 +2598,11 @@
       "prompt": "Ułóż kroki rozwiązania w kolejności.",
       "code": "",
       "options": [
-        "po przejściu wszystkich punktów zwróć zawartość kopca",
-        "policz dla punktu kwadrat odległości, bez pierwiastkowania",
-        "wrzuć punkt na kopiec",
-        "przechodź punkty po kolei",
-        "jeśli kopiec urósł ponad k elementów, zdejmij jego wierzchołek, czyli najdalszy z trzymanych punktów",
+        "zwróć punkty pozostałe w kopcu",
+        "wrzuć punkt na kopiec pod tym kluczem",
+        "jeśli kopiec urósł ponad k elementów, zdejmij jego wierzchołek, czyli najdalszy z trzymanych",
+        "policz dla kolejnego punktu kwadrat odległości, bez pierwiastkowania",
+        "przejdź do następnego punktu i powtarzaj, aż wejście się wyczerpie",
         "przygotuj kopiec maksymalny uporządkowany po odległości punktu od początku układu"
       ],
       "answer": [
@@ -2276,7 +2636,7 @@
       "options": [
         "zdejmij z kopca zadanie o największym pozostałym liczniku i wykonaj je",
         "zmniejsz jego licznik o jeden",
-        "jeśli licznik jest wciąż dodatni, wstaw zadanie do kolejki wraz z chwilą, w której będzie mogło wrócić",
+        "jeśli licznik jest wciąż dodatni, wstaw zadanie do kolejki wraz z chwilą powrotu",
         "na początku każdej jednostki czasu przenieś na kopiec te zadania z kolejki, którym przerwa już minęła",
         "wrzuć liczniki na kopiec maksymalny i przygotuj kolejkę na zadania odbywające przerwę",
         "policz, ile razy występuje każde zadanie"

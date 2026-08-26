@@ -176,3 +176,56 @@ def test_timeout_nie_zatruwa_pozostalych_testow():
     assert outcome.statuses[0] == runner.PASS
     assert outcome.statuses[1] == runner.TIMEOUT
     assert outcome.statuses[2] == runner.PASS
+
+
+def test_kolejnosc_jednoznaczna_jest_przyjmowana():
+    """Lancuch zaleznosci wymusza dokladnie jedna kolejnosc."""
+    order, tied = exercises.forced_order([[], [0], [1]])
+
+    assert order == [0, 1, 2]
+    assert tied == []
+
+
+def test_dwa_kroki_gotowe_naraz_sa_odrzucane():
+    """Dwie niezalezne inicjalizacje to dwie poprawne odpowiedzi, czyli zadna."""
+    order, tied = exercises.forced_order([[], [], [0, 1]])
+
+    assert order is None
+    assert tied == [0, 1]
+
+
+def test_check_forced_order_wskazuje_winne_kroki():
+    steps = ["ustaw wskazniki", "zapamietaj maksima", "policz wynik"]
+
+    with pytest.raises(AssertionError) as blad:
+        exercises.check_forced_order("test/x", steps, [[], [], [0, 1]])
+
+    assert "nie jest jednoznaczna" in str(blad.value)
+    assert "ustaw wskazniki" in str(blad.value)
+
+
+def test_zaleznosc_musi_wskazywac_krok_wczesniejszy():
+    with pytest.raises(AssertionError) as blad:
+        exercises.check_forced_order("test/x", ["a", "b"], [[1], []])
+
+    assert "wczesniejszy" in str(blad.value)
+
+
+def test_wszystkie_cwiczenia_order_steps_maja_wymuszona_kolejnosc():
+    """Kazdy wpis w korpusie kurowanym przechodzi ten sam sprawdzian co w buildzie."""
+    curated = ROOT / "curated"
+    sprawdzone = 0
+
+    for path in sorted(curated.glob("*.py")):
+        if path.name.startswith("_"):
+            continue
+        module = load(path)
+        domyslny = getattr(module, "DEFAULT_TYPE", "recognize-pattern")
+        for entry in module.EXERCISES:
+            if entry.get("type", domyslny) != "order-steps":
+                continue
+            assert "deps" in entry, "{}: brak deps".format(entry["problem"])
+            exercises.check_forced_order(entry["problem"], entry["steps"], entry["deps"])
+            sprawdzone += 1
+
+    assert sprawdzone > 0, "nie znaleziono zadnego cwiczenia order-steps"
