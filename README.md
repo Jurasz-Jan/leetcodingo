@@ -12,6 +12,8 @@ Korpus przebudowuje się bez dotykania aplikacji.
 
 ## Stan
 
+Plan dalszych prac: [ROADMAP.md](ROADMAP.md).
+
 | Cel | Stan |
 |---|---|
 | P0.1 pipeline mutacyjny z walidacją testami | gotowe |
@@ -19,7 +21,7 @@ Korpus przebudowuje się bez dotykania aplikacji.
 | wszystkie typy reprezentowane | gotowe |
 | pokrycie NeetCode 150 | w toku: 18 rodzin wzorców, 105 ćwiczeń kurowanych, wszystkie do przeglądu |
 | P0.3 renderer | gotowe: działa na emulatorze (Android 16), pełna ścieżka pytanie → odpowiedź → wyjaśnienie |
-| P0.4 test na sobie przez 2 tygodnie | przed nami |
+| P0.4 test na sobie przez 2 tygodnie | zdane: aplikacja w regularnym użyciu |
 
 Korpus liczy 164 ćwiczenia w 18 wzorcach: 59 wygenerowanych mechanicznie ze sliding window
 i 105 kurowanych, pokrywających rodziny wzorców z NeetCode 150.
