@@ -62,17 +62,22 @@ na tempo, też wymaga osobnego „Sprawdź". Zostaje jak jest.
 
 ### 1. Powtórki nie działają tak, jak się wydaje
 
-Trzy osobne usterki, w kolejności rosnącej trudności.
+Trzy osobne usterki, w kolejności rosnącej trudności. **Dwie pierwsze zrobione
+2026-08-24**, trzecia otwarta.
 
-**Postęp ginie przy przerwanej sesji.** `markSeen` wywołuje się wyłącznie po naciśnięciu
-„Dalej" na ostatnim zadaniu. Zwinięcie aplikacji w połowie sesji oznacza, że nic się nie
-zapisze. W aplikacji projektowanej do używania w kolejce do kasy przerwanie w połowie
-jest przypadkiem typowym, nie wyjątkowym. To defekt, nie decyzja projektowa.
-**Naprawa: oznaczać ćwiczenie jako widziane w momencie odpowiedzi.** Kilka linijek.
+**Postęp ginie przy przerwanej sesji — zrobione.** `markSeen` wywoływał się wyłącznie po
+naciśnięciu „Dalej" na ostatnim zadaniu, więc zwinięcie aplikacji w połowie sesji nie
+zapisywało niczego. W aplikacji do używania w kolejce do kasy przerwanie w połowie jest
+przypadkiem typowym, nie wyjątkowym. Zapis przeniesiony do momentu odpowiedzi.
 
-**Wyścig przy „Jeszcze raz".** `next()` odpala zapis w osobnej korutynie i natychmiast
-pokazuje ekran końcowy. Naciśnięcie „Jeszcze raz" czyta stan, którego zapis może jeszcze
-nie zdążyć. Ta sama naprawa co wyżej usuwa i ten problem.
+Sprawdzone na emulatorze: po odpowiedzi na jedno pytanie i ubiciu aplikacji menu pokazuje
+213 niewidzianych zamiast 214.
+
+**Wyścig przy „Jeszcze raz" — zrobione.** Rozwiązany inaczej, niż zakładałem: sam zapis
+w momencie odpowiedzi go nie usuwa, bo DataStore i tak pisze asynchronicznie i odczyt tuż
+po ostatniej odpowiedzi mógłby nie zobaczyć świeżego wpisu. Doszła kopia zbioru widzianych
+w pamięci ViewModelu, która jest źródłem prawdy przy doborze sesji; zapis na dysk służy
+już tylko przetrwaniu między uruchomieniami.
 
 **Po wyczerpaniu korpusu nie ma żadnych odstępów.** Gdy wszystkie 214 trafi do zbioru
 widzianych, sesja to losowanie jednostajne i to samo ćwiczenie może wypaść dwa razy pod
@@ -202,11 +207,15 @@ technicznie nie ma jak zadzwonić do domu.
 
 ## Co zrobiłbym najpierw
 
-Sekcja UX jest już zrobiona. Następny w kolejce punkt 1, pierwsza usterka: **oznaczanie ćwiczenia jako widzianego w momencie odpowiedzi**.
-Kilka linijek, usuwa dwie usterki naraz i dotyczy czegoś, co tracisz przy każdej
-przerwanej sesji, czyli prawdopodobnie codziennie.
+Sekcja UX i dwie pierwsze usterki z punktu 1 są zrobione.
 
-Zaraz potem punkt 2, bo koszt zwłoki rośnie z każdym dniem używania.
+Następne w kolejce jest **wydanie z punktu 2**, bo koszt zwłoki rośnie z każdym dniem
+używania: im więcej postępu zbierzesz na buildzie debugowym, tym więcej stracisz przy
+przymusowym odinstalowaniu.
+
+Zaraz potem trzecia usterka z punktu 1, czyli **odstępy między powtórkami**. Termin nie
+jest umowny: przy obecnym tempie korpus wyczerpie się za jakieś półtora miesiąca i od
+tego momentu dobór stanie się losowaniem jednostajnym.
 
 Trzeci byłby punkt 7 — dwa nowe wzorce w pipelinie mutacyjnym dodadzą około 60 ćwiczeń
 z dowodem poprawności, za jakieś dwie godziny pracy. Żaden inny punkt nie ma takiego

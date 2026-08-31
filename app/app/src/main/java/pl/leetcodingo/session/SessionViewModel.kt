@@ -63,6 +63,15 @@ class SessionViewModel(app: Application) : AndroidViewModel(app) {
     val state: StateFlow<UiState> = _state.asStateFlow()
 
     private var corpus: Corpus? = null
+
+    /**
+     * Widziane cwiczenia trzymane takze w pamieci.
+     *
+     * DataStore zapisuje asynchronicznie, wiec odczyt tuz po odpowiedzi moglby jeszcze
+     * nie widziec swiezego wpisu. Ta kopia jest zrodlem prawdy przy doborze sesji, a
+     * zapis na dysk sluzy juz tylko przetrwaniu miedzy uruchomieniami.
+     */
+    private var seenCache: MutableSet<String>? = null
     private var queue: List<Exercise> = emptyList()
     private var index = 0
     private var correct = 0
@@ -77,7 +86,7 @@ class SessionViewModel(app: Application) : AndroidViewModel(app) {
         viewModelScope.launch {
             _state.value = UiState.Loading
             val loaded = load() ?: return@launch
-            val seen = progress.seen()
+            val seen = seen()
 
             val topics = loaded.exercises
                 .groupBy { it.pattern }
@@ -120,11 +129,18 @@ class SessionViewModel(app: Application) : AndroidViewModel(app) {
             }
 
             topic = pattern
-            queue = pickSession(pool, progress.seen())
+            queue = pickSession(pool, seen())
             index = 0
             correct = 0
             emitCurrent(picked = emptyList(), revealed = false)
         }
+    }
+
+    private suspend fun seen(): MutableSet<String> {
+        seenCache?.let { return it }
+        val loaded = progress.seen().toMutableSet()
+        seenCache = loaded
+        return loaded
     }
 
     private suspend fun load(): Corpus? {
@@ -161,6 +177,15 @@ class SessionViewModel(app: Application) : AndroidViewModel(app) {
         if (running.revealed || !running.canSubmit) return
         if (running.isCorrect) correct++
         _state.value = running.copy(revealed = true, correctSoFar = correct)
+
+        // Zapis w momencie odpowiedzi, a nie na koncu sesji. Przerwanie w polowie jest
+        // w tej aplikacji przypadkiem typowym, wiec zapis na koncu gubilby postep
+        // przy wiekszosci sesji.
+        val answered = running.exercise.id
+        viewModelScope.launch {
+            seen().add(answered)
+            progress.markSeen(listOf(answered))
+        }
     }
 
     fun next() {
@@ -168,7 +193,6 @@ class SessionViewModel(app: Application) : AndroidViewModel(app) {
         if (!running.revealed) return
         index++
         if (index >= queue.size) {
-            viewModelScope.launch { progress.markSeen(queue.map { it.id }) }
             _state.value = UiState.Finished(correct = correct, total = queue.size, topic = topic)
         } else {
             emitCurrent(picked = emptyList(), revealed = false)
