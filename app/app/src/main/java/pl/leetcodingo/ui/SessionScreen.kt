@@ -1,5 +1,6 @@
 package pl.leetcodingo.ui
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -79,19 +80,25 @@ fun SessionScreen(viewModel: SessionViewModel) {
                     onTopic = viewModel::startTopic,
                 )
 
-                is UiState.Running -> RunningScreen(
-                    state = current,
-                    onPick = viewModel::pick,
-                    onSubmit = viewModel::submit,
-                    onNext = viewModel::next,
-                    onMenu = viewModel::openMenu,
-                )
+                is UiState.Running -> {
+                    BackHandler(onBack = viewModel::openMenu)
+                    RunningScreen(
+                        state = current,
+                        onPick = viewModel::pick,
+                        onSubmit = viewModel::submit,
+                        onNext = viewModel::next,
+                        onMenu = viewModel::openMenu,
+                    )
+                }
 
-                is UiState.Finished -> FinishedScreen(
-                    state = current,
-                    onAgain = viewModel::again,
-                    onMenu = viewModel::openMenu,
-                )
+                is UiState.Finished -> {
+                    BackHandler(onBack = viewModel::openMenu)
+                    FinishedScreen(
+                        state = current,
+                        onAgain = viewModel::again,
+                        onMenu = viewModel::openMenu,
+                    )
+                }
             }
         }
     }
@@ -132,7 +139,7 @@ private fun MenuScreen(
 
         Text(text = "Sesja tematyczna", style = MaterialTheme.typography.titleMedium)
         Text(
-            text = "Jeden wzorzec na całą sesję. Liczba w nawiasie to ćwiczenia jeszcze niewidziane.",
+            text = "Jeden wzorzec na całą sesję. Przy każdym temacie liczba ćwiczeń, a po kropce te jeszcze niewidziane.",
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -227,6 +234,9 @@ private fun RunningScreen(
                 Text(
                     text = buildString {
                         append("${state.position}/${state.total}")
+                        // Trafienia dopiero od drugiego zadania: przy pierwszym
+                        // pokazywalyby zawsze zero i tylko zajmowaly miejsce.
+                        if (state.position > 1) append("  ·  ${state.correctSoFar} trafione")
                         if (showPattern) append("  ·  ${exercise.pattern}")
                         append("  ·  trudność ${exercise.difficulty}")
                     },
@@ -237,7 +247,7 @@ private fun RunningScreen(
                 TextButton(onClick = onMenu) { Text("Menu") }
             }
 
-            SpecCard(exercise.spec)
+            SpecCard(spec = exercise.spec, withCode = exercise.code.isNotBlank())
 
             Text(text = exercise.prompt, style = MaterialTheme.typography.titleMedium)
 
@@ -266,14 +276,28 @@ private fun RunningScreen(
             }
         }
 
-        Button(
-            onClick = if (state.revealed) onNext else onSubmit,
-            enabled = state.revealed || state.canSubmit,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(20.dp),
-        ) {
-            Text(if (state.revealed) "Dalej" else "Sprawdź")
+        Column(modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp)) {
+            // Wyszarzony przycisk bez wyjasnienia wyglada jak zepsuty, a przy ukladaniu
+            // kolejnosci trzeba ustawic wszystkie kroki, zanim da sie sprawdzic.
+            if (!state.revealed && !state.canSubmit) {
+                Text(
+                    text = if (exercise.answer is Answer.Ordering) {
+                        "Ustaw wszystkie ${exercise.options.size} kroków, stukając w nie po kolei."
+                    } else {
+                        "Wybierz jedną z odpowiedzi."
+                    },
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(bottom = 8.dp),
+                )
+            }
+            Button(
+                onClick = if (state.revealed) onNext else onSubmit,
+                enabled = state.revealed || state.canSubmit,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(if (state.revealed) "Dalej" else "Sprawdź")
+            }
         }
     }
 }
@@ -308,8 +332,12 @@ private fun optionState(exercise: Exercise, state: UiState.Running, index: Int):
     }
 }
 
+/**
+ * Naglowek zalezy od tego, czy cwiczenie w ogole pokazuje kod. Przy 157 z 214 cwiczen
+ * zadnego kodu nie ma i „co kod ma robic" jest wtedy po prostu nieprawda.
+ */
 @Composable
-private fun SpecCard(spec: String) {
+private fun SpecCard(spec: String, withCode: Boolean) {
     Card(
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant,
@@ -318,7 +346,7 @@ private fun SpecCard(spec: String) {
     ) {
         Column(modifier = Modifier.padding(12.dp)) {
             Text(
-                text = "CO KOD MA ROBIĆ",
+                text = if (withCode) "CO KOD MA ROBIĆ" else "ZADANIE",
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )

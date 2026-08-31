@@ -17,6 +17,46 @@ korzystanie, a nie to, czego jeszcze nie ma.
 
 ---
 
+## UX — drobne, widoczne przy każdym użyciu
+
+Sekcja powstała z przeglądu własnych zrzutów ekranu i kodu, nie z burzy mózgów.
+Wszystkie cztery pozycje są potwierdzone liczbowo albo widoczne na zrzucie.
+Stoją przed P0, bo kosztują po kilka linijek, a dotykają każdej sesji.
+
+### U1. Nagłówek „CO KOD MA ROBIĆ" nad ćwiczeniami bez kodu
+
+**157 z 214 ćwiczeń nie ma żadnego kodu**, a mimo to ich treść stoi pod tym nagłówkiem.
+Dotyczy wszystkich `recognize-pattern`, `key-insight`, `edge-case` i `order-steps`.
+Etykieta ma zależeć od tego, czy ćwiczenie w ogóle pokazuje kod.
+
+### U2. Systemowy przycisk Wstecz wychodzi z aplikacji
+
+W trakcie sesji Wstecz zamyka aplikację, zamiast wrócić do menu. To złamanie konwencji
+Androida: użytkownik spodziewa się cofnięcia o ekran, a dostaje wyjście. Przycisk „Menu"
+w nagłówku istnieje, ale nikt nie szuka go odruchowo.
+
+### U3. Licznik trafień jest liczony i wyrzucany
+
+`UiState.Running` niesie pole `correctSoFar`, którego renderer **nigdy nie pokazuje**.
+Wynik widać dopiero na ekranie końcowym. Jedna linijka w nagłówku zamienia to w bieżącą
+informację zwrotną.
+
+### U4. Nieaktywne „Sprawdź" bez wyjaśnienia
+
+Przy układaniu kolejności przycisk jest wyszarzony, dopóki nie ustawisz **wszystkich**
+sześciu kroków, i nic tego nie tłumaczy. Przy pierwszym kontakcie wygląda jak zepsuty
+przycisk.
+
+### Odrzucone po namyśle
+
+**Automatyczne sprawdzanie po stuknięciu w opcję**, żeby oszczędzić jedno stuknięcie przy
+jednokrotnym wyborze. Brzmi dobrze przy mikrodecyzji na 15 sekund, ale kasuje moment
+zatwierdzenia: przypadkowe muśnięcie ekranu staje się nieodwracalną błędną odpowiedzią,
+a przy pytaniach z kodem łatwo trafić w opcję podczas przewijania. Duolingo, mimo presji
+na tempo, też wymaga osobnego „Sprawdź". Zostaje jak jest.
+
+---
+
 ## P0 — psuje codzienne użycie
 
 ### 1. Powtórki nie działają tak, jak się wydaje
@@ -161,7 +201,9 @@ technicznie nie ma jak zadzwonić do domu.
 
 ## Co zrobiłbym najpierw
 
-Punkt 1, pierwsza usterka: **oznaczanie ćwiczenia jako widzianego w momencie odpowiedzi**.
+Sekcję UX w całości, bo to godzina pracy na cztery rzeczy widoczne przy każdej sesji.
+
+Potem punkt 1, pierwsza usterka: **oznaczanie ćwiczenia jako widzianego w momencie odpowiedzi**.
 Kilka linijek, usuwa dwie usterki naraz i dotyczy czegoś, co tracisz przy każdej
 przerwanej sesji, czyli prawdopodobnie codziennie.
 
