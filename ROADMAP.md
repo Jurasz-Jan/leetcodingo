@@ -17,31 +17,32 @@ korzystanie, a nie to, czego jeszcze nie ma.
 
 ---
 
-## UX — drobne, widoczne przy każdym użyciu
+## UX — wykonane 2026-08-24
 
 Sekcja powstała z przeglądu własnych zrzutów ekranu i kodu, nie z burzy mózgów.
-Wszystkie cztery pozycje są potwierdzone liczbowo albo widoczne na zrzucie.
-Stoją przed P0, bo kosztują po kilka linijek, a dotykają każdej sesji.
+Wszystkie cztery pozycje były potwierdzone liczbowo albo widoczne na zrzucie.
+**Wszystkie cztery są zrobione i sprawdzone na emulatorze**, opis zostaje jako zapis
+tego, co i dlaczego zmieniono.
 
-### U1. Nagłówek „CO KOD MA ROBIĆ" nad ćwiczeniami bez kodu
+### U1. Nagłówek „CO KOD MA ROBIĆ" nad ćwiczeniami bez kodu — zrobione
 
 **157 z 214 ćwiczeń nie ma żadnego kodu**, a mimo to ich treść stoi pod tym nagłówkiem.
 Dotyczy wszystkich `recognize-pattern`, `key-insight`, `edge-case` i `order-steps`.
 Etykieta ma zależeć od tego, czy ćwiczenie w ogóle pokazuje kod.
 
-### U2. Systemowy przycisk Wstecz wychodzi z aplikacji
+### U2. Systemowy przycisk Wstecz wychodzi z aplikacji — zrobione
 
 W trakcie sesji Wstecz zamyka aplikację, zamiast wrócić do menu. To złamanie konwencji
 Androida: użytkownik spodziewa się cofnięcia o ekran, a dostaje wyjście. Przycisk „Menu"
 w nagłówku istnieje, ale nikt nie szuka go odruchowo.
 
-### U3. Licznik trafień jest liczony i wyrzucany
+### U3. Licznik trafień jest liczony i wyrzucany — zrobione
 
 `UiState.Running` niesie pole `correctSoFar`, którego renderer **nigdy nie pokazuje**.
 Wynik widać dopiero na ekranie końcowym. Jedna linijka w nagłówku zamienia to w bieżącą
 informację zwrotną.
 
-### U4. Nieaktywne „Sprawdź" bez wyjaśnienia
+### U4. Nieaktywne „Sprawdź" bez wyjaśnienia — zrobione
 
 Przy układaniu kolejności przycisk jest wyszarzony, dopóki nie ustawisz **wszystkich**
 sześciu kroków, i nic tego nie tłumaczy. Przy pierwszym kontakcie wygląda jak zepsuty
@@ -201,9 +202,7 @@ technicznie nie ma jak zadzwonić do domu.
 
 ## Co zrobiłbym najpierw
 
-Sekcję UX w całości, bo to godzina pracy na cztery rzeczy widoczne przy każdej sesji.
-
-Potem punkt 1, pierwsza usterka: **oznaczanie ćwiczenia jako widzianego w momencie odpowiedzi**.
+Sekcja UX jest już zrobiona. Następny w kolejce punkt 1, pierwsza usterka: **oznaczanie ćwiczenia jako widzianego w momencie odpowiedzi**.
 Kilka linijek, usuwa dwie usterki naraz i dotyczy czegoś, co tracisz przy każdej
 przerwanej sesji, czyli prawdopodobnie codziennie.
 
