@@ -180,6 +180,17 @@ Korpus trafia do APK zadaniem `copyCorpus`, które kopiuje `corpus` do assetów 
 każdym buildzie. Renderer czyta wszystko z assetów i nie zna żadnej treści na sztywno,
 więc przebudowa korpusu nie wymaga zmiany kodu aplikacji.
 
+Aplikacja startuje w menu z dwoma trybami. **Sesja mieszana** dobiera z całego korpusu.
+**Sesja tematyczna** ogranicza się do jednego wzorca; lista tematów jest posortowana po
+liczbie ćwiczeń jeszcze niewidzianych, więc na górze stoi to, co daje najwięcej nowego.
+Z sesji można wyjść w każdej chwili przyciskiem w nagłówku.
+
+Blok kodu skaluje się gestem dwóch palców, w zakresie od 0,8 do 2,5 rozmiaru bazowego.
+Skala żyje na poziomie ekranu, nie ćwiczenia, więc raz powiększony kod zostaje
+powiększony na kolejnych zadaniach i po obrocie ekranu. Detektor konsumuje zdarzenia
+wyłącznie przy dwóch palcach naraz, dzięki czemu zwykłe przewijanie strony nad kodem
+działa bez zmian.
+
 Sesja to budżet czasu (180 s), nie liczba zadań: ćwiczenia są dobierane, aż suma
 `est_seconds` wyczerpie budżet, najpierw te jeszcze niewidziane. Widziane ćwiczenia
 pamięta DataStore. Właściwa mechanika retencji, czyli powtórki rozłożone w czasie,

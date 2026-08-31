@@ -9,15 +9,29 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import pl.leetcodingo.data.Answer
 import pl.leetcodingo.data.Corpus
 import pl.leetcodingo.data.CorpusRepository
 import pl.leetcodingo.data.Exercise
 import pl.leetcodingo.data.ProgressStore
 
+/** Jeden wzorzec na ekranie wyboru: ile ma ćwiczeń i ilu z nich jeszcze nie widziałeś. */
+data class Topic(
+    val pattern: String,
+    val total: Int,
+    val unseen: Int,
+)
+
 sealed interface UiState {
     data object Loading : UiState
 
     data class Failed(val message: String) : UiState
+
+    data class Menu(
+        val topics: List<Topic>,
+        val total: Int,
+        val unseen: Int,
+    ) : UiState
 
     data class Running(
         val exercise: Exercise,
@@ -26,15 +40,20 @@ sealed interface UiState {
         val picked: List<Int>,
         val revealed: Boolean,
         val correctSoFar: Int,
+        val topic: String?,
     ) : UiState {
         val isCorrect: Boolean get() = exercise.isCorrect(picked)
         val canSubmit: Boolean get() = when (exercise.answer) {
-            is pl.leetcodingo.data.Answer.Choice -> picked.size == 1
-            is pl.leetcodingo.data.Answer.Ordering -> picked.size == exercise.options.size
+            is Answer.Choice -> picked.size == 1
+            is Answer.Ordering -> picked.size == exercise.options.size
         }
     }
 
-    data class Finished(val correct: Int, val total: Int) : UiState
+    data class Finished(
+        val correct: Int,
+        val total: Int,
+        val topic: String?,
+    ) : UiState
 }
 
 class SessionViewModel(app: Application) : AndroidViewModel(app) {
@@ -47,34 +66,82 @@ class SessionViewModel(app: Application) : AndroidViewModel(app) {
     private var queue: List<Exercise> = emptyList()
     private var index = 0
     private var correct = 0
+    private var topic: String? = null
 
     init {
-        start()
+        openMenu()
     }
 
-    fun start() {
+    /** Ekran wyboru trybu. Liczby biorą się z korpusu i z tego, co już widziałeś. */
+    fun openMenu() {
         viewModelScope.launch {
             _state.value = UiState.Loading
-            val loaded = corpus ?: runCatching {
-                withContext(Dispatchers.IO) {
-                    CorpusRepository(getApplication<Application>()).load()
+            val loaded = load() ?: return@launch
+            val seen = progress.seen()
+
+            val topics = loaded.exercises
+                .groupBy { it.pattern }
+                .map { (pattern, items) ->
+                    Topic(
+                        pattern = pattern,
+                        total = items.size,
+                        unseen = items.count { it.id !in seen },
+                    )
                 }
-            }.getOrElse {
-                _state.value = UiState.Failed(it.message ?: "nie udało się wczytać korpusu")
+                .sortedWith(compareByDescending<Topic> { it.unseen }.thenBy { it.pattern })
+
+            _state.value = UiState.Menu(
+                topics = topics,
+                total = loaded.exercises.size,
+                unseen = loaded.exercises.count { it.id !in seen },
+            )
+        }
+    }
+
+    /** Sesja mieszana: dobiera z całego korpusu. */
+    fun startMixed() = startSession(null)
+
+    /** Sesja tematyczna: wyłącznie jeden wzorzec. */
+    fun startTopic(pattern: String) = startSession(pattern)
+
+    private fun startSession(pattern: String?) {
+        viewModelScope.launch {
+            _state.value = UiState.Loading
+            val loaded = load() ?: return@launch
+
+            val pool = if (pattern == null) {
+                loaded.exercises
+            } else {
+                loaded.exercises.filter { it.pattern == pattern }
+            }
+            if (pool.isEmpty()) {
+                _state.value = UiState.Failed("brak ćwiczeń dla wybranego tematu")
                 return@launch
             }
-            corpus = loaded
 
-            if (loaded.exercises.isEmpty()) {
-                _state.value = UiState.Failed("korpus jest pusty")
-                return@launch
-            }
-
-            queue = pickSession(loaded.exercises, progress.seen())
+            topic = pattern
+            queue = pickSession(pool, progress.seen())
             index = 0
             correct = 0
             emitCurrent(picked = emptyList(), revealed = false)
         }
+    }
+
+    private suspend fun load(): Corpus? {
+        val loaded = corpus ?: runCatching {
+            withContext(Dispatchers.IO) {
+                CorpusRepository(getApplication<Application>()).load()
+            }
+        }.getOrElse {
+            _state.value = UiState.Failed(it.message ?: "nie udało się wczytać korpusu")
+            return null
+        }
+        corpus = loaded
+        if (loaded.exercises.isEmpty()) {
+            _state.value = UiState.Failed("korpus jest pusty")
+            return null
+        }
+        return loaded
     }
 
     /** Wybor opcji. Przy `choice` zastepuje poprzednia, przy `ordering` dokłada na koniec. */
@@ -82,8 +149,8 @@ class SessionViewModel(app: Application) : AndroidViewModel(app) {
         val running = _state.value as? UiState.Running ?: return
         if (running.revealed) return
         val picked = when (running.exercise.answer) {
-            is pl.leetcodingo.data.Answer.Choice -> listOf(option)
-            is pl.leetcodingo.data.Answer.Ordering ->
+            is Answer.Choice -> listOf(option)
+            is Answer.Ordering ->
                 if (option in running.picked) running.picked - option else running.picked + option
         }
         _state.value = running.copy(picked = picked)
@@ -102,11 +169,14 @@ class SessionViewModel(app: Application) : AndroidViewModel(app) {
         index++
         if (index >= queue.size) {
             viewModelScope.launch { progress.markSeen(queue.map { it.id }) }
-            _state.value = UiState.Finished(correct = correct, total = queue.size)
+            _state.value = UiState.Finished(correct = correct, total = queue.size, topic = topic)
         } else {
             emitCurrent(picked = emptyList(), revealed = false)
         }
     }
+
+    /** Powtórka tego samego trybu, w którym właśnie skończyłeś. */
+    fun again() = startSession(topic)
 
     private fun emitCurrent(picked: List<Int>, revealed: Boolean) {
         _state.value = UiState.Running(
@@ -116,6 +186,7 @@ class SessionViewModel(app: Application) : AndroidViewModel(app) {
             picked = picked,
             revealed = revealed,
             correctSoFar = correct,
+            topic = topic,
         )
     }
 
