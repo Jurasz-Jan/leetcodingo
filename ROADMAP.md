@@ -194,10 +194,15 @@ się sprawdzą.
 
 ## Świadomie nie robimy
 
-XP, streaków, osiągnięć i lig — z powodu, który opis projektu podaje najlepiej: to jest
-najczęstszy sposób, w jaki takie projekty umierają, z dwunastoma osiągnięciami i
-piętnastoma zadaniami. Mechaniką retencji mają być powtórki rozłożone w czasie, nie
-seria dni.
+XP, osiągnięć i lig — z powodu, który opis projektu podaje najlepiej: to jest najczęstszy
+sposób, w jaki takie projekty umierają, z dwunastoma osiągnięciami i piętnastoma zadaniami.
+
+**Seria dni doszła 2026-08-24**, bo zakaz z opisu projektu był warunkowy: „dodawane
+dopiero, gdy okaże się, że do treści chce się wracać samej z siebie". Ten warunek się
+spełnił wraz z P0.4. Seria jest jednak **informacją zwrotną, nie mechaniką retencji** —
+tą mają zostać odstępy między powtórkami, bo licznik dni potrafi popychać do odklikania
+byle czego, żeby nie zgasł. Dlatego dzień liczy się raz, a druga sesja tego samego dnia
+nie świętuje niczego.
 
 Kont, chmury i synchronizacji. Edytora i uruchamiania kodu użytkownika. Pobierania
 korpusu z sieci — wymagałoby uprawnienia `INTERNET` i oddałoby właściwość, że aplikacja

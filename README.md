@@ -193,6 +193,10 @@ powiększony na kolejnych zadaniach i po obrocie ekranu. Detektor konsumuje zdar
 wyłącznie przy dwóch palcach naraz, dzięki czemu zwykłe przewijanie strony nad kodem
 działa bez zmian.
 
+Ukończona sesja liczy się do serii dni. Dzień liczy się raz, więc druga sesja tego
+samego dnia serii nie przedłuża i nie odpala animacji. Seria jest informacją zwrotną,
+a nie mechaniką retencji: tą mają zostać powtórki rozłożone w czasie.
+
 Sesja to budżet czasu (180 s), nie liczba zadań: ćwiczenia są dobierane, aż suma
 `est_seconds` wyczerpie budżet, najpierw te jeszcze niewidziane. Widziane ćwiczenia
 pamięta DataStore. Właściwa mechanika retencji, czyli powtórki rozłożone w czasie,

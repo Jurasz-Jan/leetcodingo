@@ -1,6 +1,10 @@
 package pl.leetcodingo.ui
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -35,12 +39,17 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.rotate
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -50,9 +59,13 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import pl.leetcodingo.data.Answer
 import pl.leetcodingo.data.Exercise
+import pl.leetcodingo.data.Streak
 import pl.leetcodingo.session.SessionViewModel
 import pl.leetcodingo.session.Topic
 import pl.leetcodingo.session.UiState
+import kotlin.math.cos
+import kotlin.math.sin
+import kotlin.random.Random
 
 @Composable
 fun SessionScreen(viewModel: SessionViewModel) {
@@ -123,6 +136,7 @@ private fun MenuScreen(
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
+        StreakLine(state.streak)
 
         Spacer(Modifier.height(4.dp))
 
@@ -481,6 +495,118 @@ private fun ExplanationCard(exercise: Exercise, correct: Boolean) {
 }
 
 @Composable
+private fun StreakLine(streak: Streak) {
+    val text = when {
+        streak.days == 0 -> "Brak serii. Dokończona sesja dzisiaj ją zaczyna."
+        streak.days == 1 -> "Seria: 1 dzień"
+        streak.days in 2..4 -> "Seria: ${streak.days} dni"
+        else -> "Seria: ${streak.days} dni  ·  rekord ${streak.best}"
+    }
+    Text(
+        text = text,
+        style = MaterialTheme.typography.labelLarge,
+        color = if (streak.days == 0) {
+            MaterialTheme.colorScheme.onSurfaceVariant
+        } else {
+            MaterialTheme.colorScheme.primary
+        },
+    )
+}
+
+/** Jeden kawałek konfetti: kierunek, prędkość i obrót losowane raz, przy pierwszym rysowaniu. */
+private data class Confetto(
+    val angleRadians: Float,
+    val speed: Float,
+    val spin: Float,
+    val color: Color,
+    val width: Float,
+    val height: Float,
+)
+
+private val CONFETTI_COLORS = listOf(
+    Color(0xFF2E7D32),
+    Color(0xFF1565C0),
+    Color(0xFFF9A825),
+    Color(0xFFC62828),
+    Color(0xFF6A1B9A),
+)
+
+/**
+ * Wybuch konfetti nad liczbą dni serii.
+ *
+ * Rysowany na Canvasie, bez zewnętrznych bibliotek. Tor każdego kawałka to rzut ukośny:
+ * stała prędkość początkowa plus przyspieszenie w dół, więc cząstki najpierw wystrzeliwują
+ * w górę, a potem opadają. Przezroczystość gaśnie na ostatniej ćwiartce animacji, żeby
+ * konfetti znikało samo, zamiast urywać się w połowie ekranu.
+ */
+@Composable
+private fun StreakCelebration(streak: Streak) {
+    val confetti = remember {
+        List(32) {
+            val spread = Random.nextFloat() * 2.2f - 1.1f
+            Confetto(
+                // -90 stopni to prosto w gore; rozrzut na boki daje ksztalt wachlarza.
+                angleRadians = (-Math.PI / 2).toFloat() + spread,
+                speed = 420f + Random.nextFloat() * 620f,
+                spin = -10f + Random.nextFloat() * 20f,
+                color = CONFETTI_COLORS[Random.nextInt(CONFETTI_COLORS.size)],
+                width = 10f + Random.nextFloat() * 10f,
+                height = 5f + Random.nextFloat() * 6f,
+            )
+        }
+    }
+
+    val progress = remember { Animatable(0f) }
+    LaunchedEffect(streak.days) {
+        progress.snapTo(0f)
+        progress.animateTo(1f, animationSpec = tween(durationMillis = 1700, easing = LinearEasing))
+    }
+
+    Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxWidth().height(170.dp)) {
+        Canvas(modifier = Modifier.fillMaxWidth().height(170.dp)) {
+            val t = progress.value * 1.7f
+            val origin = Offset(size.width / 2f, size.height * 0.62f)
+            val fade = ((1f - progress.value) / 0.25f).coerceIn(0f, 1f)
+
+            confetti.forEach { piece ->
+                val x = origin.x + cos(piece.angleRadians) * piece.speed * t
+                val y = origin.y + sin(piece.angleRadians) * piece.speed * t + 900f * t * t
+                if (y > size.height + 40f) return@forEach
+
+                rotate(degrees = piece.spin * t * 60f, pivot = Offset(x, y)) {
+                    drawRect(
+                        color = piece.color.copy(alpha = fade),
+                        topLeft = Offset(x - piece.width / 2f, y - piece.height / 2f),
+                        size = Size(piece.width, piece.height),
+                    )
+                }
+            }
+        }
+
+        // Liczba dni wjeżdża skalowaniem: pierwsze 30% animacji to powiększenie z zapasem,
+        // reszta osiada na docelowym rozmiarze.
+        val scale = when {
+            progress.value < 0.3f -> 0.4f + (progress.value / 0.3f) * 0.75f
+            else -> 1.15f - ((progress.value - 0.3f) / 0.7f) * 0.15f
+        }
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(
+                text = "${streak.days}",
+                style = MaterialTheme.typography.displayLarge,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.graphicsLayer(scaleX = scale, scaleY = scale),
+            )
+            Text(
+                text = if (streak.days == 1) "dzień z rzędu" else "dni z rzędu",
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+    }
+}
+
+@Composable
 private fun FinishedScreen(
     state: UiState.Finished,
     onAgain: () -> Unit,
@@ -489,9 +615,29 @@ private fun FinishedScreen(
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = Modifier.padding(24.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState())
+            .padding(24.dp),
     ) {
-        Text(text = "Koniec sesji", style = MaterialTheme.typography.headlineSmall)
+        // Swietujemy tylko pierwsza ukonczona sesje danego dnia: druga i kolejna nie
+        // przedluzaja serii, wiec fajerwerki bylyby wtedy klamstwem.
+        if (state.streak.extendedToday) {
+            StreakCelebration(state.streak)
+            Text(
+                text = when {
+                    state.streak.days == 1 -> "Seria zaczęta."
+                    state.streak.days == state.streak.best -> "Nowy rekord."
+                    else -> "Seria utrzymana."
+                },
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        } else {
+            Text(text = "Koniec sesji", style = MaterialTheme.typography.headlineSmall)
+            StreakLine(state.streak)
+        }
+
         state.topic?.let { topic ->
             Text(
                 text = topic,

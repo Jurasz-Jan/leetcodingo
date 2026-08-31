@@ -14,6 +14,7 @@ import pl.leetcodingo.data.Corpus
 import pl.leetcodingo.data.CorpusRepository
 import pl.leetcodingo.data.Exercise
 import pl.leetcodingo.data.ProgressStore
+import pl.leetcodingo.data.Streak
 
 /** Jeden wzorzec na ekranie wyboru: ile ma ćwiczeń i ilu z nich jeszcze nie widziałeś. */
 data class Topic(
@@ -31,6 +32,7 @@ sealed interface UiState {
         val topics: List<Topic>,
         val total: Int,
         val unseen: Int,
+        val streak: Streak,
     ) : UiState
 
     data class Running(
@@ -53,6 +55,7 @@ sealed interface UiState {
         val correct: Int,
         val total: Int,
         val topic: String?,
+        val streak: Streak,
     ) : UiState
 }
 
@@ -103,6 +106,7 @@ class SessionViewModel(app: Application) : AndroidViewModel(app) {
                 topics = topics,
                 total = loaded.exercises.size,
                 unseen = loaded.exercises.count { it.id !in seen },
+                streak = progress.streak(),
             )
         }
     }
@@ -193,7 +197,16 @@ class SessionViewModel(app: Application) : AndroidViewModel(app) {
         if (!running.revealed) return
         index++
         if (index >= queue.size) {
-            _state.value = UiState.Finished(correct = correct, total = queue.size, topic = topic)
+            // Zapis serii i przejscie na ekran koncowy dzieja sie razem, bo dopiero
+            // wynik zapisu mowi, czy ta sesja przedluzyla serie i czy jest co swietowac.
+            viewModelScope.launch {
+                _state.value = UiState.Finished(
+                    correct = correct,
+                    total = queue.size,
+                    topic = topic,
+                    streak = progress.recordFinishedSession(),
+                )
+            }
         } else {
             emitCurrent(picked = emptyList(), revealed = false)
         }
